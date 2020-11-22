@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B803F44B256624EA000866AB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F44A256624EA000866AB /* main.swift */; };
+		B803F598256AFF56000866AB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		B803F447256624EA000866AB /* DiscordVoice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DiscordVoice; sourceTree = BUILT_PRODUCTS_DIR; };
 		B803F44A256624EA000866AB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B803F597256AFF56000866AB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				B803F44A256624EA000866AB /* main.swift */,
+				B803F597256AFF56000866AB /* Secrets.swift */,
 			);
 			path = DiscordVoice;
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B803F44B256624EA000866AB /* main.swift in Sources */,
+				B803F598256AFF56000866AB /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
