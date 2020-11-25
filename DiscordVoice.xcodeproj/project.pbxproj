@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		B803F44B256624EA000866AB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F44A256624EA000866AB /* main.swift */; };
 		B803F598256AFF56000866AB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
+		B82141B4256E1327006F5596 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B3256E1327006F5596 /* APIRequest.swift */; };
+		B82141B7256E133B006F5596 /* GetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B6256E133B006F5596 /* GetUser.swift */; };
+		B82141BB256E1365006F5596 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BA256E1365006F5596 /* Gateway.swift */; };
+		B82141BE256E1372006F5596 /* GetGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BD256E1372006F5596 /* GetGateway.swift */; };
+		B82141C1256E1380006F5596 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C0256E1380006F5596 /* User.swift */; };
+		B82141C4256E138F006F5596 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C3256E138F006F5596 /* APIClient.swift */; };
+		B82141C7256E13A1006F5596 /* DiscordAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C6256E13A1006F5596 /* DiscordAPI.swift */; };
+		B82141CA256E13CB006F5596 /* GatewayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C9256E13CB006F5596 /* GatewayMessage.swift */; };
+		B82141CD256E13FB006F5596 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141CC256E13FB006F5596 /* Payload.swift */; };
+		B82141D1256E1420006F5596 /* DiscordEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D0256E1420006F5596 /* DiscordEvent.swift */; };
+		B82141D4256E14B9006F5596 /* Guild.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D3256E14B9006F5596 /* Guild.swift */; };
+		B82141D7256E14C6006F5596 /* HelloPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D6256E14C6006F5596 /* HelloPayload.swift */; };
+		B82141DA256E14E0006F5596 /* IdentityPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentityPayload.swift */; };
+		B82141DF256E15BB006F5596 /* DiscordWSSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordWSSAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +41,20 @@
 		B803F447256624EA000866AB /* DiscordVoice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DiscordVoice; sourceTree = BUILT_PRODUCTS_DIR; };
 		B803F44A256624EA000866AB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B803F597256AFF56000866AB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		B82141B3256E1327006F5596 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		B82141B6256E133B006F5596 /* GetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUser.swift; sourceTree = "<group>"; };
+		B82141BA256E1365006F5596 /* Gateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gateway.swift; sourceTree = "<group>"; };
+		B82141BD256E1372006F5596 /* GetGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGateway.swift; sourceTree = "<group>"; };
+		B82141C0256E1380006F5596 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B82141C3256E138F006F5596 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		B82141C6256E13A1006F5596 /* DiscordAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordAPI.swift; sourceTree = "<group>"; };
+		B82141C9256E13CB006F5596 /* GatewayMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayMessage.swift; sourceTree = "<group>"; };
+		B82141CC256E13FB006F5596 /* Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.swift; sourceTree = "<group>"; };
+		B82141D0256E1420006F5596 /* DiscordEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordEvent.swift; sourceTree = "<group>"; };
+		B82141D3256E14B9006F5596 /* Guild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guild.swift; sourceTree = "<group>"; };
+		B82141D6256E14C6006F5596 /* HelloPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloPayload.swift; sourceTree = "<group>"; };
+		B82141D9256E14E0006F5596 /* IdentityPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityPayload.swift; sourceTree = "<group>"; };
+		B82141DE256E15BB006F5596 /* DiscordWSSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordWSSAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +87,72 @@
 		B803F449256624EA000866AB /* DiscordVoice */ = {
 			isa = PBXGroup;
 			children = (
+				B82141B1256E1304006F5596 /* DiscordAPI */,
+				B82141B9256E1353006F5596 /* Models */,
 				B803F44A256624EA000866AB /* main.swift */,
 				B803F597256AFF56000866AB /* Secrets.swift */,
 			);
 			path = DiscordVoice;
+			sourceTree = "<group>";
+		};
+		B82141B1256E1304006F5596 /* DiscordAPI */ = {
+			isa = PBXGroup;
+			children = (
+				B82141DD256E155C006F5596 /* WebSocket */,
+				B82141DC256E1552006F5596 /* REST */,
+			);
+			path = DiscordAPI;
+			sourceTree = "<group>";
+		};
+		B82141B2256E1312006F5596 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				B82141B3256E1327006F5596 /* APIRequest.swift */,
+				B82141BD256E1372006F5596 /* GetGateway.swift */,
+				B82141B6256E133B006F5596 /* GetUser.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		B82141B9256E1353006F5596 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B82141BA256E1365006F5596 /* Gateway.swift */,
+				B82141D3256E14B9006F5596 /* Guild.swift */,
+				B82141D6256E14C6006F5596 /* HelloPayload.swift */,
+				B82141D9256E14E0006F5596 /* IdentityPayload.swift */,
+				B82141C0256E1380006F5596 /* User.swift */,
+				B82141CF256E1406006F5596 /* GatewayMessages */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B82141CF256E1406006F5596 /* GatewayMessages */ = {
+			isa = PBXGroup;
+			children = (
+				B82141C9256E13CB006F5596 /* GatewayMessage.swift */,
+				B82141CC256E13FB006F5596 /* Payload.swift */,
+				B82141D0256E1420006F5596 /* DiscordEvent.swift */,
+			);
+			path = GatewayMessages;
+			sourceTree = "<group>";
+		};
+		B82141DC256E1552006F5596 /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				B82141C3256E138F006F5596 /* APIClient.swift */,
+				B82141C6256E13A1006F5596 /* DiscordAPI.swift */,
+				B82141B2256E1312006F5596 /* Requests */,
+			);
+			path = REST;
+			sourceTree = "<group>";
+		};
+		B82141DD256E155C006F5596 /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				B82141DE256E15BB006F5596 /* DiscordWSSAPI.swift */,
+			);
+			path = WebSocket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +213,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B803F44B256624EA000866AB /* main.swift in Sources */,
+				B82141B4256E1327006F5596 /* APIRequest.swift in Sources */,
+				B82141DA256E14E0006F5596 /* IdentityPayload.swift in Sources */,
+				B82141CA256E13CB006F5596 /* GatewayMessage.swift in Sources */,
 				B803F598256AFF56000866AB /* Secrets.swift in Sources */,
+				B82141C7256E13A1006F5596 /* DiscordAPI.swift in Sources */,
+				B82141C4256E138F006F5596 /* APIClient.swift in Sources */,
+				B82141B7256E133B006F5596 /* GetUser.swift in Sources */,
+				B82141D7256E14C6006F5596 /* HelloPayload.swift in Sources */,
+				B82141CD256E13FB006F5596 /* Payload.swift in Sources */,
+				B82141BB256E1365006F5596 /* Gateway.swift in Sources */,
+				B82141BE256E1372006F5596 /* GetGateway.swift in Sources */,
+				B82141C1256E1380006F5596 /* User.swift in Sources */,
+				B82141DF256E15BB006F5596 /* DiscordWSSAPI.swift in Sources */,
+				B82141D1256E1420006F5596 /* DiscordEvent.swift in Sources */,
+				B82141D4256E14B9006F5596 /* Guild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
