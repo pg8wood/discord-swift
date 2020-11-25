@@ -50,13 +50,12 @@ struct User: Codable {
 }
 
 protocol APIClient {
-    func get<T: APIRequest>(_ request: T) -> AnyPublisher<T.Response, Error>
+    func get<T: APIRequest>(_ request: T) -> AnyPublisher<T.Response, Error> // TODO enumerate api errors
 }
 
 class DiscordAPI: APIClient {
     private let baseURL = URL(string: "https://discord.com/api")!
     private let myUserID = "275833464618614784"
-    
     
     let session: URLSession = .shared // DI and make testable
     
@@ -83,8 +82,9 @@ class DiscordAPI: APIClient {
     }
 }
 
-struct GatewayMessage<Payload: Codable>: Codable {
-    let opCode: DiscordOpCode
+/// Used for both sending and receiving messages
+struct GatewayMessage: Codable {
+    let opCode: Payload.OpCode
     let payload: Payload
     let eventType: DiscordEventType?
     
@@ -94,13 +94,98 @@ struct GatewayMessage<Payload: Codable>: Codable {
         case eventType = "t"
     }
     
-    init(opCode: DiscordOpCode, payload: Payload) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        opCode = try container.decode(Payload.OpCode.self, forKey: .opCode)
+        eventType = try? container.decode(DiscordEventType.self, forKey: .eventType)
+        
+        switch opCode {
+        case .dispatch:
+            switch eventType {
+            case .guildCreate:
+                let guild = try container.decode(GuildPayload.self, forKey: .payload)
+                payload = .dispatch(.guildCreate(guild))
+            case .none:
+                throw NSError() // TODO throw real errors
+            }
+        case .heartbeat:
+            payload = .unknown // TODO
+        case .identify:
+            payload = .unknown // TODO this is only a sent message. how to handle
+        case .hello:
+            payload = .hello(try container.decode(HelloPayload.self, forKey: .payload))
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(opCode, forKey: .opCode)
+        try container.encode(eventType, forKey: .eventType)
+        
+        switch payload {
+        case .dispatch(let event):
+            throw NSError() // TODO this should only be received never sent right?
+        case .heartbeat:
+            throw NSError() // TODO
+        case .identity(let payload):
+            try container.encode(payload, forKey: .payload)
+        case .hello(let payload):
+            try container.encode(payload, forKey: .payload)
+        case .unknown:
+            throw NSError() // TODO
+        }
+    }
+    
+    init(opCode: Payload.OpCode, payload: Payload) {
         self.opCode = opCode
         self.payload = payload
         self.eventType = nil
     }
 }
 
+enum Payload {
+    case dispatch(DiscordEvent)
+    case heartbeat
+    case identity(IdentifyPayload)
+    case hello(HelloPayload)
+    case unknown
+    
+    var opCode: Int {
+        switch self {
+        case .dispatch: return 0
+        case .heartbeat: return 1
+        case .identity: return 2
+        case .hello: return 10
+        case .unknown: return -1
+        }
+    }
+    
+    enum OpCode: Int, Codable {
+        case dispatch = 0 // Indicates an event of type DiscordEvent was dispatched
+        case heartbeat = 1
+        case identify = 2
+        case hello = 10
+    }
+}
+
+enum DiscordEvent {
+    case guildCreate(GuildPayload)
+}
+
+
+// TODO: probably need to implement a custom decoder for the event types https://stackoverflow.com/questions/52896731/how-to-use-jsondecoder-to-decode-json-with-unknown-type
+// is there a way to make this codable + use an associated type to bind the events to their types?
+enum DiscordEventType: String, Codable {
+    case guildCreate = "GUILD_CREATE"
+}
+
+/// https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-opcodes
+
+
+// Maybe potential Kludge? Discord sends GatewayMessage<Payload> messages for both regular messages AND Discord Events.
+// The Payload can be any Codable type, but when the GateWayMessage has a Discord Event Payload type, the type of the Payload is
+// denoted by the `eventType` value. Typically a custom decoder could be used to switch on the type and decode, but I don't
+// think that's possible without knowing the generic type at compile time.
 struct GatewayEventInfo: Codable {
     let eventType: DiscordEventType
     
@@ -109,11 +194,6 @@ struct GatewayEventInfo: Codable {
     }
 }
 
-// TODO: probably need to implement a custom decoder for the event types https://stackoverflow.com/questions/52896731/how-to-use-jsondecoder-to-decode-json-with-unknown-type
-// is there a way to make this codable + use an associated type to bind the events to their types?
-enum DiscordEventType: String, Codable {
-    case guildCreate = "GUILD_CREATE"
-}
 
 /// https://discord.com/developers/docs/resources/guild#guild-object
 struct GuildPayload: Codable {
@@ -146,14 +226,6 @@ struct IdentifyPayload: Codable {
     var intents: Int = (1 << 0) // https://discord.com/developers/docs/topics/gateway#list-of-intents
 }
 
-/// https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-opcodes
-enum DiscordOpCode: Int, Codable {
-    case dispatch = 0 // Indicates an event of type DiscordEventType was dispatched
-    case heartbeat = 1
-    case identify = 2
-    case hello = 10
-}
-
 class DiscordWSSAPI {
     let session: URLSession
     let discordAPI: DiscordAPI
@@ -170,7 +242,7 @@ class DiscordWSSAPI {
     }
     
     // need result type for error handling maybe?
-    func send<T: Codable>(_ message: GatewayMessage<T>) {
+    func send(_ message: GatewayMessage) {
         guard let webSocketTask = webSocketTask else {
             print("WSS tried to idenfity but no task exists!")
             return
@@ -226,23 +298,15 @@ class DiscordWSSAPI {
         
         let decoder = JSONDecoder()
         do {
-            if let eventInfo = try? decoder.decode(GatewayEventInfo.self, from: data) {
-                switch eventInfo.eventType {
-                case .guildCreate:
-                    let guildCreateMesage = try decoder.decode(GatewayMessage<GuildPayload>.self, from: data)
-                    print("got guild create message!")
-                }
-            }
-//                let eventPayloadType = eventInfo.eventType.payloadType.self
-//                let eventMessage = try decoder.decode(GatewayMessage<eventPayloadType>.self, from: data)
-//            }
+            let message = try decoder.decode(GatewayMessage.self, from: data)
+            print(#"Got message code "\#(message.opCode)" \#(message.eventType != nil ? "| event name: \(message.eventType!)" : "")"#)
         } catch {
             print("error decoding message: \(error.localizedDescription)")
         }
     }
     
-    func connect() -> AnyPublisher<GatewayMessage<HelloPayload>, Error> {
-        let connectionSubject = PassthroughSubject<GatewayMessage<HelloPayload>, Error>()
+    func connect() -> AnyPublisher<GatewayMessage, Error> {
+        let connectionSubject = PassthroughSubject<GatewayMessage, Error>()
         
         func openWSSConnection(at url: URL) {
             let task = session.webSocketTask(with: url)
@@ -262,13 +326,19 @@ class DiscordWSSAPI {
                         }
                         
                         do {
-                            let helloResponse = try JSONDecoder().decode(GatewayMessage<HelloPayload>.self, from: data)
+                            let helloResponse = try JSONDecoder().decode(GatewayMessage.self, from: data)
+                            guard case .hello(let payload) = helloResponse.payload else {
+                                print("error decoding Hello Payload response!")
+                                connectionSubject.send(completion: .failure(NSError())) // TODO use real errors - decodingFailed or something
+                                return
+                            }
+                            
                             connectionSubject.send(helloResponse)
-                            self.beginHeartbeat(interval: helloResponse.payload.heartbeatInterval)
+                            self.beginHeartbeat(interval: payload.heartbeatInterval)
                             self.identify()
                         } catch {
                             print("error decoding Hello Payload response: \(error.localizedDescription)")
-                            connectionSubject.send(completion: .failure(error))
+                            connectionSubject.send(completion: .failure(error)) // TODO use real response decodingFailed or something
                         }
                     }
                     
@@ -312,8 +382,8 @@ class DiscordWSSAPI {
     /// Step 3 of connecting to Discord
     /// https://discord.com/developers/docs/topics/gateway#identifying
     private func identify() {
-        let identifyPayload = IdentifyPayload(token: Secrets.discordToken)
-        let identifyMessage = GatewayMessage(opCode: .identify, payload: identifyPayload)
+        let payload = IdentifyPayload(token: Secrets.discordToken)
+        let identifyMessage = GatewayMessage(opCode: .identify, payload: .identity(payload))
         send(identifyMessage)
         
         webSocketTask?.receive { [weak self] result in
