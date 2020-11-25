@@ -14,7 +14,7 @@ class DiscordAPI: APIClient {
     
     let session: URLSession = .shared // DI and make testable
     
-    func get<T: APIRequest>(_ request: T) -> AnyPublisher<T.Response, Error> {
+    func get<T: APIRequest>(_ request: T) -> AnyPublisher<T.Response, APIError> {
         let url = baseURL.appendingPathComponent(request.path)
         var urlRequest = URLRequest(url: url)
         
@@ -23,16 +23,22 @@ class DiscordAPI: APIClient {
         }
         
         return session.dataTaskPublisher(for: urlRequest)
-            .tryMap {
-                print("data: \($0.data)\nresponse: \($0.response)")
-                return $0.data
-            } // use response/error for apierror
+            .map(\.data)
             .decode(type: T.Response.self, decoder: JSONDecoder())
+            .mapError { error -> APIError in
+                switch error {
+                case is DecodingError:
+                    return .decodingFailed
+                case let urlError as URLError:
+                    return .sessionFailed(urlError)
+                default:
+                    return .unknown(error)
+                }
+            }
             .eraseToAnyPublisher()
     }
     
-    func getMyUser() -> AnyPublisher<User, Error> {
-        let getUserRequest = GetUserRequest(userID: myUserID)
-        return get(getUserRequest)
+    func getMyUser() -> AnyPublisher<User, APIError> {
+        get(GetUserRequest(userID: myUserID))
     }
 }

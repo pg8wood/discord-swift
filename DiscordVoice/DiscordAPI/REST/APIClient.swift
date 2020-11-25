@@ -8,6 +8,12 @@
 import Foundation
 import Combine
 
+enum APIError: LocalizedError {
+    case sessionFailed(URLError)
+    case decodingFailed
+    case unknown(Error)
+}
+
 protocol APIClient {
-    func get<T: APIRequest>(_ request: T) -> AnyPublisher<T.Response, Error> // TODO enumerate api errors
+    func get<T: APIRequest>(_ request: T) -> AnyPublisher<T.Response, APIError>
 }

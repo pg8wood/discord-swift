@@ -13,7 +13,7 @@ var cancellables = Set<AnyCancellable>()
 let dispatchGroup = DispatchGroup()
 
 dispatchGroup.enter()
-DiscordWSSAPI(session: .shared, discordAPI: DiscordAPI())
+DiscordGateway(session: .shared, discordAPI: DiscordAPI())
     .connect()
     .sink(receiveCompletion: { completion in
         print("WSS got completion")

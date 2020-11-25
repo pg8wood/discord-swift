@@ -30,6 +30,9 @@ struct GatewayMessage: Codable {
             case .guildCreate:
                 let guild = try container.decode(GuildPayload.self, forKey: .payload)
                 payload = .dispatch(.guildCreate(guild))
+            case .ready:
+                let readyPayload = try container.decode(ReadyPayload.self, forKey: .payload)
+                payload = .dispatch(.ready(readyPayload))
             case .none:
                 throw NSError() // TODO throw real errors
             }
@@ -48,7 +51,7 @@ struct GatewayMessage: Codable {
         try container.encode(eventType, forKey: .eventType)
         
         switch payload {
-        case .dispatch(let event):
+        case .dispatch:
             throw NSError() // TODO this should only be received never sent right?
         case .heartbeat:
             throw NSError() // TODO
