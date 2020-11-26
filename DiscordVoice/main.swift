@@ -13,11 +13,12 @@ var cancellables = Set<AnyCancellable>()
 let dispatchGroup = DispatchGroup()
 
 dispatchGroup.enter()
-DiscordGateway(session: .shared, discordAPI: DiscordAPI())
-    .connect()
+
+let gateway = DiscordGateway(session: .shared, discordAPI: DiscordAPI())
+
+gateway.connect()
     .sink(receiveCompletion: { completion in
         print("WSS got completion")
-        dispatchGroup.leave()
     }, receiveValue: { opCodeResponse in
         print("WSS got value: \(opCodeResponse)")
     })

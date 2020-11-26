@@ -11,14 +11,15 @@ import Combine
 enum GatewayError: LocalizedError {
     case initialConnectionFailed
     case decodingFailed
-    case webSocketError(Error)
+    case webSocket(Error)
+    case http(APIError)
 }
 
 protocol WebSocketGateway {
     var session: URLSession { get }
     var discordAPI: APIClient { get }
     
-    func connect() -> AnyPublisher<HelloPayload, GatewayError>
+    func connect() -> AnyPublisher<ReadyPayload, GatewayError>
 }
 
 class DiscordGateway: WebSocketGateway {
@@ -60,7 +61,7 @@ class DiscordGateway: WebSocketGateway {
             guard let self = self else { return }
             
             defer {
-                // Foundation sure has a strange way of handling web socket message listeners...
+                // Foundation only lets this closure run once, so we must re-register it. 🤷‍♀️
                 self.listenForMessages()
             }
             
@@ -101,73 +102,80 @@ class DiscordGateway: WebSocketGateway {
     
     /// Asks the Discord HTTP API for a Gateway URL, opens a web socket to that URL,  sends an identification payload to login.
     /// Keeps the web socket connection open and begins listening for messages if the connection succeeds.
-    func connect() -> AnyPublisher<HelloPayload, GatewayError> {
-        let connectionSubject = PassthroughSubject<HelloPayload, GatewayError>()
-        
-        func openWSSConnection(at url: URL) {
-            let task = session.webSocketTask(with: url)
-            
-            task.receive { [weak self] result in
+    func connect() -> AnyPublisher<ReadyPayload, GatewayError> {
+        discordAPI.get(GetGatewayRequest())
+            .mapError { error -> GatewayError in
+                .http(error)
+            }
+            .flatMap { gateway in
+                self.openWSSConnection(at: gateway.url)
+            }
+            .handleEvents(receiveCompletion: { completion in
+                guard case .finished = completion else { return }
+                // The presence of a valid ReadyPayload indicates we are ready to send and receive messages
+                // over the web socket
+                self.listenForMessages()
+            })
+            .eraseToAnyPublisher()
+    }
+    
+    private func openWSSConnection(at url: URL) -> AnyPublisher<ReadyPayload, GatewayError> {
+        Deferred {
+            Future { [weak self] fulfill in
                 guard let self = self else { return }
                 
-                switch result {
-                case .success(let message):
-                    let messageData: Data?
+                let task = self.session.webSocketTask(with: url)
+                
+                task.receive { [weak self] result in
+                    guard let self = self else { return }
                     
-                    switch message {
-                    case .data(let data):
-                       messageData = data
-                    case .string(let string):
-                       messageData = string.data(using: .utf8)
-                    @unknown default:
-                        print("Encountered a new web socket data type!")
-                        fatalError()
+                    switch result {
+                    case .success(let message):
+                        let messageData: Data?
+                        
+                        switch message {
+                        case .data(let data):
+                           messageData = data
+                        case .string(let string):
+                           messageData = string.data(using: .utf8)
+                        @unknown default:
+                            print("Encountered a new web socket data type!")
+                            fatalError()
+                        }
+                        
+                        guard let incomingMessage = self.decodeMessage(from: messageData) else {
+                            fulfill(.failure(.decodingFailed))
+                            return
+                        }
+                        
+                        guard case .hello(let helloResponse) = incomingMessage.payload else {
+                            fulfill(.failure(.initialConnectionFailed))
+                            return
+                        }
+                        
+                        self.beginHeartbeat(interval: helloResponse.heartbeatInterval)
+                        
+                        self.identify()
+                            .sink(receiveCompletion: { completion in
+                                guard case .finished = completion else {
+                                    fulfill(.failure(.initialConnectionFailed))
+                                    return
+                                }
+                            }, receiveValue: { readyPayload in
+                                fulfill(.success(readyPayload))
+                            })
+                            .store(in: &self.cancellables)
+                    case .failure(let error):
+                        fulfill(.failure(.webSocket(error)))
                     }
-                    
-                    guard let incomingMessage = self.decodeMessage(from: messageData) else {
-                        connectionSubject.send(completion: .failure(.decodingFailed))
-                        return
-                    }
-                    
-                    guard case .hello(let helloResponse) = incomingMessage.payload else {
-                        connectionSubject.send(completion: .failure(.initialConnectionFailed))
-                        return
-                    }
-                    
-                    connectionSubject.send(helloResponse)
-                    self.beginHeartbeat(interval: helloResponse.heartbeatInterval)
-                    
-                    let readyPublisher = self.identify()
-                        .sink(receiveCompletion: { _ in
-                            print("ready ended")
-                        }, receiveValue: { _ in
-                            print("ready!!!")
-                        })
-                    
-                    
-                case .failure(let error):
-                    connectionSubject.send(completion: .failure(.webSocketError(error)))
                 }
+                
+                // TODO: set this as a result, not a side effect
+                self.webSocketTask = task
+                task.resume()
             }
-            
-            webSocketTask = task
-            task.resume()
         }
-        
-        discordAPI.get(GetGatewayRequest())
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error):
-                    print(error.localizedDescription) // TODO real error handling 11
-                case .finished: break
-                }
-            }, receiveValue: { gateway in
-                print("received gateway: \(gateway)")
-                openWSSConnection(at: gateway.url)
-            })
-            .store(in: &cancellables)
-        
-        return connectionSubject.eraseToAnyPublisher()
+        .eraseToAnyPublisher()
     }
     
     /// Step 2 of connecting to Discord and maintaining the connection
@@ -216,12 +224,8 @@ class DiscordGateway: WebSocketGateway {
                             
                             fulfill(.success(readyPayload))
                         case .failure(let error):
-                            fulfill(.failure(.webSocketError(error)))
+                            fulfill(.failure(.webSocket(error)))
                         }
-                        
-                        // TODO if Ready event is good..
-                        // do this after promise is fulfilled, not as a side-effect here.
-                        self.listenForMessages()
                     }
                 }
             }
