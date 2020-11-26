@@ -8,35 +8,21 @@
 import Combine
 import Foundation
 
-
 var cancellables = Set<AnyCancellable>()
 let dispatchGroup = DispatchGroup()
+let gateway: WebSocketGateway = DiscordGateway(session: .shared, discordAPI: DiscordAPI())
 
 dispatchGroup.enter()
-
-let gateway = DiscordGateway(session: .shared, discordAPI: DiscordAPI())
 
 gateway.connect()
     .sink(receiveCompletion: { completion in
         print("WSS got completion")
+        // Currently, keep the connection open indefinitely for testing
+//        dispatchGroup.leave()
     }, receiveValue: { opCodeResponse in
         print("WSS got value: \(opCodeResponse)")
     })
     .store(in: &cancellables)
-//let discordAPI = DiscordAPI()
-//discordAPI.getMyUser()
-//    .sink(receiveCompletion: { completion in
-//            switch completion {
-//            case .failure(let error):
-//                print(error)
-//            case .finished: break
-//            }
-////        dispatchGroup.leave()
-//    }, receiveValue: { user in
-//        print("got user: \(user.username)")
-//    })
-//    .store(in: &cancellables)
-
 
 dispatchGroup.notify(queue: .main) {
     exit(0)

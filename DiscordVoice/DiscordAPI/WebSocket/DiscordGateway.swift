@@ -8,24 +8,10 @@
 import Foundation
 import Combine
 
-enum GatewayError: LocalizedError {
-    case initialConnectionFailed
-    case decodingFailed
-    case webSocket(Error)
-    case http(APIError)
-}
-
-protocol WebSocketGateway {
-    var session: URLSession { get }
-    var discordAPI: APIClient { get }
-    
-    func connect() -> AnyPublisher<ReadyPayload, GatewayError>
-}
-
 class DiscordGateway: WebSocketGateway {
     let session: URLSession
     let discordAPI: APIClient
-
+    
     private var cancellables = Set<AnyCancellable>()
     private var webSocketTask: URLSessionWebSocketTask?
     
@@ -34,7 +20,6 @@ class DiscordGateway: WebSocketGateway {
         self.discordAPI = discordAPI
     }
     
-    // need result type for error handling maybe?
     func send(_ message: GatewayMessage) {
         guard let webSocketTask = webSocketTask else {
             print("WSS tried to idenfity but no task exists!")
@@ -55,54 +40,10 @@ class DiscordGateway: WebSocketGateway {
         }
     }
     
-    /// Call this after authenticating to keep listening for new incoming messages.
-    private func listenForMessages() {
-        webSocketTask?.receive { [weak self] result in
-            guard let self = self else { return }
-            
-            defer {
-                // Foundation only lets this closure run once, so we must re-register it. 🤷‍♀️
-                self.listenForMessages()
-            }
-            
-            switch result {
-            case .success(let message):
-                print("got message: \(message)")
-                switch message {
-                case .data(let data):
-                    self.decodeMessage(from: data)
-                case .string(let string):
-                    let data = string.data(using: .utf8)
-                    self.decodeMessage(from: data)
-                @unknown default:
-                    print("got unknown message type!")
-                    fatalError()
-                }
-            case .failure(let error):
-                print("Failed to receive web socket message: \(error)")
-            }
-        }
-    }
-    
-    private func decodeMessage(from data: Data?) -> GatewayMessage? {
-        guard let data = data else {
-            return nil
-        }
-        
-        let decoder = JSONDecoder()
-        do {
-            let message = try decoder.decode(GatewayMessage.self, from: data)
-            print(#"Got message code "\#(message.opCode)" \#(message.eventType != nil ? "| event name: \(message.eventType!)" : "")"#)
-            return message
-        } catch {
-            print("error decoding message: \(error.localizedDescription)")
-            return nil
-        }
-    }
-    
     /// Asks the Discord HTTP API for a Gateway URL, opens a web socket to that URL,  sends an identification payload to login.
     /// Keeps the web socket connection open and begins listening for messages if the connection succeeds.
     func connect() -> AnyPublisher<ReadyPayload, GatewayError> {
+        // Step 1 of connecting to Discord Gateway: https://discord.com/developers/docs/topics/gateway#connecting
         discordAPI.get(GetGatewayRequest())
             .mapError { error -> GatewayError in
                 .http(error)
@@ -112,8 +53,7 @@ class DiscordGateway: WebSocketGateway {
             }
             .handleEvents(receiveCompletion: { completion in
                 guard case .finished = completion else { return }
-                // The presence of a valid ReadyPayload indicates we are ready to send and receive messages
-                // over the web socket
+                // A valid finish of this publisher indicates we are ready to send and receive messages over the web socket
                 self.listenForMessages()
             })
             .eraseToAnyPublisher()
@@ -125,6 +65,7 @@ class DiscordGateway: WebSocketGateway {
                 guard let self = self else { return }
                 
                 let task = self.session.webSocketTask(with: url)
+                self.webSocketTask = task
                 
                 task.receive { [weak self] result in
                     guard let self = self else { return }
@@ -135,9 +76,9 @@ class DiscordGateway: WebSocketGateway {
                         
                         switch message {
                         case .data(let data):
-                           messageData = data
+                            messageData = data
                         case .string(let string):
-                           messageData = string.data(using: .utf8)
+                            messageData = string.data(using: .utf8)
                         @unknown default:
                             print("Encountered a new web socket data type!")
                             fatalError()
@@ -170,21 +111,34 @@ class DiscordGateway: WebSocketGateway {
                     }
                 }
                 
-                // TODO: set this as a result, not a side effect
-                self.webSocketTask = task
                 task.resume()
             }
         }
         .eraseToAnyPublisher()
     }
     
-    /// Step 2 of connecting to Discord and maintaining the connection
+    private func decodeMessage(from data: Data?) -> GatewayMessage? {
+        guard let data = data else {
+            return nil
+        }
+        
+        do {
+            let message = try JSONDecoder().decode(GatewayMessage.self, from: data)
+            print(#"Got message code "\#(message.opCode)" \#(message.eventType != nil ? "| event name: \(message.eventType!)" : "")"#)
+            return message
+        } catch {
+            print("error decoding message: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    /// Step 2 of connecting to the Discord Gateway and maintaining the connection
     /// https://discord.com/developers/docs/topics/gateway#heartbeating
     private func beginHeartbeat(interval: Int) {
         // TODO: necessary for the discord spec to actually send these heartbeats. See https://discord.com/developers/docs/topics/gateway#heartbeating
     }
     
-    /// Step 3 of connecting to Discord
+    /// Step 3 (final)  of connecting to the Discord Gateway
     /// https://discord.com/developers/docs/topics/gateway#identifying
     private func identify() -> AnyPublisher<ReadyPayload, GatewayError> {
         let payload = IdentifyPayload(token: Secrets.discordToken)
@@ -204,9 +158,9 @@ class DiscordGateway: WebSocketGateway {
                             
                             switch message {
                             case .data(let data):
-                               messageData = data
+                                messageData = data
                             case .string(let string):
-                               messageData = string.data(using: .utf8)
+                                messageData = string.data(using: .utf8)
                             @unknown default:
                                 print("Encountered a new web socket data type!")
                                 fatalError()
@@ -230,5 +184,34 @@ class DiscordGateway: WebSocketGateway {
                 }
             }
             .eraseToAnyPublisher()
+    }
+    
+    /// Call this after authenticating to keep listening for new incoming messages.
+    private func listenForMessages() {
+        webSocketTask?.receive { [weak self] result in
+            guard let self = self else { return }
+            
+            defer {
+                // Foundation only lets this closure run once, so we must re-register it. 🤷‍♀️
+                self.listenForMessages()
+            }
+            
+            switch result {
+            case .success(let message):
+                print("got message: \(message)")
+                switch message {
+                case .data(let data):
+                    self.decodeMessage(from: data) // TODO: - Event triggering
+                case .string(let string):
+                    let data = string.data(using: .utf8)
+                    self.decodeMessage(from: data)
+                @unknown default:
+                    print("got unknown message type!")
+                    fatalError()
+                }
+            case .failure(let error):
+                print("Failed to receive web socket message: \(error)")
+            }
+        }
     }
 }

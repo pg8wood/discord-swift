@@ -24,6 +24,7 @@
 		B82141DA256E14E0006F5596 /* IdentityPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentityPayload.swift */; };
 		B82141DF256E15BB006F5596 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
 		B89571C4256EC7890026FBC6 /* ReadyPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C3256EC7890026FBC6 /* ReadyPayload.swift */; };
+		B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,7 @@
 		B82141D9256E14E0006F5596 /* IdentityPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityPayload.swift; sourceTree = "<group>"; };
 		B82141DE256E15BB006F5596 /* DiscordGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordGateway.swift; sourceTree = "<group>"; };
 		B89571C3256EC7890026FBC6 /* ReadyPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyPayload.swift; sourceTree = "<group>"; };
+		B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketGateway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				B82141DE256E15BB006F5596 /* DiscordGateway.swift */,
+				B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */,
 			);
 			path = WebSocket;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				B82141BE256E1372006F5596 /* GetGateway.swift in Sources */,
 				B82141C1256E1380006F5596 /* User.swift in Sources */,
 				B82141DF256E15BB006F5596 /* DiscordGateway.swift in Sources */,
+				B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B89571C4256EC7890026FBC6 /* ReadyPayload.swift in Sources */,
 				B82141D1256E1420006F5596 /* DiscordEvent.swift in Sources */,
 				B82141D4256E14B9006F5596 /* Guild.swift in Sources */,
