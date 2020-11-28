@@ -9,11 +9,14 @@ import Foundation
 import Combine
 
 class DiscordGateway: WebSocketGateway {
+    lazy var eventPublisher = eventSubject.eraseToAnyPublisher()
+    
     let session: URLSession
     let discordAPI: APIClient
     
     private var cancellables = Set<AnyCancellable>()
     private var webSocketTask: URLSessionWebSocketTask?
+    private var eventSubject = PassthroughSubject<DiscordEvent, Never>()
     
     init(session: URLSession, discordAPI: DiscordAPI) {
         self.session = session
@@ -196,22 +199,39 @@ class DiscordGateway: WebSocketGateway {
                 self.listenForMessages()
             }
             
+            let messageData: Data?
             switch result {
             case .success(let message):
-                print("got message: \(message)")
                 switch message {
                 case .data(let data):
-                    self.decodeMessage(from: data) // TODO: - Event triggering
+                   messageData = data
                 case .string(let string):
                     let data = string.data(using: .utf8)
-                    self.decodeMessage(from: data)
+                    messageData = data
                 @unknown default:
                     print("got unknown message type!")
                     fatalError()
                 }
+                
+                let message = self.decodeMessage(from: messageData)
+                
+                if case .dispatch(let event) = message?.payload {
+                    self.eventSubject.send(event)
+                }
+
             case .failure(let error):
                 print("Failed to receive web socket message: \(error)")
             }
         }
+    }
+}
+
+private extension Data {
+    var prettyPrintedJSONString: NSString? {
+        guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }
+        
+        return prettyPrintedString
     }
 }

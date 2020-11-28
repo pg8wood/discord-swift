@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct User: Codable {
+struct User: Codable, Hashable, Equatable {
+    let id: Snowflake
     let username: String
 }

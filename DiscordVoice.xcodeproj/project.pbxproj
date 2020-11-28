@@ -25,7 +25,77 @@
 		B82141DF256E15BB006F5596 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
 		B89571C4256EC7890026FBC6 /* ReadyPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C3256EC7890026FBC6 /* ReadyPayload.swift */; };
 		B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
+		B89571CA257194FE0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
+		B89571E92571E9A40026FBC6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571E82571E9A40026FBC6 /* Tests_iOS.swift */; };
+		B89571F42571E9A40026FBC6 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571F32571E9A40026FBC6 /* Tests_macOS.swift */; };
+		B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */; };
+		B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */; };
+		B89571F82571E9A40026FBC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571CF2571E9A10026FBC6 /* ContentView.swift */; };
+		B89571F92571E9A40026FBC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571CF2571E9A10026FBC6 /* ContentView.swift */; };
+		B89571FA2571E9A40026FBC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B89571D02571E9A40026FBC6 /* Assets.xcassets */; };
+		B89571FB2571E9A40026FBC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B89571D02571E9A40026FBC6 /* Assets.xcassets */; };
+		B895720D2571EA0E0026FBC6 /* IdentityPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentityPayload.swift */; };
+		B895720E2571EA0E0026FBC6 /* Guild.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D3256E14B9006F5596 /* Guild.swift */; };
+		B895720F2571EA0E0026FBC6 /* DiscordAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C6256E13A1006F5596 /* DiscordAPI.swift */; };
+		B89572102571EA0E0026FBC6 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C3256E138F006F5596 /* APIClient.swift */; };
+		B89572112571EA0E0026FBC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C0256E1380006F5596 /* User.swift */; };
+		B89572122571EA0E0026FBC6 /* GatewayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C9256E13CB006F5596 /* GatewayMessage.swift */; };
+		B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
+		B89572142571EA0E0026FBC6 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BA256E1365006F5596 /* Gateway.swift */; };
+		B89572152571EA0E0026FBC6 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
+		B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
+		B89572172571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
+		B89572182571EA0E0026FBC6 /* GetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B6256E133B006F5596 /* GetUser.swift */; };
+		B89572192571EA0E0026FBC6 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141CC256E13FB006F5596 /* Payload.swift */; };
+		B895721A2571EA0E0026FBC6 /* DiscordEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D0256E1420006F5596 /* DiscordEvent.swift */; };
+		B895721B2571EA0E0026FBC6 /* ReadyPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C3256EC7890026FBC6 /* ReadyPayload.swift */; };
+		B895721C2571EA0E0026FBC6 /* GetGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BD256E1372006F5596 /* GetGateway.swift */; };
+		B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B3256E1327006F5596 /* APIRequest.swift */; };
+		B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D6256E14C6006F5596 /* HelloPayload.swift */; };
+		B89572242571EA0E0026FBC6 /* IdentityPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentityPayload.swift */; };
+		B89572252571EA0E0026FBC6 /* Guild.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D3256E14B9006F5596 /* Guild.swift */; };
+		B89572262571EA0E0026FBC6 /* DiscordAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C6256E13A1006F5596 /* DiscordAPI.swift */; };
+		B89572272571EA0E0026FBC6 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C3256E138F006F5596 /* APIClient.swift */; };
+		B89572282571EA0E0026FBC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C0256E1380006F5596 /* User.swift */; };
+		B89572292571EA0E0026FBC6 /* GatewayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C9256E13CB006F5596 /* GatewayMessage.swift */; };
+		B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
+		B895722B2571EA0E0026FBC6 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BA256E1365006F5596 /* Gateway.swift */; };
+		B895722C2571EA0E0026FBC6 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
+		B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
+		B895722E2571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
+		B895722F2571EA0E0026FBC6 /* GetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B6256E133B006F5596 /* GetUser.swift */; };
+		B89572302571EA0E0026FBC6 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141CC256E13FB006F5596 /* Payload.swift */; };
+		B89572312571EA0E0026FBC6 /* DiscordEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D0256E1420006F5596 /* DiscordEvent.swift */; };
+		B89572322571EA0E0026FBC6 /* ReadyPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C3256EC7890026FBC6 /* ReadyPayload.swift */; };
+		B89572332571EA0E0026FBC6 /* GetGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BD256E1372006F5596 /* GetGateway.swift */; };
+		B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B3256E1327006F5596 /* APIRequest.swift */; };
+		B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D6256E14C6006F5596 /* HelloPayload.swift */; };
+		B89572492572E2FE0026FBC6 /* ContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B895723D2572E2D60026FBC6 /* ContentState.swift */; };
+		B895724F2572E2FF0026FBC6 /* ContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B895723D2572E2D60026FBC6 /* ContentState.swift */; };
+		B895725D2572E3C40026FBC6 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572562572E3B00026FBC6 /* View+Extensions.swift */; };
+		B89572632572E3C40026FBC6 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572562572E3B00026FBC6 /* View+Extensions.swift */; };
+		B89572862572EFAE0026FBC6 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572852572EFAE0026FBC6 /* EventListView.swift */; };
+		B89572872572EFAE0026FBC6 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572852572EFAE0026FBC6 /* EventListView.swift */; };
+		B89572932572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */; };
+		B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B89571E52571E9A40026FBC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B803F43F256624EA000866AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89571D42571E9A40026FBC6;
+			remoteInfo = "discord-voice (iOS)";
+		};
+		B89571F02571E9A40026FBC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B803F43F256624EA000866AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89571DB2571E9A40026FBC6;
+			remoteInfo = "discord-voice (macOS)";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		B803F445256624EA000866AB /* CopyFiles */ = {
@@ -59,10 +129,57 @@
 		B82141DE256E15BB006F5596 /* DiscordGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordGateway.swift; sourceTree = "<group>"; };
 		B89571C3256EC7890026FBC6 /* ReadyPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyPayload.swift; sourceTree = "<group>"; };
 		B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketGateway.swift; sourceTree = "<group>"; };
+		B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuildRequest.swift; sourceTree = "<group>"; };
+		B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = discord_voiceApp.swift; sourceTree = "<group>"; };
+		B89571CF2571E9A10026FBC6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B89571D02571E9A40026FBC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B89571D52571E9A40026FBC6 /* discord-voice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "discord-voice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B89571D72571E9A40026FBC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B89571DC2571E9A40026FBC6 /* discord-voice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "discord-voice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B89571DE2571E9A40026FBC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B89571DF2571E9A40026FBC6 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		B89571E42571E9A40026FBC6 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B89571E82571E9A40026FBC6 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		B89571EA2571E9A40026FBC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B89571EF2571E9A40026FBC6 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B89571F32571E9A40026FBC6 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		B89571F52571E9A40026FBC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B895723D2572E2D60026FBC6 /* ContentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentState.swift; sourceTree = "<group>"; };
+		B89572562572E3B00026FBC6 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		B89572852572EFAE0026FBC6 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonViewerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B803F444256624EA000866AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571D22571E9A40026FBC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571D92571E9A40026FBC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571E12571E9A40026FBC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571EC2571E9A40026FBC6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				B803F449256624EA000866AB /* DiscordVoice */,
+				B895726E2572E7340026FBC6 /* App */,
 				B803F448256624EA000866AB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,6 +202,10 @@
 			isa = PBXGroup;
 			children = (
 				B803F447256624EA000866AB /* DiscordVoice */,
+				B89571D52571E9A40026FBC6 /* discord-voice.app */,
+				B89571DC2571E9A40026FBC6 /* discord-voice.app */,
+				B89571E42571E9A40026FBC6 /* Tests iOS.xctest */,
+				B89571EF2571E9A40026FBC6 /* Tests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,8 +224,8 @@
 		B82141B1256E1304006F5596 /* DiscordAPI */ = {
 			isa = PBXGroup;
 			children = (
-				B82141DD256E155C006F5596 /* WebSocket */,
 				B82141DC256E1552006F5596 /* REST */,
+				B82141DD256E155C006F5596 /* WebSocket */,
 			);
 			path = DiscordAPI;
 			sourceTree = "<group>";
@@ -113,6 +235,7 @@
 			children = (
 				B82141B3256E1327006F5596 /* APIRequest.swift */,
 				B82141BD256E1372006F5596 /* GetGateway.swift */,
+				B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */,
 				B82141B6256E133B006F5596 /* GetUser.swift */,
 			);
 			path = Requests;
@@ -161,6 +284,83 @@
 			path = WebSocket;
 			sourceTree = "<group>";
 		};
+		B89571CD2571E9A10026FBC6 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B895723D2572E2D60026FBC6 /* ContentState.swift */,
+				B89571CF2571E9A10026FBC6 /* ContentView.swift */,
+				B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */,
+				B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */,
+				B89571D02571E9A40026FBC6 /* Assets.xcassets */,
+				B89572832572EF820026FBC6 /* EventLog */,
+				B89572552572E39E0026FBC6 /* Extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B89571D62571E9A40026FBC6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B89571D72571E9A40026FBC6 /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		B89571DD2571E9A40026FBC6 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				B89571DE2571E9A40026FBC6 /* Info.plist */,
+				B89571DF2571E9A40026FBC6 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		B89571E72571E9A40026FBC6 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B89571E82571E9A40026FBC6 /* Tests_iOS.swift */,
+				B89571EA2571E9A40026FBC6 /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		B89571F22571E9A40026FBC6 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				B89571F32571E9A40026FBC6 /* Tests_macOS.swift */,
+				B89571F52571E9A40026FBC6 /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		B89572552572E39E0026FBC6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B89572562572E3B00026FBC6 /* View+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B895726E2572E7340026FBC6 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B89571CD2571E9A10026FBC6 /* Shared */,
+				B89571D62571E9A40026FBC6 /* iOS */,
+				B89571DD2571E9A40026FBC6 /* macOS */,
+				B89571E72571E9A40026FBC6 /* Tests iOS */,
+				B89571F22571E9A40026FBC6 /* Tests macOS */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B89572832572EF820026FBC6 /* EventLog */ = {
+			isa = PBXGroup;
+			children = (
+				B89572852572EFAE0026FBC6 /* EventListView.swift */,
+			);
+			path = EventLog;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,6 +381,76 @@
 			productReference = B803F447256624EA000866AB /* DiscordVoice */;
 			productType = "com.apple.product-type.tool";
 		};
+		B89571D42571E9A40026FBC6 /* discord-voice (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B89571FC2571E9A40026FBC6 /* Build configuration list for PBXNativeTarget "discord-voice (iOS)" */;
+			buildPhases = (
+				B89571D12571E9A40026FBC6 /* Sources */,
+				B89571D22571E9A40026FBC6 /* Frameworks */,
+				B89571D32571E9A40026FBC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "discord-voice (iOS)";
+			productName = "discord-voice (iOS)";
+			productReference = B89571D52571E9A40026FBC6 /* discord-voice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B89571DB2571E9A40026FBC6 /* discord-voice (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B89571FF2571E9A40026FBC6 /* Build configuration list for PBXNativeTarget "discord-voice (macOS)" */;
+			buildPhases = (
+				B89571D82571E9A40026FBC6 /* Sources */,
+				B89571D92571E9A40026FBC6 /* Frameworks */,
+				B89571DA2571E9A40026FBC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "discord-voice (macOS)";
+			productName = "discord-voice (macOS)";
+			productReference = B89571DC2571E9A40026FBC6 /* discord-voice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B89571E32571E9A40026FBC6 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B89572022571E9A40026FBC6 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				B89571E02571E9A40026FBC6 /* Sources */,
+				B89571E12571E9A40026FBC6 /* Frameworks */,
+				B89571E22571E9A40026FBC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B89571E62571E9A40026FBC6 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = B89571E42571E9A40026FBC6 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B89571EE2571E9A40026FBC6 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B89572052571E9A40026FBC6 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				B89571EB2571E9A40026FBC6 /* Sources */,
+				B89571EC2571E9A40026FBC6 /* Frameworks */,
+				B89571ED2571E9A40026FBC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B89571F12571E9A40026FBC6 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = B89571EF2571E9A40026FBC6 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -192,6 +462,20 @@
 				TargetAttributes = {
 					B803F446256624EA000866AB = {
 						CreatedOnToolsVersion = 12.2;
+					};
+					B89571D42571E9A40026FBC6 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					B89571DB2571E9A40026FBC6 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					B89571E32571E9A40026FBC6 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = B89571D42571E9A40026FBC6;
+					};
+					B89571EE2571E9A40026FBC6 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = B89571DB2571E9A40026FBC6;
 					};
 				};
 			};
@@ -209,9 +493,46 @@
 			projectRoot = "";
 			targets = (
 				B803F446256624EA000866AB /* DiscordVoice */,
+				B89571D42571E9A40026FBC6 /* discord-voice (iOS) */,
+				B89571DB2571E9A40026FBC6 /* discord-voice (macOS) */,
+				B89571E32571E9A40026FBC6 /* Tests iOS */,
+				B89571EE2571E9A40026FBC6 /* Tests macOS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B89571D32571E9A40026FBC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B89571FA2571E9A40026FBC6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571DA2571E9A40026FBC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B89571FB2571E9A40026FBC6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571E22571E9A40026FBC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571ED2571E9A40026FBC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B803F443256624EA000866AB /* Sources */ = {
@@ -234,12 +555,104 @@
 				B82141DF256E15BB006F5596 /* DiscordGateway.swift in Sources */,
 				B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B89571C4256EC7890026FBC6 /* ReadyPayload.swift in Sources */,
+				B89571CA257194FE0026FBC6 /* GetGuildRequest.swift in Sources */,
 				B82141D1256E1420006F5596 /* DiscordEvent.swift in Sources */,
 				B82141D4256E14B9006F5596 /* Guild.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B89571D12571E9A40026FBC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B89572172571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */,
+				B89571F82571E9A40026FBC6 /* ContentView.swift in Sources */,
+				B895725D2572E3C40026FBC6 /* View+Extensions.swift in Sources */,
+				B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */,
+				B89572192571EA0E0026FBC6 /* Payload.swift in Sources */,
+				B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
+				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
+				B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */,
+				B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
+				B895720F2571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
+				B895721A2571EA0E0026FBC6 /* DiscordEvent.swift in Sources */,
+				B89572142571EA0E0026FBC6 /* Gateway.swift in Sources */,
+				B89572932572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
+				B89572152571EA0E0026FBC6 /* DiscordGateway.swift in Sources */,
+				B895720D2571EA0E0026FBC6 /* IdentityPayload.swift in Sources */,
+				B895721C2571EA0E0026FBC6 /* GetGateway.swift in Sources */,
+				B895724F2572E2FF0026FBC6 /* ContentState.swift in Sources */,
+				B895720E2571EA0E0026FBC6 /* Guild.swift in Sources */,
+				B89572102571EA0E0026FBC6 /* APIClient.swift in Sources */,
+				B89572182571EA0E0026FBC6 /* GetUser.swift in Sources */,
+				B895721B2571EA0E0026FBC6 /* ReadyPayload.swift in Sources */,
+				B89572122571EA0E0026FBC6 /* GatewayMessage.swift in Sources */,
+				B89572112571EA0E0026FBC6 /* User.swift in Sources */,
+				B89572862572EFAE0026FBC6 /* EventListView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571D82571E9A40026FBC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B895722E2571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */,
+				B89571F92571E9A40026FBC6 /* ContentView.swift in Sources */,
+				B89572632572E3C40026FBC6 /* View+Extensions.swift in Sources */,
+				B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */,
+				B89572302571EA0E0026FBC6 /* Payload.swift in Sources */,
+				B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
+				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
+				B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */,
+				B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
+				B89572262571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
+				B89572312571EA0E0026FBC6 /* DiscordEvent.swift in Sources */,
+				B895722B2571EA0E0026FBC6 /* Gateway.swift in Sources */,
+				B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
+				B895722C2571EA0E0026FBC6 /* DiscordGateway.swift in Sources */,
+				B89572242571EA0E0026FBC6 /* IdentityPayload.swift in Sources */,
+				B89572332571EA0E0026FBC6 /* GetGateway.swift in Sources */,
+				B89572492572E2FE0026FBC6 /* ContentState.swift in Sources */,
+				B89572252571EA0E0026FBC6 /* Guild.swift in Sources */,
+				B89572272571EA0E0026FBC6 /* APIClient.swift in Sources */,
+				B895722F2571EA0E0026FBC6 /* GetUser.swift in Sources */,
+				B89572322571EA0E0026FBC6 /* ReadyPayload.swift in Sources */,
+				B89572292571EA0E0026FBC6 /* GatewayMessage.swift in Sources */,
+				B89572282571EA0E0026FBC6 /* User.swift in Sources */,
+				B89572872572EFAE0026FBC6 /* EventListView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571E02571E9A40026FBC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B89571E92571E9A40026FBC6 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B89571EB2571E9A40026FBC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B89571F42571E9A40026FBC6 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B89571E62571E9A40026FBC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89571D42571E9A40026FBC6 /* discord-voice (iOS) */;
+			targetProxy = B89571E52571E9A40026FBC6 /* PBXContainerItemProxy */;
+		};
+		B89571F12571E9A40026FBC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89571DB2571E9A40026FBC6 /* discord-voice (macOS) */;
+			targetProxy = B89571F02571E9A40026FBC6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B803F44C256624EA000866AB /* Debug */ = {
@@ -379,6 +792,184 @@
 			};
 			name = Release;
 		};
+		B89571FD2571E9A40026FBC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = App/iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickgatewood.discord-voice";
+				PRODUCT_NAME = "discord-voice";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B89571FE2571E9A40026FBC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = App/iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickgatewood.discord-voice";
+				PRODUCT_NAME = "discord-voice";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B89572002571E9A40026FBC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = App/macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = App/macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickgatewood.discord-voice";
+				PRODUCT_NAME = "discord-voice";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B89572012571E9A40026FBC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = App/macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = App/macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickgatewood.discord-voice";
+				PRODUCT_NAME = "discord-voice";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B89572032571E9A40026FBC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickgatewood.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "discord-voice (iOS)";
+			};
+			name = Debug;
+		};
+		B89572042571E9A40026FBC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickgatewood.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "discord-voice (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B89572062571E9A40026FBC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickgatewood.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "discord-voice (macOS)";
+			};
+			name = Debug;
+		};
+		B89572072571E9A40026FBC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickgatewood.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "discord-voice (macOS)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -396,6 +987,42 @@
 			buildConfigurations = (
 				B803F44F256624EA000866AB /* Debug */,
 				B803F450256624EA000866AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B89571FC2571E9A40026FBC6 /* Build configuration list for PBXNativeTarget "discord-voice (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B89571FD2571E9A40026FBC6 /* Debug */,
+				B89571FE2571E9A40026FBC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B89571FF2571E9A40026FBC6 /* Build configuration list for PBXNativeTarget "discord-voice (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B89572002571E9A40026FBC6 /* Debug */,
+				B89572012571E9A40026FBC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B89572022571E9A40026FBC6 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B89572032571E9A40026FBC6 /* Debug */,
+				B89572042571E9A40026FBC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B89572052571E9A40026FBC6 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B89572062571E9A40026FBC6 /* Debug */,
+				B89572072571E9A40026FBC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

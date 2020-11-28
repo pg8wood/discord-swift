@@ -10,13 +10,15 @@ import Foundation
 
 var cancellables = Set<AnyCancellable>()
 let dispatchGroup = DispatchGroup()
-let gateway: WebSocketGateway = DiscordGateway(session: .shared, discordAPI: DiscordAPI())
+let discordAPI = DiscordAPI()
+let gateway: WebSocketGateway = DiscordGateway(session: .shared, discordAPI: discordAPI)
 
 dispatchGroup.enter()
 
 gateway.connect()
     .sink(receiveCompletion: { completion in
         print("WSS got completion")
+        
         // Currently, keep the connection open indefinitely for testing
 //        dispatchGroup.leave()
     }, receiveValue: { opCodeResponse in

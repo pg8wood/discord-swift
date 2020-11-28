@@ -8,6 +8,47 @@
 import Foundation
 
 /// https://discord.com/developers/docs/resources/guild#guild-object
-struct GuildPayload: Codable {
+struct GuildPayload: Codable, Hashable, Equatable {
+    let id: Snowflake
     let name: String
+    let icon: String?
+    let voiceStates: [VoiceState]
+    let members: [GuildMember]
+    
+    enum CodingKeys: String, CodingKey {
+        case voiceStates = "voice_states"
+        case id, name, icon, members
+    }
+    
+    var membersInVoiceChat: [GuildMember] {
+        let voiceStateMembers = voiceStates.compactMap(\.member)
+        
+        if voiceStateMembers.isEmpty {
+            let idsOfMembersInVoice = voiceStates.map(\.userID)
+            return members.filter {
+                guard let userID = $0.user?.id else {
+                    return false
+                }
+                
+                return idsOfMembersInVoice.contains(userID)
+            }
+        }
+        
+        return voiceStateMembers
+    }
+}
+
+struct VoiceState: Codable, Hashable, Equatable {
+    var userID: Snowflake
+    var member: GuildMember?
+    
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+    }
+}
+
+typealias Snowflake = String // TODOO make this a real type
+
+struct GuildMember: Codable, Hashable, Equatable {
+    let user: User?
 }

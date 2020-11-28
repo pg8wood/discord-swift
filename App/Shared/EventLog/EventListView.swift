@@ -1,0 +1,65 @@
+//
+//  EventListView.swift
+//  DiscordVoice
+//
+//  Created by Patrick Gatewood on 11/28/20.
+//
+
+import SwiftUI
+
+
+// TODO: should the gateway just publish state of incoming json instead of reencoding here??
+enum DiscordEventEncoder {
+    private static let errorDictionary: [String: Any] =
+        ["invalid codable": "contents unknown"]
+    
+    static func encodeToDictionary(_ event: DiscordEvent) -> [String: Any] {
+        do {
+            let data: Data
+            
+            // TODO: should the gateway just publish state of incoming json instead of reencoding here.
+            switch event {
+            case .ready(let event):
+                data = try JSONEncoder().encode(event)
+            case .guildCreate(let event):
+                data = try JSONEncoder().encode(event)
+            }
+            
+            let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+            
+            return dictionary ?? errorDictionary
+        } catch {
+            return errorDictionary
+        }
+    }
+}
+
+struct EventListView: View {
+//    @ObservedObject var viewModel: EventListViewModel
+    
+    @Binding var events: [DiscordEvent]
+    
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(events, id: \.self) { event in
+                    NavigationLink(destination: JSONInspectionView(jsonDict: DiscordEventEncoder.encodeToDictionary(event))) {
+                        Text(event.name)
+                    }
+                }
+            }
+        }
+    }
+}
+
+//struct EventList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let user = User(id: 42, username: "Luke Skywalker")
+//        let readyPayload = ReadyPayload(gatewayVersion: 0, user: user, sessionID: 12)
+//        let event: DiscordEvent = .ready(readyPayload)
+//        let viewModel =
+//        
+//        EventList(
+//        )
+//    }
+//}

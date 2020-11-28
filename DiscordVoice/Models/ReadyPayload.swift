@@ -8,7 +8,7 @@
 import Foundation
 
 /// https://discord.com/developers/docs/topics/gateway#ready
-struct ReadyPayload: Codable {
+struct ReadyPayload: Codable, Hashable, Equatable {
     let gatewayVersion: Int
     let user: User
     let sessionID: String
