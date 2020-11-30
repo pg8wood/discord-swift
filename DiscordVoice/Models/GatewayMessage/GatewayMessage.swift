@@ -33,19 +33,18 @@ struct GatewayMessage: Codable {
             switch eventType {
             case .guildCreate:
                 let guild = try container.decode(GuildPayload.self, forKey: .payload)
-                payload = .dispatch(.guildCreate(guild))
+                payload = .event(.dispatch(.guildCreate(guild)))
             case .ready:
                 let readyPayload = try container.decode(ReadyPayload.self, forKey: .payload)
-                payload = .dispatch(.ready(readyPayload))
+                payload = .event(.dispatch(.ready(readyPayload)))
             case .none:
                 throw NSError() // TODO throw real errors
             }
-        case .heartbeat:
-            payload = .heartbeat(try container.decode(HeartbeatPayload.self, forKey: .payload))
-        case .identify:
+        case .heartbeat, .identify:
+            // TODO the client can also RECEIVE a heartbeat event, indicating the server has requested we send back a heartbeat ASAP
             throw NSError() // TODO this is only a sent message. how to handle
         case .hello:
-            payload = .hello(try container.decode(HelloPayload.self, forKey: .payload))
+            payload = .event(.hello(try container.decode(HelloPayload.self, forKey: .payload)))
         case .heartbeatAcknowledged:
             payload = nil
         }
@@ -59,15 +58,13 @@ struct GatewayMessage: Codable {
         try? container.encode(eventType, forKey: .eventType)
         
         switch payload {
-        case .dispatch:
+        case .event(.dispatch), .event(.hello):
             throw NSError() // TODO this should only be received never sent right?
-        case .heartbeat(let payload):
+        case .command(.heartbeat(let payload)):
             try container.encode(payload, forKey: .payload)
-        case .identity(let payload):
+        case .command(.identity(let payload)):
             try container.encode(payload, forKey: .payload)
-        case .hello(let payload):
-            try container.encode(payload, forKey: .payload)
-        case .unknown, .none:
+        case .none:
             throw NSError() // TODO
         }
     }
@@ -77,5 +74,9 @@ struct GatewayMessage: Codable {
         self.payload = payload
         self.sequenceNumber = nil
         self.eventType = nil
+    }
+    
+    init(command: Command) {
+        self.init(opCode: command.opCode, payload: .command(command))
     }
 }

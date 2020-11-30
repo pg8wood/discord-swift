@@ -29,11 +29,13 @@ class DiscordGateway: WebSocketGateway {
         self.discordAPI = discordAPI
     }
     
-    func send(_ message: GatewayMessage) {
+    func send(command: Command) {
         guard let webSocketTask = webSocketTask else {
             print("WSS tried to idenfity but no task exists!")
             return
         }
+        
+        let message = GatewayMessage(opCode: command.opCode, payload: .command(command))
         
         do {
             let data = try JSONEncoder().encode(message)
@@ -97,7 +99,7 @@ class DiscordGateway: WebSocketGateway {
                             return
                         }
                         
-                        guard case .hello(let helloResponse) = incomingMessage.payload else {
+                        guard case .event(.hello(let helloResponse)) = incomingMessage.payload else {
                             fulfill(.failure(.initialConnectionFailed))
                             return
                         }
@@ -156,8 +158,8 @@ class DiscordGateway: WebSocketGateway {
                 // TODO: invalidate when the connection is dropped. Also send heartbeats when the gateway requests one. See https://discord.com/developers/docs/topics/gateway#heartbeating
                 // TODO: If we don't get back a HEARTBEAT ACK in-between heartbeats, close the connection and reconnect. See https://discord.com/developers/docs/topics/gateway#heartbeating-example-gateway-heartbeat-ack
                 
-                let heartbeatPayload = HeartbeatPayload(mostRecentSequenceNumber: self.mostRecentSequenceNumber)
-                self.send(GatewayMessage(opCode: .heartbeat, payload: .heartbeat(heartbeatPayload)))
+                let heartbeatCommand = HeartbeatCommand(mostRecentSequenceNumber: self.mostRecentSequenceNumber)
+                self.send(command: .heartbeat(heartbeatCommand))
             }
         } 
     }
@@ -165,10 +167,8 @@ class DiscordGateway: WebSocketGateway {
     /// Step 3 (final)  of connecting to the Discord Gateway
     /// https://discord.com/developers/docs/topics/gateway#identifying
     private func identify() -> AnyPublisher<ReadyPayload, GatewayError> {
-        let payload = IdentifyPayload(token: Secrets.discordToken)
-        let identifyMessage = GatewayMessage(opCode: .identify, payload: .identity(payload))
-        
-        send(identifyMessage)
+        let payload = IdentifyCommand(token: Secrets.discordToken)
+        send(command: .identity(payload))
         
         return
             Deferred {
@@ -195,7 +195,7 @@ class DiscordGateway: WebSocketGateway {
                                 return
                             }
                             
-                            guard case .dispatch(.ready(let readyPayload)) = incomingMessage.payload else {
+                            guard case .event(.dispatch(.ready(let readyPayload))) = incomingMessage.payload else {
                                 fulfill(.failure(.initialConnectionFailed))
                                 return
                             }
@@ -236,7 +236,7 @@ class DiscordGateway: WebSocketGateway {
                 
                 let message = self.decodeAndAcceptMessage(from: messageData)
                 
-                if case .dispatch(let event) = message?.payload {
+                if case .event(.dispatch(let event)) = message?.payload {
                     self.eventSubject.send(event)
                 }
 

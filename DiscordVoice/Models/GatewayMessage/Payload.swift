@@ -7,20 +7,19 @@
 
 import Foundation
 
+/// The inner content of a message sent or received from the Gateway.
+///
+///https://discord.com/developers/docs/topics/gateway#payloads-gateway-payload-structure
 enum Payload {
-    case dispatch(DiscordEvent)
-    case heartbeat(HeartbeatPayload)
-    case identity(IdentifyPayload)
-    case hello(HelloPayload)
-    case unknown
+    case command(Command)
+    case event(Event)
     
-    var opCode: Int {
+    var opCode: OpCode {
         switch self {
-        case .dispatch: return 0
-        case .heartbeat: return 1
-        case .identity: return 2
-        case .hello: return 10
-        case .unknown: return -1
+        case .command(let command):
+            return command.opCode
+        case .event(let event):
+            return event.opCode
         }
     }
     
