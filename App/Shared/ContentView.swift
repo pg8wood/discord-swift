@@ -10,6 +10,7 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var contentState: ContentState<ReadyPayload, GatewayError> = .notLoaded
+    @Published var guilds: [GuildPayload] = []
     @Published var events: [DiscordEvent] = []
     
     private let gateway: WebSocketGateway
@@ -42,8 +43,17 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
         
         gateway.eventPublisher
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] event in
-                self?.events.append(event)
+                guard let self = self else { return }
+                
+                self.events.append(event)
+                
+                if case .guildCreate(let guild) = event {
+                    if !self.guilds.contains(guild) {
+                        self.guilds.append(guild)
+                    }
+                }
             })
             .store(in: &cancellables)
     }
@@ -51,6 +61,7 @@ class HomeViewModel: ObservableObject {
 
 struct ContentView: View {
     @State private var isShowingEventLogSheet: Bool = false
+    @State private var selectedGuild: GuildPayload?
     @ObservedObject var viewModel: HomeViewModel
     
     var connectionStatusView: AnyView {
@@ -74,24 +85,57 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack {
+        VStack {
+            connectionStatusView
             
-            // TODO make this not bad
-            VStack {
-                Spacer()
-                
-                Button {
-                    isShowingEventLogSheet = true
-                } label: {
-                    Text("View Events")
-                }
-                .sheet(isPresented: $isShowingEventLogSheet) {
-                    EventListView(events: $viewModel.events)
+            Spacer()
+
+            Text("Guilds")
+            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 1)) {
+                ForEach(viewModel.guilds, id: \.self) { guild in
+                    Button {
+                        selectedGuild = guild
+                    } label: {
+                        Text(guild.name)
+                    }
+                   
                 }
             }
             
-            connectionStatusView
+            Spacer()
+            
+            Text("Members in voice:")
+            ActiveVoiceChatMemberList(guild: $selectedGuild)
+            
+            Spacer()
+            
+            Button {
+                isShowingEventLogSheet = true
+            } label: {
+                Text("View Events")
+            }
+            .sheet(isPresented: $isShowingEventLogSheet) {
+                EventListView(events: $viewModel.events)
+            }
         }
+        .padding()
+    }
+}
+
+struct ActiveVoiceChatMemberList: View {
+    @Binding var guild: GuildPayload?
+    
+    var body: some View {
+        guard let guild = guild else {
+            return EmptyView().eraseToAnyView()
+        }
+        
+        return HStack {
+            ForEach(guild.usersInVoiceChat, id: \.self) { user in
+                Text(user.username)
+            }
+        }
+        .eraseToAnyView()
     }
 }
 

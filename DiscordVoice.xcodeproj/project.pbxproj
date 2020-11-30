@@ -23,6 +23,11 @@
 		B82141D7256E14C6006F5596 /* HelloPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D6256E14C6006F5596 /* HelloPayload.swift */; };
 		B82141DA256E14E0006F5596 /* IdentityPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentityPayload.swift */; };
 		B82141DF256E15BB006F5596 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
+		B8831B832575674E00749257 /* HeartbeatPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8831B822575674E00749257 /* HeartbeatPayload.swift */; };
+		B8831B932575685300749257 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
+		B8831B992575685400749257 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
+		B8831B9F2575685700749257 /* HeartbeatPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8831B822575674E00749257 /* HeartbeatPayload.swift */; };
+		B8831BA52575685800749257 /* HeartbeatPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8831B822575674E00749257 /* HeartbeatPayload.swift */; };
 		B89571C4256EC7890026FBC6 /* ReadyPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C3256EC7890026FBC6 /* ReadyPayload.swift */; };
 		B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
 		B89571CA257194FE0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
@@ -42,7 +47,6 @@
 		B89572122571EA0E0026FBC6 /* GatewayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C9256E13CB006F5596 /* GatewayMessage.swift */; };
 		B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
 		B89572142571EA0E0026FBC6 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BA256E1365006F5596 /* Gateway.swift */; };
-		B89572152571EA0E0026FBC6 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
 		B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
 		B89572172571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
 		B89572182571EA0E0026FBC6 /* GetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B6256E133B006F5596 /* GetUser.swift */; };
@@ -60,7 +64,6 @@
 		B89572292571EA0E0026FBC6 /* GatewayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C9256E13CB006F5596 /* GatewayMessage.swift */; };
 		B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
 		B895722B2571EA0E0026FBC6 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BA256E1365006F5596 /* Gateway.swift */; };
-		B895722C2571EA0E0026FBC6 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
 		B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
 		B895722E2571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
 		B895722F2571EA0E0026FBC6 /* GetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B6256E133B006F5596 /* GetUser.swift */; };
@@ -127,6 +130,7 @@
 		B82141D6256E14C6006F5596 /* HelloPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloPayload.swift; sourceTree = "<group>"; };
 		B82141D9256E14E0006F5596 /* IdentityPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityPayload.swift; sourceTree = "<group>"; };
 		B82141DE256E15BB006F5596 /* DiscordGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordGateway.swift; sourceTree = "<group>"; };
+		B8831B822575674E00749257 /* HeartbeatPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatPayload.swift; sourceTree = "<group>"; };
 		B89571C3256EC7890026FBC6 /* ReadyPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyPayload.swift; sourceTree = "<group>"; };
 		B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketGateway.swift; sourceTree = "<group>"; };
 		B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuildRequest.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				B82141C0256E1380006F5596 /* User.swift */,
 				B82141CF256E1406006F5596 /* GatewayMessages */,
 				B89571C3256EC7890026FBC6 /* ReadyPayload.swift */,
+				B8831B822575674E00749257 /* HeartbeatPayload.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -558,6 +563,7 @@
 				B89571CA257194FE0026FBC6 /* GetGuildRequest.swift in Sources */,
 				B82141D1256E1420006F5596 /* DiscordEvent.swift in Sources */,
 				B82141D4256E14B9006F5596 /* Guild.swift in Sources */,
+				B8831B832575674E00749257 /* HeartbeatPayload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,16 +580,17 @@
 				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
+				B8831B932575685300749257 /* DiscordGateway.swift in Sources */,
 				B895720F2571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
 				B895721A2571EA0E0026FBC6 /* DiscordEvent.swift in Sources */,
 				B89572142571EA0E0026FBC6 /* Gateway.swift in Sources */,
 				B89572932572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
-				B89572152571EA0E0026FBC6 /* DiscordGateway.swift in Sources */,
 				B895720D2571EA0E0026FBC6 /* IdentityPayload.swift in Sources */,
 				B895721C2571EA0E0026FBC6 /* GetGateway.swift in Sources */,
 				B895724F2572E2FF0026FBC6 /* ContentState.swift in Sources */,
 				B895720E2571EA0E0026FBC6 /* Guild.swift in Sources */,
 				B89572102571EA0E0026FBC6 /* APIClient.swift in Sources */,
+				B8831B9F2575685700749257 /* HeartbeatPayload.swift in Sources */,
 				B89572182571EA0E0026FBC6 /* GetUser.swift in Sources */,
 				B895721B2571EA0E0026FBC6 /* ReadyPayload.swift in Sources */,
 				B89572122571EA0E0026FBC6 /* GatewayMessage.swift in Sources */,
@@ -605,16 +612,17 @@
 				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
+				B8831B992575685400749257 /* DiscordGateway.swift in Sources */,
 				B89572262571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
 				B89572312571EA0E0026FBC6 /* DiscordEvent.swift in Sources */,
 				B895722B2571EA0E0026FBC6 /* Gateway.swift in Sources */,
 				B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
-				B895722C2571EA0E0026FBC6 /* DiscordGateway.swift in Sources */,
 				B89572242571EA0E0026FBC6 /* IdentityPayload.swift in Sources */,
 				B89572332571EA0E0026FBC6 /* GetGateway.swift in Sources */,
 				B89572492572E2FE0026FBC6 /* ContentState.swift in Sources */,
 				B89572252571EA0E0026FBC6 /* Guild.swift in Sources */,
 				B89572272571EA0E0026FBC6 /* APIClient.swift in Sources */,
+				B8831BA52575685800749257 /* HeartbeatPayload.swift in Sources */,
 				B895722F2571EA0E0026FBC6 /* GetUser.swift in Sources */,
 				B89572322571EA0E0026FBC6 /* ReadyPayload.swift in Sources */,
 				B89572292571EA0E0026FBC6 /* GatewayMessage.swift in Sources */,

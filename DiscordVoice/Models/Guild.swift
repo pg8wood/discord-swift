@@ -20,21 +20,23 @@ struct GuildPayload: Codable, Hashable, Equatable {
         case id, name, icon, members
     }
     
-    var membersInVoiceChat: [GuildMember] {
+    var usersInVoiceChat: [User] {
         let voiceStateMembers = voiceStates.compactMap(\.member)
         
         if voiceStateMembers.isEmpty {
             let idsOfMembersInVoice = voiceStates.map(\.userID)
-            return members.filter {
+            return members
+                .filter {
                 guard let userID = $0.user?.id else {
                     return false
                 }
                 
                 return idsOfMembersInVoice.contains(userID)
             }
+                .compactMap(\.user)
         }
         
-        return voiceStateMembers
+        return voiceStateMembers.compactMap(\.user)
     }
 }
 

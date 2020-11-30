@@ -9,7 +9,7 @@ import Foundation
 
 enum Payload {
     case dispatch(DiscordEvent)
-    case heartbeat
+    case heartbeat(HeartbeatPayload)
     case identity(IdentifyPayload)
     case hello(HelloPayload)
     case unknown
@@ -30,5 +30,6 @@ enum Payload {
         case heartbeat = 1
         case identify = 2
         case hello = 10
+        case heartbeatAcknowledged = 11
     }
 }

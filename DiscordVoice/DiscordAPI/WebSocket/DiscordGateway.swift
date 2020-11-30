@@ -18,6 +18,12 @@ class DiscordGateway: WebSocketGateway {
     private var webSocketTask: URLSessionWebSocketTask?
     private var eventSubject = PassthroughSubject<DiscordEvent, Never>()
     
+    /// Used for heartbeats and resuming sessions.
+    ///
+    /// https://discord.com/developers/docs/topics/gateway#payloads-gateway-payload-structure
+    private var mostRecentSequenceNumber: Int?
+    private var heartbeatTimer: Timer?
+    
     init(session: URLSession, discordAPI: DiscordAPI) {
         self.session = session
         self.discordAPI = discordAPI
@@ -46,7 +52,6 @@ class DiscordGateway: WebSocketGateway {
     /// Asks the Discord HTTP API for a Gateway URL, opens a web socket to that URL,  sends an identification payload to login.
     /// Keeps the web socket connection open and begins listening for messages if the connection succeeds.
     func connect() -> AnyPublisher<ReadyPayload, GatewayError> {
-        // Step 1 of connecting to Discord Gateway: https://discord.com/developers/docs/topics/gateway#connecting
         discordAPI.get(GetGatewayRequest())
             .mapError { error -> GatewayError in
                 .http(error)
@@ -87,7 +92,7 @@ class DiscordGateway: WebSocketGateway {
                             fatalError()
                         }
                         
-                        guard let incomingMessage = self.decodeMessage(from: messageData) else {
+                        guard let incomingMessage = self.decodeAndAcceptMessage(from: messageData) else {
                             fulfill(.failure(.decodingFailed))
                             return
                         }
@@ -97,7 +102,7 @@ class DiscordGateway: WebSocketGateway {
                             return
                         }
                         
-                        self.beginHeartbeat(interval: helloResponse.heartbeatInterval)
+                        self.beginHeartbeat(millisecondInterval: helloResponse.heartbeatInterval)
                         
                         self.identify()
                             .sink(receiveCompletion: { completion in
@@ -120,7 +125,8 @@ class DiscordGateway: WebSocketGateway {
         .eraseToAnyPublisher()
     }
     
-    private func decodeMessage(from data: Data?) -> GatewayMessage? {
+    /// Decodes a message sent from the Gateway and stores the sequence number.
+    private func decodeAndAcceptMessage(from data: Data?) -> GatewayMessage? {
         guard let data = data else {
             return nil
         }
@@ -128,6 +134,11 @@ class DiscordGateway: WebSocketGateway {
         do {
             let message = try JSONDecoder().decode(GatewayMessage.self, from: data)
             print(#"Got message code "\#(message.opCode)" \#(message.eventType != nil ? "| event name: \(message.eventType!)" : "")"#)
+            
+            if let sequenceNumber = message.sequenceNumber {
+                self.mostRecentSequenceNumber = sequenceNumber
+            }
+            
             return message
         } catch {
             print("error decoding message: \(error.localizedDescription)")
@@ -137,8 +148,18 @@ class DiscordGateway: WebSocketGateway {
     
     /// Step 2 of connecting to the Discord Gateway and maintaining the connection
     /// https://discord.com/developers/docs/topics/gateway#heartbeating
-    private func beginHeartbeat(interval: Int) {
-        // TODO: necessary for the discord spec to actually send these heartbeats. See https://discord.com/developers/docs/topics/gateway#heartbeating
+    private func beginHeartbeat(millisecondInterval: Double) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            self.heartbeatTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(millisecondInterval / 1000), repeats: true) { _ in
+                // TODO: invalidate when the connection is dropped. Also send heartbeats when the gateway requests one. See https://discord.com/developers/docs/topics/gateway#heartbeating
+                // TODO: If we don't get back a HEARTBEAT ACK in-between heartbeats, close the connection and reconnect. See https://discord.com/developers/docs/topics/gateway#heartbeating-example-gateway-heartbeat-ack
+                
+                let heartbeatPayload = HeartbeatPayload(mostRecentSequenceNumber: self.mostRecentSequenceNumber)
+                self.send(GatewayMessage(opCode: .heartbeat, payload: .heartbeat(heartbeatPayload)))
+            }
+        } 
     }
     
     /// Step 3 (final)  of connecting to the Discord Gateway
@@ -169,7 +190,7 @@ class DiscordGateway: WebSocketGateway {
                                 fatalError()
                             }
                             
-                            guard let incomingMessage = self.decodeMessage(from: messageData) else {
+                            guard let incomingMessage = self.decodeAndAcceptMessage(from: messageData) else {
                                 fulfill(.failure(.decodingFailed))
                                 return
                             }
@@ -213,7 +234,7 @@ class DiscordGateway: WebSocketGateway {
                     fatalError()
                 }
                 
-                let message = self.decodeMessage(from: messageData)
+                let message = self.decodeAndAcceptMessage(from: messageData)
                 
                 if case .dispatch(let event) = message?.payload {
                     self.eventSubject.send(event)
