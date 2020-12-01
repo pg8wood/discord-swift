@@ -11,7 +11,7 @@ import Combine
 class HomeViewModel: ObservableObject {
     @Published var contentState: ContentState<ReadyPayload, GatewayError> = .notLoaded
     @Published var guilds: [GuildPayload] = []
-    @Published var events: [DiscordEvent] = []
+    @Published var events: [Event] = []
     
     private let gateway: WebSocketGateway
     
@@ -49,13 +49,17 @@ class HomeViewModel: ObservableObject {
                 
                 self.events.append(event)
                 
-                if case .guildCreate(let guild) = event {
+                if case .dispatch(.guildCreate(let guild)) = event {
                     if !self.guilds.contains(guild) {
                         self.guilds.append(guild)
                     }
                 }
             })
             .store(in: &cancellables)
+    }
+    
+    func send(command: Command) {
+        gateway.send(command: command)
     }
 }
 
@@ -89,6 +93,22 @@ struct ContentView: View {
             connectionStatusView
             
             Spacer()
+            
+            Button {
+                guard let selectedGuild = selectedGuild else {
+                    // show error
+                    print("tried to get guilds members from a nil guild")
+                    return
+                }
+                
+                let guildMemberIDs = selectedGuild.members.compactMap(\.user?.id)
+                
+                viewModel.send(command: .requestGuildMembers(RequestGuildMembersCommand(guildID: selectedGuild.id, userIDs: guildMemberIDs)))
+            } label: {
+                Text("Get guild members")
+            }
+            
+            Spacer()
 
             Text("Guilds")
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 1)) {
@@ -101,8 +121,6 @@ struct ContentView: View {
                    
                 }
             }
-            
-            Spacer()
             
             Text("Members in voice:")
             ActiveVoiceChatMemberList(guild: $selectedGuild)

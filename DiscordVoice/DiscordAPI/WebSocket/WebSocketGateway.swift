@@ -18,7 +18,8 @@ enum GatewayError: LocalizedError {
 protocol WebSocketGateway {
     var session: URLSession { get }
     var discordAPI: APIClient { get }
-    var eventPublisher: AnyPublisher<DiscordEvent, Never> { get }
+    var eventPublisher: AnyPublisher<Event, Never> { get }
     
     func connect() -> AnyPublisher<ReadyPayload, GatewayError>
+    func send(command: Command)
 }

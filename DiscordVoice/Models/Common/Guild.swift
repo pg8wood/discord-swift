@@ -49,8 +49,6 @@ struct VoiceState: Codable, Hashable, Equatable {
     }
 }
 
-typealias Snowflake = String // TODOO make this a real type
-
 struct GuildMember: Codable, Hashable, Equatable {
     let user: User?
 }

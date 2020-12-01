@@ -28,6 +28,7 @@ enum Payload {
         case dispatch = 0 // Indicates an event of type DiscordEvent was dispatched
         case heartbeat = 1
         case identify = 2
+        case requestGuildMembers = 8
         case hello = 10
         case heartbeatAcknowledged = 11
     }

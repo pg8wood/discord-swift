@@ -10,11 +10,13 @@ import Foundation
 enum Command {
     case heartbeat(HeartbeatCommand)
     case identity(IdentifyCommand)
+    case requestGuildMembers(RequestGuildMembersCommand)
     
     var opCode: Payload.OpCode {
         switch self {
         case .heartbeat: return .heartbeat
         case .identity: return .identify
+        case .requestGuildMembers: return .requestGuildMembers
         }
     }
 }

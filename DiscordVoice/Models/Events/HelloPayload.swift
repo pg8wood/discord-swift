@@ -8,7 +8,7 @@
 import Foundation
 
 /// https://discord.com/developers/docs/topics/gateway#hello
-struct HelloPayload: Codable {
+struct HelloPayload: Codable, Hashable {
     let heartbeatInterval: Double // milliseconds
     
     enum CodingKeys: String, CodingKey {

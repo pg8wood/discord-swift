@@ -16,7 +16,7 @@ class DiscordGateway: WebSocketGateway {
     
     private var cancellables = Set<AnyCancellable>()
     private var webSocketTask: URLSessionWebSocketTask?
-    private var eventSubject = PassthroughSubject<DiscordEvent, Never>()
+    private var eventSubject = PassthroughSubject<Event, Never>()
     
     /// Used for heartbeats and resuming sessions.
     ///
@@ -127,7 +127,8 @@ class DiscordGateway: WebSocketGateway {
         .eraseToAnyPublisher()
     }
     
-    /// Decodes a message sent from the Gateway and stores the sequence number.
+    /// Decodes a message sent from the Gateway, notifies downstream Publishers of the event, and stores the event's sequence number.
+    @discardableResult
     private func decodeAndAcceptMessage(from data: Data?) -> GatewayMessage? {
         guard let data = data else {
             return nil
@@ -141,9 +142,13 @@ class DiscordGateway: WebSocketGateway {
                 self.mostRecentSequenceNumber = sequenceNumber
             }
             
+            if case .event(let event) = message.payload {
+                self.eventSubject.send(event)
+            }
+            
             return message
         } catch {
-            print("error decoding message: \(error.localizedDescription)")
+            print("error decoding gateway message")
             return nil
         }
     }
@@ -215,14 +220,14 @@ class DiscordGateway: WebSocketGateway {
         webSocketTask?.receive { [weak self] result in
             guard let self = self else { return }
             
-            defer {
-                // Foundation only lets this closure run once, so we must re-register it. 🤷‍♀️
-                self.listenForMessages()
-            }
-            
             let messageData: Data?
             switch result {
             case .success(let message):
+                defer {
+                    // Foundation only lets this closure run once, so we must re-register it. 🤷‍♀️
+                    self.listenForMessages()
+                }
+                
                 switch message {
                 case .data(let data):
                    messageData = data
@@ -234,12 +239,7 @@ class DiscordGateway: WebSocketGateway {
                     fatalError()
                 }
                 
-                let message = self.decodeAndAcceptMessage(from: messageData)
-                
-                if case .event(.dispatch(let event)) = message?.payload {
-                    self.eventSubject.send(event)
-                }
-
+                self.decodeAndAcceptMessage(from: messageData)
             case .failure(let error):
                 print("Failed to receive web socket message: \(error)")
             }

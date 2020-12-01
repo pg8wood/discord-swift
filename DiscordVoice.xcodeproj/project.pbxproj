@@ -87,6 +87,12 @@
 		B8B0D1D22575AAD200B25400 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1D12575AAD200B25400 /* Event.swift */; };
 		B8B0D1D32575AAD200B25400 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1D12575AAD200B25400 /* Event.swift */; };
 		B8B0D1D42575AAD200B25400 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1D12575AAD200B25400 /* Event.swift */; };
+		B8B0D1EB2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1EA2575B89E00B25400 /* RequestGuildMembersCommand.swift */; };
+		B8B0D1EC2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1EA2575B89E00B25400 /* RequestGuildMembersCommand.swift */; };
+		B8B0D1ED2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1EA2575B89E00B25400 /* RequestGuildMembersCommand.swift */; };
+		B8B0D1F92575BD4C00B25400 /* Snowflake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1F82575BD4C00B25400 /* Snowflake.swift */; };
+		B8B0D1FA2575BD4C00B25400 /* Snowflake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1F82575BD4C00B25400 /* Snowflake.swift */; };
+		B8B0D1FB2575BD4C00B25400 /* Snowflake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0D1F82575BD4C00B25400 /* Snowflake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +166,8 @@
 		B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonViewerViewController.swift; sourceTree = "<group>"; };
 		B8B0D1C82575AABE00B25400 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		B8B0D1D12575AAD200B25400 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		B8B0D1EA2575B89E00B25400 /* RequestGuildMembersCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGuildMembersCommand.swift; sourceTree = "<group>"; };
+		B8B0D1F82575BD4C00B25400 /* Snowflake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snowflake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,6 +383,7 @@
 				B8B0D1C82575AABE00B25400 /* Command.swift */,
 				B8831B822575674E00749257 /* HeartbeatCommand.swift */,
 				B82141D9256E14E0006F5596 /* IdentifyCommand.swift */,
+				B8B0D1EA2575B89E00B25400 /* RequestGuildMembersCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -396,6 +405,7 @@
 				B82141BA256E1365006F5596 /* Gateway.swift */,
 				B82141D3256E14B9006F5596 /* Guild.swift */,
 				B82141C0256E1380006F5596 /* User.swift */,
+				B8B0D1F82575BD4C00B25400 /* Snowflake.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -586,9 +596,11 @@
 				B82141C4256E138F006F5596 /* APIClient.swift in Sources */,
 				B82141B7256E133B006F5596 /* GetUser.swift in Sources */,
 				B82141D7256E14C6006F5596 /* HelloPayload.swift in Sources */,
+				B8B0D1EB2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B82141CD256E13FB006F5596 /* Payload.swift in Sources */,
 				B82141BB256E1365006F5596 /* Gateway.swift in Sources */,
 				B82141BE256E1372006F5596 /* GetGateway.swift in Sources */,
+				B8B0D1F92575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B8B0D1C92575AABE00B25400 /* Command.swift in Sources */,
 				B8B0D1D22575AAD200B25400 /* Event.swift in Sources */,
 				B82141C1256E1380006F5596 /* User.swift in Sources */,
@@ -610,9 +622,11 @@
 				B89572172571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */,
 				B89571F82571E9A40026FBC6 /* ContentView.swift in Sources */,
 				B895725D2572E3C40026FBC6 /* View+Extensions.swift in Sources */,
+				B8B0D1EC2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B89572192571EA0E0026FBC6 /* Payload.swift in Sources */,
 				B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
+				B8B0D1FA2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
@@ -644,9 +658,11 @@
 				B895722E2571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */,
 				B89571F92571E9A40026FBC6 /* ContentView.swift in Sources */,
 				B89572632572E3C40026FBC6 /* View+Extensions.swift in Sources */,
+				B8B0D1ED2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B8B0D1AB2575A44C00B25400 /* Payload.swift in Sources */,
 				B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
+				B8B0D1FB2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */,

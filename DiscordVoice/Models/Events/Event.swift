@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Event {
+enum Event: Hashable {
     case dispatch(DiscordEvent)
     case hello(HelloPayload)
     
@@ -15,6 +15,15 @@ enum Event {
         switch self {
         case .dispatch: return .dispatch
         case .hello: return .hello
+        }
+    }
+    
+    var name: String {
+        switch self {
+        case .dispatch(let event):
+            return event.name
+        case .hello:
+            return "Hello"
         }
     }
 }

@@ -13,16 +13,21 @@ enum DiscordEventEncoder {
     private static let errorDictionary: [String: Any] =
         ["invalid codable": "contents unknown"]
     
-    static func encodeToDictionary(_ event: DiscordEvent) -> [String: Any] {
+    static func encodeToDictionary(_ event: Event) -> [String: Any] {
         do {
             let data: Data
             
             // TODO: should the gateway just publish state of incoming json instead of reencoding here.
             switch event {
-            case .ready(let event):
-                data = try JSONEncoder().encode(event)
-            case .guildCreate(let event):
-                data = try JSONEncoder().encode(event)
+            case .dispatch(let event):
+                switch event {
+                case .ready(let readyEvent):
+                    data = try JSONEncoder().encode(readyEvent)
+                case .guildCreate(let guildCreateEvent):
+                    data = try JSONEncoder().encode(guildCreateEvent)
+                }
+            case .hello(let helloEvent):
+                data = try JSONEncoder().encode(helloEvent)
             }
             
             let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
@@ -35,19 +40,26 @@ enum DiscordEventEncoder {
 }
 
 struct EventListView: View {
-//    @ObservedObject var viewModel: EventListViewModel
-    
-    @Binding var events: [DiscordEvent]
+    @Binding var events: [Event]
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(events, id: \.self) { event in
-                    NavigationLink(destination: JSONInspectionView(jsonDict: DiscordEventEncoder.encodeToDictionary(event))) {
-                        Text(event.name)
-                    }
+                ForEach(events.reversed(), id: \.self) { event in
+                    eventListItem(from: event)
                 }
             }
+            .navigationTitle("Received Events")
+        }
+    }
+    
+    private func eventListItem(from event: Event) -> some View {
+        let jsonInspectionView = JSONInspectionView(jsonDict: DiscordEventEncoder.encodeToDictionary(event))
+            .navigationTitle(event.name)
+            .edgesIgnoringSafeArea(.bottom)
+        
+        return NavigationLink(destination: jsonInspectionView) {
+            Text(event.name)
         }
     }
 }
