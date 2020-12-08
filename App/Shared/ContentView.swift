@@ -65,6 +65,7 @@ class HomeViewModel: ObservableObject {
 
 struct ContentView: View {
     @State private var isShowingEventLogSheet: Bool = false
+    @State private var isShowingErrorAlert: Bool = false
     @State private var selectedGuild: GuildPayload?
     @ObservedObject var viewModel: HomeViewModel
     
@@ -88,42 +89,30 @@ struct ContentView: View {
         }
     }
     
+    private var errorAlert: Alert {
+        if case .error(let error) = viewModel.contentState {
+            return Alert(title: Text("Gateway Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("Heck")))
+        } else {
+            return Alert(title: Text("Unknown error"), message: nil, dismissButton: .default(Text("Heck")))
+        }
+    }
+    
     var body: some View {
         VStack {
             connectionStatusView
             
             Spacer()
             
-            Button {
-                guard let selectedGuild = selectedGuild else {
-                    // show error
-                    print("tried to get guilds members from a nil guild")
-                    return
+            GuildPreviewScrollView(guilds: $viewModel.guilds)
+                .alert(isPresented: $isShowingErrorAlert) {
+                   errorAlert
                 }
-                
-                let guildMemberIDs = selectedGuild.members.compactMap(\.user?.id)
-                
-                viewModel.send(command: .requestGuildMembers(RequestGuildMembersCommand(guildID: selectedGuild.id, userIDs: guildMemberIDs)))
-            } label: {
-                Text("Get guild members")
-            }
-            
-            Spacer()
-
-            Text("Guilds")
-            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 1)) {
-                ForEach(viewModel.guilds, id: \.self) { guild in
-                    Button {
-                        selectedGuild = guild
-                    } label: {
-                        Text(guild.name)
+                .onReceive(viewModel.$contentState) { contentState in
+                    if case .error = contentState {
+                        isShowingErrorAlert = true
                     }
-                   
                 }
-            }
-            
-            Text("Members in voice:")
-            ActiveVoiceChatMemberList(guild: $selectedGuild)
+//            ActiveVoiceChatMemberList(guild: $selectedGuild)
             
             Spacer()
             
@@ -140,25 +129,68 @@ struct ContentView: View {
     }
 }
 
-struct ActiveVoiceChatMemberList: View {
-    @Binding var guild: GuildPayload?
-    
-    var body: some View {
-        guard let guild = guild else {
-            return EmptyView().eraseToAnyView()
-        }
-        
-        return HStack {
-            ForEach(guild.usersInVoiceChat, id: \.self) { user in
-                Text(user.username)
-            }
-        }
-        .eraseToAnyView()
+struct MockAPIClient: APIClient {
+    func get<T>(_ request: T) -> AnyPublisher<T.Response, APIError> where T : APIRequest {
+        PassthroughSubject<T.Response, APIError>().eraseToAnyPublisher()
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        ContentView(isLoading: .constant(true))
-//    }
-//}
+struct MockGateway: WebSocketGateway {
+    var session: URLSession
+    
+    var discordAPI: APIClient
+    
+    var eventPublisher: AnyPublisher<Event, Never>
+    
+    init() {
+        session = .shared // TODO use a mock one
+        discordAPI = MockAPIClient()
+        eventPublisher = PassthroughSubject<Event, Never>().eraseToAnyPublisher()
+    }
+    
+    func connect() -> AnyPublisher<ReadyPayload, GatewayError> {
+        PassthroughSubject<ReadyPayload, GatewayError>().eraseToAnyPublisher()
+    }
+    
+    func send(command: Command) {
+        // TODO
+    }
+}
+
+class MockHomeViewModel: HomeViewModel {
+    init(_ contentState: ContentState<ReadyPayload, GatewayError>) {
+        super.init(gateway: MockGateway())
+        self.contentState = contentState
+    }
+    
+    convenience init(_ contentState: ContentState<ReadyPayload, GatewayError>, guilds: [GuildPayload]) {
+        self.init(contentState)
+        self.guilds = guilds
+    }
+}
+
+
+struct ContentView_Previews: PreviewProvider {
+    private static var mockUser: User {
+        User(id: "42", username: "Luke Skywalker")
+    }
+    
+    private static var mockReadyPayload: ReadyPayload {
+        ReadyPayload(gatewayVersion: 42, user: mockUser, sessionID: "")
+    }
+    
+    private static var mockGuilds: [GuildPayload] {
+        (1...4).map {
+            GuildPayload(id: "42", name: "Test guild \($0)", icon: "", voiceStates: [], members: [])
+        }
+    }
+    
+    static var previews: some View {
+        Group {
+            ContentView(viewModel: MockHomeViewModel(.notLoaded))
+            ContentView(viewModel: MockHomeViewModel(.loading))
+            ContentView(viewModel: MockHomeViewModel(.loaded(mockReadyPayload), guilds: mockGuilds))
+            ContentView(viewModel: MockHomeViewModel(.error(.decodingFailed)))
+        }
+    }
+}

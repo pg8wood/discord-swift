@@ -77,6 +77,8 @@
 		B89572872572EFAE0026FBC6 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572852572EFAE0026FBC6 /* EventListView.swift */; };
 		B89572932572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */; };
 		B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */; };
+		B8AB84B2257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */; };
+		B8AB84B3257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */; };
 		B8B0D1AB2575A44C00B25400 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141CC256E13FB006F5596 /* Payload.swift */; };
 		B8B0D1C02575A69A00B25400 /* IdentifyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentifyCommand.swift */; };
 		B8B0D1C12575A69A00B25400 /* IdentifyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentifyCommand.swift */; };
@@ -164,6 +166,7 @@
 		B89572562572E3B00026FBC6 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		B89572852572EFAE0026FBC6 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonViewerViewController.swift; sourceTree = "<group>"; };
+		B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildPreviewView.swift; sourceTree = "<group>"; };
 		B8B0D1C82575AABE00B25400 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		B8B0D1D12575AAD200B25400 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B8B0D1EA2575B89E00B25400 /* RequestGuildMembersCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGuildMembersCommand.swift; sourceTree = "<group>"; };
@@ -303,6 +306,7 @@
 		B89571CD2571E9A10026FBC6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				B8AB84CC25803457005DDA97 /* Guild Preview */,
 				B895723D2572E2D60026FBC6 /* ContentState.swift */,
 				B89571CF2571E9A10026FBC6 /* ContentView.swift */,
 				B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */,
@@ -375,6 +379,14 @@
 				B89572852572EFAE0026FBC6 /* EventListView.swift */,
 			);
 			path = EventLog;
+			sourceTree = "<group>";
+		};
+		B8AB84CC25803457005DDA97 /* Guild Preview */ = {
+			isa = PBXGroup;
+			children = (
+				B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */,
+			);
+			path = "Guild Preview";
 			sourceTree = "<group>";
 		};
 		B8B0D17C2575A12B00B25400 /* Commands */ = {
@@ -634,6 +646,7 @@
 				B8B0D1D32575AAD200B25400 /* Event.swift in Sources */,
 				B895720F2571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
 				B895721A2571EA0E0026FBC6 /* DiscordEvent.swift in Sources */,
+				B8AB84B2257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */,
 				B89572142571EA0E0026FBC6 /* Gateway.swift in Sources */,
 				B89572932572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
 				B895721C2571EA0E0026FBC6 /* GetGateway.swift in Sources */,
@@ -670,6 +683,7 @@
 				B8B0D1D42575AAD200B25400 /* Event.swift in Sources */,
 				B89572262571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
 				B89572312571EA0E0026FBC6 /* DiscordEvent.swift in Sources */,
+				B8AB84B3257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */,
 				B895722B2571EA0E0026FBC6 /* Gateway.swift in Sources */,
 				B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
 				B89572332571EA0E0026FBC6 /* GetGateway.swift in Sources */,

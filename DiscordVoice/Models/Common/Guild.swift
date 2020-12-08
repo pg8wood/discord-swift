@@ -33,12 +33,28 @@ struct GuildPayload: Codable, Hashable, Equatable {
                 
                 return idsOfMembersInVoice.contains(userID)
             }
-                .compactMap(\.user)
+                .compactMap(\.user).removingDuplicates()
         }
         
-        return voiceStateMembers.compactMap(\.user)
+        return voiceStateMembers.compactMap(\.user).removingDuplicates()
     }
 }
+
+// TODO: see why the gateway is returning duplicate members!
+private extension Array where Element: Hashable {
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
+    }
+}
+
 
 struct VoiceState: Codable, Hashable, Equatable {
     var userID: Snowflake
