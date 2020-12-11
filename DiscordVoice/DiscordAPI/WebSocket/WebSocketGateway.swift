@@ -13,6 +13,19 @@ enum GatewayError: LocalizedError {
     case decodingFailed
     case webSocket(Error)
     case http(APIError)
+    
+    var errorDescription: String? {
+        switch self {
+        case .initialConnectionFailed:
+            return "Connecting to Discord failed"
+        case .decodingFailed:
+            return "Failed to decode response from Discord!"
+        case .webSocket(let error):
+            return "Web socket error: \(error.localizedDescription)"
+        case .http(let apiError):
+            return apiError.localizedDescription
+        }
+    }
 }
 
 protocol WebSocketGateway {

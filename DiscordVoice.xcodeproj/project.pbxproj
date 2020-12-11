@@ -79,6 +79,8 @@
 		B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */; };
 		B8AB84B2257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */; };
 		B8AB84B3257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */; };
+		B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */; };
+		B8AB850C258411AE005DDA97 /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */; };
 		B8B0D1AB2575A44C00B25400 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141CC256E13FB006F5596 /* Payload.swift */; };
 		B8B0D1C02575A69A00B25400 /* IdentifyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentifyCommand.swift */; };
 		B8B0D1C12575A69A00B25400 /* IdentifyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141D9256E14E0006F5596 /* IdentifyCommand.swift */; };
@@ -167,6 +169,7 @@
 		B89572852572EFAE0026FBC6 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonViewerViewController.swift; sourceTree = "<group>"; };
 		B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildPreviewView.swift; sourceTree = "<group>"; };
+		B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusView.swift; sourceTree = "<group>"; };
 		B8B0D1C82575AABE00B25400 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		B8B0D1D12575AAD200B25400 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B8B0D1EA2575B89E00B25400 /* RequestGuildMembersCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGuildMembersCommand.swift; sourceTree = "<group>"; };
@@ -306,7 +309,7 @@
 		B89571CD2571E9A10026FBC6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				B8AB84CC25803457005DDA97 /* Guild Preview */,
+				B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */,
 				B895723D2572E2D60026FBC6 /* ContentState.swift */,
 				B89571CF2571E9A10026FBC6 /* ContentView.swift */,
 				B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */,
@@ -314,6 +317,7 @@
 				B89571D02571E9A40026FBC6 /* Assets.xcassets */,
 				B89572832572EF820026FBC6 /* EventLog */,
 				B89572552572E39E0026FBC6 /* Extensions */,
+				B8AB84CC25803457005DDA97 /* Guild Preview */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -636,6 +640,7 @@
 				B895725D2572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8B0D1EC2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */,
+				B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B89572192571EA0E0026FBC6 /* Payload.swift in Sources */,
 				B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FA2575BD4C00B25400 /* Snowflake.swift in Sources */,
@@ -673,6 +678,7 @@
 				B89572632572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8B0D1ED2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B8B0D1AB2575A44C00B25400 /* Payload.swift in Sources */,
+				B8AB850C258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FB2575BD4C00B25400 /* Snowflake.swift in Sources */,

@@ -68,27 +68,7 @@ struct ContentView: View {
     @State private var isShowingErrorAlert: Bool = false
     @State private var selectedGuild: GuildPayload?
     @ObservedObject var viewModel: HomeViewModel
-    
-    var connectionStatusView: AnyView {
-        switch viewModel.contentState {
-        case .notLoaded:
-            return Text("Hello, World!")
-                .eraseToAnyView()
-        case .loading:
-            return ProgressView()
-                .progressViewStyle(CircularProgressViewStyle())
-                .eraseToAnyView()
-        case .loaded(let readyPayload):
-            return
-                Text("Hello, \(readyPayload.user.username)! Discord is connected.")
-                .eraseToAnyView()
-        case .error(let error):
-            return
-                Text("An error occurred: \(error.localizedDescription)")
-                .eraseToAnyView()
-        }
-    }
-    
+
     private var errorAlert: Alert {
         if case .error(let error) = viewModel.contentState {
             return Alert(title: Text("Gateway Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("Heck")))
@@ -99,7 +79,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            connectionStatusView
+            ConnectionStatusView(contentState: $viewModel.contentState)
             
             Spacer()
             
