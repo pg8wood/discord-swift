@@ -27,6 +27,8 @@
 		B8831B992575685400749257 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
 		B8831B9F2575685700749257 /* HeartbeatCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8831B822575674E00749257 /* HeartbeatCommand.swift */; };
 		B8831BA52575685800749257 /* HeartbeatCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8831B822575674E00749257 /* HeartbeatCommand.swift */; };
+		B883310925CF5A4F00832538 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B883310825CF5A4E00832538 /* ToastView.swift */; };
+		B883310A25CF5A4F00832538 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B883310825CF5A4E00832538 /* ToastView.swift */; };
 		B89571C4256EC7890026FBC6 /* ReadyPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C3256EC7890026FBC6 /* ReadyPayload.swift */; };
 		B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
 		B89571CA257194FE0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
@@ -147,6 +149,7 @@
 		B82141D9256E14E0006F5596 /* IdentifyCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyCommand.swift; sourceTree = "<group>"; };
 		B82141DE256E15BB006F5596 /* DiscordGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordGateway.swift; sourceTree = "<group>"; };
 		B8831B822575674E00749257 /* HeartbeatCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatCommand.swift; sourceTree = "<group>"; };
+		B883310825CF5A4E00832538 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		B89571C3256EC7890026FBC6 /* ReadyPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyPayload.swift; sourceTree = "<group>"; };
 		B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketGateway.swift; sourceTree = "<group>"; };
 		B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuildRequest.swift; sourceTree = "<group>"; };
@@ -318,6 +321,7 @@
 				B89572832572EF820026FBC6 /* EventLog */,
 				B89572552572E39E0026FBC6 /* Extensions */,
 				B8AB84CC25803457005DDA97 /* Guild Preview */,
+				B883310825CF5A4E00832538 /* ToastView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -646,6 +650,7 @@
 				B8B0D1FA2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */,
+				B883310925CF5A4F00832538 /* ToastView.swift in Sources */,
 				B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B932575685300749257 /* DiscordGateway.swift in Sources */,
 				B8B0D1D32575AAD200B25400 /* Event.swift in Sources */,
@@ -684,6 +689,7 @@
 				B8B0D1FB2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */,
+				B883310A25CF5A4F00832538 /* ToastView.swift in Sources */,
 				B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B992575685400749257 /* DiscordGateway.swift in Sources */,
 				B8B0D1D42575AAD200B25400 /* Event.swift in Sources */,

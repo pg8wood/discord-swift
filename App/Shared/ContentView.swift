@@ -12,6 +12,7 @@ class HomeViewModel: ObservableObject {
     @Published var contentState: ContentState<ReadyPayload, GatewayError> = .notLoaded
     @Published var guilds: [GuildPayload] = []
     @Published var events: [Event] = []
+    @Published var test: Int = 2
     
     private let gateway: WebSocketGateway
     
@@ -68,7 +69,7 @@ struct ContentView: View {
     @State private var isShowingErrorAlert: Bool = false
     @State private var selectedGuild: GuildPayload?
     @ObservedObject var viewModel: HomeViewModel
-
+    
     private var errorAlert: Alert {
         if case .error(let error) = viewModel.contentState {
             return Alert(title: Text("Gateway Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("Heck")))
@@ -78,31 +79,39 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            ConnectionStatusView(contentState: $viewModel.contentState)
-            
-            Spacer()
-            
-            GuildPreviewScrollView(guilds: $viewModel.guilds)
-                .alert(isPresented: $isShowingErrorAlert) {
-                   errorAlert
-                }
-                .onReceive(viewModel.$contentState) { contentState in
-                    if case .error = contentState {
-                        isShowingErrorAlert = true
+        ZStack(alignment: .top) {
+            VStack {
+                Text("test: \($viewModel.test.wrappedValue)")
+                ConnectionStatusView(contentState: $viewModel.contentState)
+                
+                Spacer()
+                
+                GuildPreviewScrollView(guilds: $viewModel.guilds)
+                    .alert(isPresented: $isShowingErrorAlert) {
+                        errorAlert
                     }
+                    .onReceive(viewModel.$contentState) { contentState in
+                        if case .error = contentState {
+                            isShowingErrorAlert = true
+                        }
+                    }
+                //            ActiveVoiceChatMemberList(guild: $selectedGuild)
+                
+                Spacer()
+                
+                Button {
+                    isShowingEventLogSheet = true
+                } label: {
+                    Text("View Events")
                 }
-//            ActiveVoiceChatMemberList(guild: $selectedGuild)
-            
-            Spacer()
-            
-            Button {
-                isShowingEventLogSheet = true
-            } label: {
-                Text("View Events")
+                .sheet(isPresented: $isShowingEventLogSheet) {
+                    EventListView(events: $viewModel.events)
+                }
             }
-            .sheet(isPresented: $isShowingEventLogSheet) {
-                EventListView(events: $viewModel.events)
+            
+            ForEach(viewModel.events, id: \.self) { event in
+                ToastView(text: event.name)
+            
             }
         }
         .padding()
