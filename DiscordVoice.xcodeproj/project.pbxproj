@@ -104,6 +104,8 @@
 		B8CF8C4725D0BC290011C7A0 /* GetGuildIconRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C2B25D0B77E0011C7A0 /* GetGuildIconRequest.swift */; };
 		B8CF8C5325D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */; };
 		B8CF8C5425D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */; };
+		B8CF8C5B25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */; };
+		B8CF8C5C25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +186,7 @@
 		B8B0D1F82575BD4C00B25400 /* Snowflake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snowflake.swift; sourceTree = "<group>"; };
 		B8CF8C2B25D0B77E0011C7A0 /* GetGuildIconRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuildIconRequest.swift; sourceTree = "<group>"; };
 		B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordAPIGateway.swift; sourceTree = "<group>"; };
+		B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredLabelImageAlignmentStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +334,7 @@
 				B89572552572E39E0026FBC6 /* Extensions */,
 				B8AB84CC25803457005DDA97 /* Guild Preview */,
 				B883310825CF5A4E00832538 /* ToastView.swift */,
+				B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -663,6 +667,7 @@
 				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B883310925CF5A4F00832538 /* ToastView.swift in Sources */,
+				B8CF8C5B25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B932575685300749257 /* DiscordGateway.swift in Sources */,
 				B8B0D1D32575AAD200B25400 /* Event.swift in Sources */,
@@ -704,6 +709,7 @@
 				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B883310A25CF5A4F00832538 /* ToastView.swift in Sources */,
+				B8CF8C5C25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B992575685400749257 /* DiscordGateway.swift in Sources */,
 				B8B0D1D42575AAD200B25400 /* Event.swift in Sources */,

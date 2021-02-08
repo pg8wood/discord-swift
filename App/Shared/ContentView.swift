@@ -59,7 +59,6 @@ class HomeViewModel: ObservableObject {
                 }
             })
             .store(in: &cancellables)
-
     }
     
     func send(command: Command) {

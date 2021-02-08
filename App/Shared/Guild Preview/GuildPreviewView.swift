@@ -58,8 +58,9 @@ struct GuildPreviewView: View {
                 Text(guild.name)
             } icon: {
                 Image(uiImage: image ?? UIImage(systemName: "xmark.octagon.fill")!)
+                    .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: 50, maxHeight: 50)
+                    .frame(maxWidth: 75, maxHeight: 75)
                     .clipShape(Circle())
                     .onAppear {
                         // TODO: should this be done immediately when a Guild is loaded from the API instead of waiting for this view to appear?
@@ -69,8 +70,10 @@ struct GuildPreviewView: View {
                     }
             }
             .lineLimit(2)
+            .minimumScaleFactor(0.5)
             .font(.title)
             .padding(.leading, -3) // Dunno why this extra bit of padding exists here
+            .labelStyle(VerticallyCenteredLabelImageAlignmentStyle())
             
             voicePresencesView
         }
