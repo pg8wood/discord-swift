@@ -34,6 +34,9 @@ struct GatewayMessage: Codable {
             case .guildCreate:
                 let guild = try container.decode(GuildPayload.self, forKey: .payload)
                 payload = .event(.dispatch(.guildCreate(guild)))
+            case .guildUpdate:
+                let guild = try container.decode(GuildPayload.self, forKey: .payload)
+                payload = .event(.dispatch(.guildUpdate(guild)))
             case .ready:
                 let readyPayload = try container.decode(ReadyPayload.self, forKey: .payload)
                 payload = .event(.dispatch(.ready(readyPayload)))

@@ -14,6 +14,8 @@ class DiscordGateway: WebSocketGateway {
     let session: URLSession
     let discordAPI: APIClient
     
+    private let version: Int = 8
+    
     private var cancellables = Set<AnyCancellable>()
     private var webSocketTask: URLSessionWebSocketTask?
     private var eventSubject = PassthroughSubject<Event, Never>()
@@ -58,8 +60,16 @@ class DiscordGateway: WebSocketGateway {
             .mapError { error -> GatewayError in
                 .http(error)
             }
-            .flatMap { gateway in
-                self.openWSSConnection(at: gateway.url)
+            .compactMap { URLComponents(url: $0.url, resolvingAgainstBaseURL: false) }
+            .flatMap { urlComponents -> AnyPublisher<ReadyPayload, GatewayError> in
+                var urlComponents = urlComponents
+                let queryItems = [
+                    "v": "\(self.version)",
+                    "encoding": "json"
+                ].map(URLQueryItem.init)
+                urlComponents.queryItems = queryItems
+                
+                return self.openWSSConnection(at: urlComponents.url!)
             }
             .handleEvents(receiveCompletion: { completion in
                 guard case .finished = completion else { return }

@@ -20,6 +20,7 @@ enum DiscordEvent: Hashable {
     
     case ready(ReadyPayload)
     case guildCreate(GuildPayload)
+    case guildUpdate(GuildPayload)
     
     var name: String {
         switch self {
@@ -27,6 +28,8 @@ enum DiscordEvent: Hashable {
             return DiscordEventType.ready.rawValue
         case .guildCreate:
             return DiscordEventType.guildCreate.rawValue
+        case .guildUpdate:
+            return DiscordEventType.guildUpdate.rawValue
         }
     }
 }
@@ -34,4 +37,5 @@ enum DiscordEvent: Hashable {
 enum DiscordEventType: String, Codable {
     case ready = "READY"
     case guildCreate = "GUILD_CREATE"
+    case guildUpdate = "GUILD_UPDATE"
 }
