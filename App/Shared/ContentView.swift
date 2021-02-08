@@ -12,14 +12,16 @@ class HomeViewModel: ObservableObject {
     @Published var contentState: ContentState<ReadyPayload, GatewayError> = .notLoaded
     @Published var guilds: [GuildPayload] = []
     @Published var events: [Event] = []
-    @Published var test: Int = 2
     
-    private let gateway: WebSocketGateway
+    let discordGateway: DiscordAPIGateway
+    private var gateway: WebSocketGateway {
+        discordGateway.gateway
+    }
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(gateway: WebSocketGateway) {
-        self.gateway = gateway
+    init(discordGateway: DiscordAPIGateway) {
+        self.discordGateway = discordGateway
         connectToGateway()
     }
     
@@ -57,6 +59,7 @@ class HomeViewModel: ObservableObject {
                 }
             })
             .store(in: &cancellables)
+
     }
     
     func send(command: Command) {
@@ -81,8 +84,12 @@ struct ContentView: View {
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
-                Text("test: \($viewModel.test.wrappedValue)")
                 ConnectionStatusView(contentState: $viewModel.contentState)
+                    .onReceive(viewModel.$contentState) { contentState in
+                        if case .error = contentState {
+                            isShowingErrorAlert = true
+                        }
+                    }
                 
                 Spacer()
                 
@@ -90,12 +97,7 @@ struct ContentView: View {
                     .alert(isPresented: $isShowingErrorAlert) {
                         errorAlert
                     }
-                    .onReceive(viewModel.$contentState) { contentState in
-                        if case .error = contentState {
-                            isShowingErrorAlert = true
-                        }
-                    }
-                //            ActiveVoiceChatMemberList(guild: $selectedGuild)
+                    .environmentObject(viewModel.discordGateway)
                 
                 Spacer()
                 
@@ -111,7 +113,6 @@ struct ContentView: View {
             
             ForEach(viewModel.events, id: \.self) { event in
                 ToastView(text: event.name)
-            
             }
         }
         .padding()
@@ -148,7 +149,7 @@ struct MockGateway: WebSocketGateway {
 
 class MockHomeViewModel: HomeViewModel {
     init(_ contentState: ContentState<ReadyPayload, GatewayError>) {
-        super.init(gateway: MockGateway())
+        super.init(discordGateway: DiscordAPIGateway(gateway: MockGateway()))
         self.contentState = contentState
     }
     

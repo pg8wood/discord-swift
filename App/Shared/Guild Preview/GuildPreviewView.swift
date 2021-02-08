@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct GuildPreviewScrollView: View {
     @Binding var guilds: [GuildPayload]
@@ -45,14 +46,31 @@ struct GuildPreviewView_Previews: PreviewProvider {
 }
 
 struct GuildPreviewView: View {
+    @EnvironmentObject var gatewayHolder: DiscordAPIGateway
+    @State private var image: UIImage? = UIImage(systemName: "photo")
+    @State private var cancellables = Set<AnyCancellable>()
+
     var guild: GuildPayload
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Label(guild.name, systemImage: "photo")
-                .lineLimit(2)
-                .font(.title)
-                .padding(.leading, -3) // Dunno why this extra bit of padding exists here
+            Label {
+                Text(guild.name)
+            } icon: {
+                Image(uiImage: image ?? UIImage(systemName: "xmark.octagon.fill")!)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(maxWidth: 50, maxHeight: 50)
+                    .clipShape(Circle())
+                    .onAppear {
+                        // TODO: should this be done immediately when a Guild is loaded from the API instead of waiting for this view to appear?
+                        gatewayHolder.getIcon(for: guild)
+                            .assign(to: \.image, on: self)
+                            .store(in: &cancellables)
+                    }
+            }
+            .lineLimit(2)
+            .font(.title)
+            .padding(.leading, -3) // Dunno why this extra bit of padding exists here
             
             voicePresencesView
         }

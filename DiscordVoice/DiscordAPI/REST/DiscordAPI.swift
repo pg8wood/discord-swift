@@ -5,17 +5,17 @@
 //  Created by Patrick Gatewood on 11/24/20.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 class DiscordAPI: APIClient {
-    private let baseURL = URL(string: "https://discord.com/api")!
     private let myUserID = "275833464618614784"
     
     let session: URLSession = .shared // DI and make testable
     
     func get<T: APIRequest>(_ request: T) -> AnyPublisher<T.Response, APIError> {
-        let url = baseURL.appendingPathComponent(request.path)
+        // all url construction should be in the request type
+        let url = request.baseURL.appendingPathComponent(request.path)
         var urlRequest = URLRequest(url: url)
         
         request.headers.forEach {
@@ -24,7 +24,7 @@ class DiscordAPI: APIClient {
         
         return session.dataTaskPublisher(for: urlRequest)
             .map(\.data)
-            .decode(type: T.Response.self, decoder: JSONDecoder())
+            .tryMap(request.decodeResponse)
             .mapError { error -> APIError in
                 switch error {
                 case is DecodingError:

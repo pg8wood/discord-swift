@@ -10,11 +10,11 @@ import Combine
 
 @main
 struct discord_voiceApp: App {
-    @State private var gateway = DiscordGateway(session: .shared, discordAPI: DiscordAPI())
+    @State private var discordGateway = DiscordAPIGateway()
     
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: HomeViewModel(gateway: gateway))
+            ContentView(viewModel: HomeViewModel(discordGateway: discordGateway))
         }
     }
 }

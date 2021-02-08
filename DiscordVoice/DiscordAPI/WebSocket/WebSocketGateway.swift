@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 enum GatewayError: LocalizedError {
+    case invalidRequest
     case initialConnectionFailed
     case decodingFailed
     case webSocket(Error)
@@ -16,6 +17,8 @@ enum GatewayError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
+        case .invalidRequest:
+            return "Invalid request"
         case .initialConnectionFailed:
             return "Connecting to Discord failed"
         case .decodingFailed:

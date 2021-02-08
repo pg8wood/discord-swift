@@ -25,7 +25,7 @@ struct ConnectionStatusView: View {
                 .scaleEffect(scale)
                 .onAppear(perform: animateLoadingState)
         case .loaded(let readyPayload):
-            Text("Hello, \(readyPayload.user.username)! Discord is connected.")
+            Text("Hello, ") + Text("\(readyPayload.user.username)").bold() + Text("! Discord is connected.")
         case .error(let error):
             Text("⚠️ \(error.localizedDescription)")
         }
