@@ -47,7 +47,7 @@ struct ConnectionStatusView: View {
 struct ConnectionStatusView_Previews: PreviewProvider {
     static private var mockReadyPayload: ReadyPayload {
         ReadyPayload(gatewayVersion: 42,
-                     user: User(id: "test", username: "test user"),
+                     user: User(id: "test", username: "test user", avatar: "test"),
                      sessionID: "mock session")
     }
     

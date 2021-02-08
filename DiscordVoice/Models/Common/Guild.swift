@@ -8,7 +8,7 @@
 import Foundation
 
 /// https://discord.com/developers/docs/resources/guild#guild-object
-struct GuildPayload: Codable, Hashable, Equatable {
+struct GuildPayload: Codable, Hashable, Equatable, Identifiable {
     let id: Snowflake
     let name: String
     let icon: String?

@@ -42,4 +42,30 @@ class DiscordAPIGateway: ObservableObject {
         }
         .eraseToAnyPublisher()
     }
+    
+    func getAvatar(for user: User) -> AnyPublisher<UIImage?, Never> {
+        Deferred {
+            Future { [weak self] fulfill in
+                guard let self = self,
+                      let avatar = user.avatar else {
+                    fulfill(.success(nil))
+                    return
+                }
+                
+                self.gateway.discordAPI.get(GetUserAvatarRequest(userID: user.id, avatar: avatar))
+                    .receive(on: DispatchQueue.main)
+                    .sink( receiveCompletion:  { completion in
+                        switch completion {
+                        case .failure:
+                            fulfill(.success(nil))
+                        case .finished: break
+                        }
+                    }, receiveValue: { image in
+                        fulfill(.success(image))
+                    })
+                    .store(in: &self.cancellables)
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

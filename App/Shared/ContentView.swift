@@ -161,7 +161,7 @@ class MockHomeViewModel: HomeViewModel {
 
 struct ContentView_Previews: PreviewProvider {
     private static var mockUser: User {
-        User(id: "42", username: "Luke Skywalker")
+        User(id: "42", username: "Luke Skywalker", avatar: "test")
     }
     
     private static var mockReadyPayload: ReadyPayload {

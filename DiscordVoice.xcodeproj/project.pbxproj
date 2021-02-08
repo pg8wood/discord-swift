@@ -106,6 +106,13 @@
 		B8CF8C5425D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */; };
 		B8CF8C5B25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */; };
 		B8CF8C5C25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */; };
+		B8CF8C7825D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */; };
+		B8CF8C7925D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */; };
+		B8CF8C7A25D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */; };
+		B8CF8C8B25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */; };
+		B8CF8C8C25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */; };
+		B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */; };
+		B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +194,9 @@
 		B8CF8C2B25D0B77E0011C7A0 /* GetGuildIconRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuildIconRequest.swift; sourceTree = "<group>"; };
 		B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordAPIGateway.swift; sourceTree = "<group>"; };
 		B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredLabelImageAlignmentStyle.swift; sourceTree = "<group>"; };
+		B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserAvatarRequest.swift; sourceTree = "<group>"; };
+		B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePresencesListView.swift; sourceTree = "<group>"; };
+		B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,11 +282,11 @@
 		B82141B2256E1312006F5596 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				B8CF8C7625D0FC660011C7A0 /* CDN */,
 				B82141B3256E1327006F5596 /* APIRequest.swift */,
 				B82141BD256E1372006F5596 /* GetGateway.swift */,
 				B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */,
 				B82141B6256E133B006F5596 /* GetUser.swift */,
-				B8CF8C2B25D0B77E0011C7A0 /* GetGuildIconRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -406,6 +416,8 @@
 			isa = PBXGroup;
 			children = (
 				B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */,
+				B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */,
+				B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */,
 			);
 			path = "Guild Preview";
 			sourceTree = "<group>";
@@ -441,6 +453,15 @@
 				B8B0D1F82575BD4C00B25400 /* Snowflake.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		B8CF8C7625D0FC660011C7A0 /* CDN */ = {
+			isa = PBXGroup;
+			children = (
+				B8CF8C2B25D0B77E0011C7A0 /* GetGuildIconRequest.swift */,
+				B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */,
+			);
+			path = CDN;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -633,6 +654,7 @@
 				B8B0D1EB2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B82141CD256E13FB006F5596 /* Payload.swift in Sources */,
 				B82141BB256E1365006F5596 /* Gateway.swift in Sources */,
+				B8CF8C7825D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */,
 				B82141BE256E1372006F5596 /* GetGateway.swift in Sources */,
 				B8B0D1F92575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B8B0D1C92575AABE00B25400 /* Command.swift in Sources */,
@@ -659,17 +681,20 @@
 				B8B0D1EC2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B8CF8C4125D0BC290011C7A0 /* GetGuildIconRequest.swift in Sources */,
+				B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */,
 				B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B89572192571EA0E0026FBC6 /* Payload.swift in Sources */,
 				B8CF8C5325D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
 				B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FA2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
+				B8CF8C7925D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */,
 				B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B883310925CF5A4F00832538 /* ToastView.swift in Sources */,
 				B8CF8C5B25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B932575685300749257 /* DiscordGateway.swift in Sources */,
+				B8CF8C8B25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */,
 				B8B0D1D32575AAD200B25400 /* Event.swift in Sources */,
 				B895720F2571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
 				B895721A2571EA0E0026FBC6 /* DiscordEvent.swift in Sources */,
@@ -701,17 +726,20 @@
 				B8B0D1ED2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B8B0D1AB2575A44C00B25400 /* Payload.swift in Sources */,
 				B8CF8C4725D0BC290011C7A0 /* GetGuildIconRequest.swift in Sources */,
+				B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */,
 				B8AB850C258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B8CF8C5425D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
 				B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FB2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
+				B8CF8C7A25D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */,
 				B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B883310A25CF5A4F00832538 /* ToastView.swift in Sources */,
 				B8CF8C5C25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B992575685400749257 /* DiscordGateway.swift in Sources */,
+				B8CF8C8C25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */,
 				B8B0D1D42575AAD200B25400 /* Event.swift in Sources */,
 				B89572262571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
 				B89572312571EA0E0026FBC6 /* DiscordEvent.swift in Sources */,

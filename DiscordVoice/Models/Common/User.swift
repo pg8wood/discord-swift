@@ -10,4 +10,5 @@ import Foundation
 struct User: Codable, Hashable, Equatable {
     let id: Snowflake
     let username: String
+    let avatar: String?
 }
