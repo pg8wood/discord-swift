@@ -17,11 +17,11 @@ class DiscordAPIGateway: ObservableObject {
         self.gateway = gateway
     }
     
-    func getIcon(for guild: GuildPayload) -> AnyPublisher<UIImage?, Never> {
+    func getIcon(for guild: Guild) -> AnyPublisher<UIImage?, Never> {
         Deferred {
             Future { [weak self] fulfill in
                 guard let self = self,
-                      let guildIcon = guild.icon else {
+                      let guildIcon = guild.iconHash else {
                     fulfill(.success(nil))
                     return
                 }

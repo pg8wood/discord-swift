@@ -40,6 +40,12 @@ struct GatewayMessage: Codable {
             case .ready:
                 let readyPayload = try container.decode(ReadyPayload.self, forKey: .payload)
                 payload = .event(.dispatch(.ready(readyPayload)))
+            case .voiceStateUpdate:
+                let voiceState = try container.decode(VoiceState.self, forKey: .payload)
+                payload = .event(.dispatch(.voiceStateUpdate(voiceState)))
+            case .guildMembersChunk:
+                let voiceMembersChunk = try container.decode(GuildMembersChunk.self, forKey: .payload)
+                payload = .event(.dispatch(.guildMembersChunk(voiceMembersChunk)))
             case .none:
                 throw NSError() // TODO throw real errors
             }

@@ -9,33 +9,31 @@ import SwiftUI
 import Combine
 
 struct GuildPreviewScrollView: View {
-    @Binding var guilds: [GuildPayload]
+    @Binding var guilds: [Guild]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             ForEach(guilds.indices, id: \.self) { index in
                 GuildPreviewView(guild: $guilds[index])
             }
-//            ForEach(guilds.indices) { index in
-//                GuildPreviewView(guild: $guilds[index])
-//            }
         }
     }
 }
 
 struct GuildPreviewView_Previews: PreviewProvider {
-    private static var guilds: [GuildPayload] {
+    private static var guilds: [Guild] {
         [
             "Short name",
             "Test Guild with a long-ish name"
         ].map {
-            GuildPayload(id: "",
+            Guild(from: GuildPayload(id: "",
                          name: $0,
                          icon: "",
                          voiceStates: [
-                            VoiceState(userID: "3", member: GuildMember(user: User(id: "3", username: "Always in Voice", avatar: "test")))
+                            VoiceState(guildID: "42", userID: "3", channelID: "22", member: GuildMember(user: User(id: "3", username: "Always in Voice", avatar: "test")))
                          ],
                          members: [])
+            )
         }
     }
     
@@ -53,7 +51,7 @@ struct GuildPreviewView: View {
     @State private var image: UIImage? = UIImage(systemName: "photo")
     @State private var cancellables = Set<AnyCancellable>()
 
-    @Binding var guild: GuildPayload
+    @Binding var guild: Guild
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

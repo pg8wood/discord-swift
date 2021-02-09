@@ -10,7 +10,7 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var contentState: ContentState<ReadyPayload, GatewayError> = .notLoaded
-    @Published var guilds: [GuildPayload] = []
+    @Published var guilds: [Guild] = []
     @Published var events: [Event] = []
     
     let discordGateway: DiscordAPIGateway
@@ -52,10 +52,36 @@ class HomeViewModel: ObservableObject {
                 
                 self.events.append(event)
                 
-                if case .dispatch(.guildCreate(let guild)) = event {
+                switch event {
+                case .dispatch(.guildCreate(let guildPayload)):
+                    let guild = Guild(from: guildPayload)
                     if !self.guilds.contains(guild) {
                         self.guilds.append(guild)
                     }
+                    
+                    // TODO: can we use "assign" to subscribe guilds to their state updates instead of using sink?
+                case .dispatch(.voiceStateUpdate(let voiceState)):
+                    guard let guild = self.guilds.first(where: { $0.id == voiceState.guildID }) else {
+                        return
+                    }
+                    
+                    guild.didReceiveVoiceStateUpdate(voiceState)
+                    
+                    
+                    // ignore sent voice state object and request the guild members again
+//                    guard let guildID = voiceState.guildID else {
+//                        return
+//                    }
+//
+//                    self.send(command: .requestGuildMembers(RequestGuildMembersCommand(guildID: guildID)))
+////                case .dispatch(.guildMembersChunk(let guildMembersChunk)):
+//                    guard let guild = self.guilds.first(where: { $0.id == guildMembersChunk.guildID }) else {
+//                        return
+//                    }
+//
+//                    guild.members = guildMembersChunk.members
+                break
+                default: break
                 }
             })
             .store(in: &cancellables)
@@ -152,7 +178,7 @@ class MockHomeViewModel: HomeViewModel {
         self.contentState = contentState
     }
     
-    convenience init(_ contentState: ContentState<ReadyPayload, GatewayError>, guilds: [GuildPayload]) {
+    convenience init(_ contentState: ContentState<ReadyPayload, GatewayError>, guilds: [Guild]) {
         self.init(contentState)
         self.guilds = guilds
     }
@@ -168,9 +194,9 @@ struct ContentView_Previews: PreviewProvider {
         ReadyPayload(gatewayVersion: 42, user: mockUser, sessionID: "")
     }
     
-    private static var mockGuilds: [GuildPayload] {
+    private static var mockGuilds: [Guild] {
         (1...4).map {
-            GuildPayload(id: "42", name: "Test guild \($0)", icon: "", voiceStates: [], members: [])
+            Guild(from: GuildPayload(id: "42", name: "Test guild \($0)", icon: "", voiceStates: [], members: []))
         }
     }
     
