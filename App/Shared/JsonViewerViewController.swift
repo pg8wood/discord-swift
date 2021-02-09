@@ -8,7 +8,12 @@ import UIKit
 import SwiftUI
 
 class JSONViewerViewController: UICollectionViewController {
-    private let dictionary: [String: Any]
+    var dictionary: [String: Any] {
+        didSet {
+            applySnapshot()
+        }
+    }
+    
     private let sortedKeys: [String]
     
     enum Section {
@@ -22,7 +27,6 @@ class JSONViewerViewController: UICollectionViewController {
                 
                 var content = cell.defaultContentConfiguration()
                 content.text = key
-                content.textProperties.color = UIColor.blue
                 content.secondaryText = type.value
                 cell.contentConfiguration = content
                 
@@ -45,7 +49,7 @@ class JSONViewerViewController: UICollectionViewController {
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         super.init(collectionViewLayout: layout)
         
-        applyInitialDataSource()
+        applySnapshot()
     }
     
     init(array: [Any]) {
@@ -56,14 +60,14 @@ class JSONViewerViewController: UICollectionViewController {
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         super.init(collectionViewLayout: layout)
         
-        applyInitialDataSource()
+        applySnapshot()
     }
     
-    private func applyInitialDataSource() {
+    private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
         snapshot.appendSections([.main])
         snapshot.appendItems(sortedKeys)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     required init?(coder: NSCoder) {
@@ -187,7 +191,7 @@ struct JSONInspectionView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: JSONViewerViewController, context: Context) {
-        // Nothing to do... yet
+        uiViewController.dictionary = jsonDict
     }
 }
 

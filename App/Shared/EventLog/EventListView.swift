@@ -27,6 +27,8 @@ enum DiscordEventEncoder {
                     data = try JSONEncoder().encode(guildCreateEvent)
                 case .guildUpdate(let guildUpdateEvent):
                     data = try JSONEncoder().encode(guildUpdateEvent)
+                case .unknown(let string):
+                    data = string.data(using: .utf8) ?? Data()
                 }
             case .hello(let helloEvent):
                 data = try JSONEncoder().encode(helloEvent)

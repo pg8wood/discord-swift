@@ -14,13 +14,19 @@ enum DiscordEvent: Hashable {
             return lhsValue == rhsValue
         case (.guildCreate(let lhsValue), .guildCreate(let rhsValue)):
             return lhsValue == rhsValue
-        default: return false
+        case (.guildUpdate(let lhsValue), .guildUpdate(let rhsValue)):
+            return lhsValue == rhsValue
+        case (.unknown(let lhsValue), .unknown(let rhsValue)):
+            return lhsValue == rhsValue
+        default:
+            return false
         }
     }
     
     case ready(ReadyPayload)
     case guildCreate(GuildPayload)
     case guildUpdate(GuildPayload)
+    case unknown(String)
     
     var name: String {
         switch self {
@@ -30,6 +36,8 @@ enum DiscordEvent: Hashable {
             return DiscordEventType.guildCreate.rawValue
         case .guildUpdate:
             return DiscordEventType.guildUpdate.rawValue
+        case .unknown:
+            return "Unknown Event"
         }
     }
 }

@@ -144,23 +144,28 @@ class DiscordGateway: WebSocketGateway {
             return nil
         }
         
-        do {
-            let message = try JSONDecoder().decode(GatewayMessage.self, from: data)
-            print(#"Got message code "\#(message.opCode)" \#(message.eventType != nil ? "| event name: \(message.eventType!)" : "")"#)
-            
-            if let sequenceNumber = message.sequenceNumber {
-                self.mostRecentSequenceNumber = sequenceNumber
-            }
-            
-            if case .event(let event) = message.payload {
-                self.eventSubject.send(event)
+        let message: GatewayMessage = {
+            guard let message = try? JSONDecoder().decode(GatewayMessage.self, from: data) else {
+                print("Error decoding gateway message")
+                
+                let jsonString = String(data: data, encoding: .utf8) ?? "Invalid JSON"
+                return GatewayMessage(opCode: .unknown, payload: .event(.dispatch(.unknown(jsonString))))
             }
             
             return message
-        } catch {
-            print("error decoding gateway message")
-            return nil
+        }()
+        
+        print(#"Got message code "\#(message.opCode)" \#(message.eventType != nil ? "| event name: \(message.eventType!)" : "")"#)
+        
+        if let sequenceNumber = message.sequenceNumber {
+            self.mostRecentSequenceNumber = sequenceNumber
         }
+        
+        if case .event(let event) = message.payload {
+            self.eventSubject.send(event)
+        }
+        
+        return message
     }
     
     /// Step 2 of connecting to the Discord Gateway and maintaining the connection

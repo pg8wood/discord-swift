@@ -22,5 +22,5 @@ struct IdentifyCommand: Codable {
     
     let token: String
     var properties = ConnectionProperties(os: "iOS", browser: "testing", device: "testing")
-    var intents: Int = (1 << 0) // https://discord.com/developers/docs/topics/gateway#list-of-intents
+    var intents: Int = 32671 // https://discord.com/developers/docs/topics/gateway#list-of-intents | Intent calculator: https://ziad87.net/intents/
 }

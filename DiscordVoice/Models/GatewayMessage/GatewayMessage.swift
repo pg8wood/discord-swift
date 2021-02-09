@@ -43,7 +43,7 @@ struct GatewayMessage: Codable {
             case .none:
                 throw NSError() // TODO throw real errors
             }
-        case .heartbeat, .identify, .requestGuildMembers:
+        case .heartbeat, .identify, .requestGuildMembers, .unknown:
             // TODO the client can also RECEIVE a heartbeat event, indicating the server has requested we send back a heartbeat ASAP
             throw NSError() // TODO this is only a sent message. how to handle
         case .hello:

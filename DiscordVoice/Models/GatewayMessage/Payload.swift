@@ -31,5 +31,7 @@ enum Payload {
         case requestGuildMembers = 8
         case hello = 10
         case heartbeatAcknowledged = 11
+        
+        case unknown = -1
     }
 }
