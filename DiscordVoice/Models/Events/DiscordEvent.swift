@@ -46,8 +46,10 @@ enum DiscordEvent: Hashable {
             return DiscordEventType.voiceStateUpdate.rawValue
         case .guildMembersChunk:
             return DiscordEventType.guildMembersChunk.rawValue
-        case .unknown:
-            return "Unknown Event"
+        case .unknown(let jsonString):
+            let data = jsonString.data(using: .utf8) ?? Data()
+            let dictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+            return "\(dictionary?["t"] ?? "Unknown Event") (Unsupported)"
         }
     }
 }
