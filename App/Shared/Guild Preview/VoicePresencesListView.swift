@@ -9,27 +9,20 @@ import SwiftUI
 
 struct VoicePresencesListView: View {
     @Binding var guild: Guild
-
+    
     var body: some View {
-        if guild.voiceStates.isEmpty {
-            return Label("No one's here", systemImage: "moon.zzz").eraseToAnyView()
-        }
-        
-        return ForEach(guild.voiceChannels, id: \.self) { voiceChannel in
-            Group {
-                Label(voiceChannel.name ?? "Unknown Channel", systemImage: "speaker.wave.2.circle")
-
-                ForEach(guild.users(in: voiceChannel), id: \.self) { user in
-                    HStack {
-                        AvatarImage(user: user)
-
-                        Text(user.username)
-                    }
+        ForEach(guild.channelsByCategory.keys.sorted(by: { $0.position < $1.position })) { category in
+            EasyExpandingDisclosureGroup {
+                ForEach(guild.channelsByCategory[category] ?? []) { channel in
+                    ChannelListItemView(guild: $guild, channel: channel)
                 }
+            } label: {
+                Text(category.name)
             }
         }
-        .eraseToAnyView()
     }
+    
+    
 }
 
 //struct VoicePresencesView_Previews: PreviewProvider {

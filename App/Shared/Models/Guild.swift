@@ -24,13 +24,32 @@ class Guild: ObservableObject, Equatable, Identifiable {
         channels.filter { $0.type == .guildVoice }
     }
     
+    var textChannels: [Channel] {
+        channels.filter { $0.type == .guildText }
+    }
+    
+    var channelCategories: [Channel] {
+        channels.filter { $0.type == .guildCategory }
+    }
+    
+    var channelsByCategory: [Channel: [Channel]] {
+        Dictionary(grouping: channels, by: { $0.parentID ?? "unknown" })
+            .compactMapKeys { channelID in
+                channelCategories.first(where: { $0.id == channelID })
+            }
+    }
+    
     init(from payload: GuildPayload) {
         id = payload.id
         name = payload.name
         iconHash = payload.icon
         voiceStates = payload.voiceStates
         members = payload.members
-        channels = payload.channels
+        channels = payload.channels.map(Channel.init)
+    }
+    
+    func channel(id: Snowflake) -> Channel? {
+        voiceChannels.first(where: { $0.id == id })
     }
     
     func users(in voiceChannel: Channel) -> [User] {
@@ -71,5 +90,15 @@ private extension Array where Element: Hashable {
     
     mutating func removeDuplicates() {
         self = self.removingDuplicates()
+    }
+}
+
+private extension Dictionary {
+    func compactMapKeys<Transformed>(_ transform: (Key) throws -> Transformed?) rethrows -> [Transformed: Value] {
+        .init(
+            uniqueKeysWithValues: try compactMap { key, value in
+                try transform(key).map { ($0, value) }
+            }
+        )
     }
 }

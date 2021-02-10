@@ -14,7 +14,7 @@ struct GuildPayload: Codable, Hashable, Equatable, Identifiable {
     let icon: String?
     let voiceStates: [VoiceState]
     let members: [GuildMember]
-    let channels: [Channel]
+    let channels: [ChannelPayload]
     
     enum CodingKeys: String, CodingKey {
         case voiceStates = "voice_states"

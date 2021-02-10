@@ -118,9 +118,15 @@
 		B8CF8C8C25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */; };
 		B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */; };
 		B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */; };
-		B8E46AC125D392AD003031D8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* Channel.swift */; };
-		B8E46AC225D392AD003031D8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* Channel.swift */; };
-		B8E46AC325D392AD003031D8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* Channel.swift */; };
+		B8E46AC125D392AD003031D8 /* ChannelPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* ChannelPayload.swift */; };
+		B8E46AC225D392AD003031D8 /* ChannelPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* ChannelPayload.swift */; };
+		B8E46AC325D392AD003031D8 /* ChannelPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* ChannelPayload.swift */; };
+		B8E46B7D25D47AA7003031D8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46B7C25D47AA7003031D8 /* Channel.swift */; };
+		B8E46B7E25D47AA7003031D8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46B7C25D47AA7003031D8 /* Channel.swift */; };
+		B8E46B8525D495E2003031D8 /* EasyExpandingDisclosureGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46B8425D495E1003031D8 /* EasyExpandingDisclosureGroup.swift */; };
+		B8E46B8625D495E2003031D8 /* EasyExpandingDisclosureGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46B8425D495E1003031D8 /* EasyExpandingDisclosureGroup.swift */; };
+		B8E46B8D25D49B9E003031D8 /* ChannelListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46B8C25D49B9E003031D8 /* ChannelListItemView.swift */; };
+		B8E46B8E25D49B9E003031D8 /* ChannelListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46B8C25D49B9E003031D8 /* ChannelListItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,7 +213,10 @@
 		B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserAvatarRequest.swift; sourceTree = "<group>"; };
 		B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePresencesListView.swift; sourceTree = "<group>"; };
 		B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImage.swift; sourceTree = "<group>"; };
-		B8E46AC025D392AD003031D8 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		B8E46AC025D392AD003031D8 /* ChannelPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPayload.swift; sourceTree = "<group>"; };
+		B8E46B7C25D47AA7003031D8 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		B8E46B8425D495E1003031D8 /* EasyExpandingDisclosureGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyExpandingDisclosureGroup.swift; sourceTree = "<group>"; };
+		B8E46B8C25D49B9E003031D8 /* ChannelListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				B8373A0025D24D7B0089CAE9 /* Guild.swift */,
+				B8E46B7C25D47AA7003031D8 /* Channel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -408,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				B89572562572E3B00026FBC6 /* View+Extensions.swift */,
+				B8E46B8425D495E1003031D8 /* EasyExpandingDisclosureGroup.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -438,6 +449,7 @@
 				B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */,
 				B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */,
 				B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */,
+				B8E46B8C25D49B9E003031D8 /* ChannelListItemView.swift */,
 			);
 			path = "Guild Preview";
 			sourceTree = "<group>";
@@ -472,7 +484,7 @@
 				B8373A0D25D2505F0089CAE9 /* GuildMembersChunk.swift */,
 				B82141C0256E1380006F5596 /* User.swift */,
 				B8B0D1F82575BD4C00B25400 /* Snowflake.swift */,
-				B8E46AC025D392AD003031D8 /* Channel.swift */,
+				B8E46AC025D392AD003031D8 /* ChannelPayload.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -685,7 +697,7 @@
 				B82141DF256E15BB006F5596 /* DiscordGateway.swift in Sources */,
 				B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B89571C4256EC7890026FBC6 /* ReadyPayload.swift in Sources */,
-				B8E46AC125D392AD003031D8 /* Channel.swift in Sources */,
+				B8E46AC125D392AD003031D8 /* ChannelPayload.swift in Sources */,
 				B89571CA257194FE0026FBC6 /* GetGuildRequest.swift in Sources */,
 				B82141D1256E1420006F5596 /* DiscordEvent.swift in Sources */,
 				B82141D4256E14B9006F5596 /* GuildPayload.swift in Sources */,
@@ -706,16 +718,18 @@
 				B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B8CF8C4125D0BC290011C7A0 /* GetGuildIconRequest.swift in Sources */,
 				B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */,
+				B8E46B7D25D47AA7003031D8 /* Channel.swift in Sources */,
 				B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B89572192571EA0E0026FBC6 /* Payload.swift in Sources */,
 				B8CF8C5325D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
 				B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FA2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
-				B8E46AC225D392AD003031D8 /* Channel.swift in Sources */,
+				B8E46AC225D392AD003031D8 /* ChannelPayload.swift in Sources */,
 				B8CF8C7925D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */,
 				B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B883310925CF5A4F00832538 /* ToastView.swift in Sources */,
+				B8E46B8D25D49B9E003031D8 /* ChannelListItemView.swift in Sources */,
 				B8CF8C5B25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B932575685300749257 /* DiscordGateway.swift in Sources */,
@@ -727,6 +741,7 @@
 				B89572142571EA0E0026FBC6 /* Gateway.swift in Sources */,
 				B89572932572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
 				B895721C2571EA0E0026FBC6 /* GetGateway.swift in Sources */,
+				B8E46B8525D495E2003031D8 /* EasyExpandingDisclosureGroup.swift in Sources */,
 				B8373A0F25D2505F0089CAE9 /* GuildMembersChunk.swift in Sources */,
 				B895724F2572E2FF0026FBC6 /* ContentState.swift in Sources */,
 				B895720E2571EA0E0026FBC6 /* GuildPayload.swift in Sources */,
@@ -754,16 +769,18 @@
 				B8B0D1AB2575A44C00B25400 /* Payload.swift in Sources */,
 				B8CF8C4725D0BC290011C7A0 /* GetGuildIconRequest.swift in Sources */,
 				B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */,
+				B8E46B7E25D47AA7003031D8 /* Channel.swift in Sources */,
 				B8AB850C258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B8CF8C5425D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
 				B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FB2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
-				B8E46AC325D392AD003031D8 /* Channel.swift in Sources */,
+				B8E46AC325D392AD003031D8 /* ChannelPayload.swift in Sources */,
 				B8CF8C7A25D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */,
 				B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B883310A25CF5A4F00832538 /* ToastView.swift in Sources */,
+				B8E46B8E25D49B9E003031D8 /* ChannelListItemView.swift in Sources */,
 				B8CF8C5C25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B992575685400749257 /* DiscordGateway.swift in Sources */,
@@ -775,6 +792,7 @@
 				B895722B2571EA0E0026FBC6 /* Gateway.swift in Sources */,
 				B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
 				B89572332571EA0E0026FBC6 /* GetGateway.swift in Sources */,
+				B8E46B8625D495E2003031D8 /* EasyExpandingDisclosureGroup.swift in Sources */,
 				B8373A1025D2505F0089CAE9 /* GuildMembersChunk.swift in Sources */,
 				B89572492572E2FE0026FBC6 /* ContentState.swift in Sources */,
 				B89572252571EA0E0026FBC6 /* GuildPayload.swift in Sources */,
