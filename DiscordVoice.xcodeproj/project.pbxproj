@@ -118,6 +118,9 @@
 		B8CF8C8C25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */; };
 		B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */; };
 		B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */; };
+		B8E46AC125D392AD003031D8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* Channel.swift */; };
+		B8E46AC225D392AD003031D8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* Channel.swift */; };
+		B8E46AC325D392AD003031D8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* Channel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +207,7 @@
 		B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserAvatarRequest.swift; sourceTree = "<group>"; };
 		B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePresencesListView.swift; sourceTree = "<group>"; };
 		B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImage.swift; sourceTree = "<group>"; };
+		B8E46AC025D392AD003031D8 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -468,6 +472,7 @@
 				B8373A0D25D2505F0089CAE9 /* GuildMembersChunk.swift */,
 				B82141C0256E1380006F5596 /* User.swift */,
 				B8B0D1F82575BD4C00B25400 /* Snowflake.swift */,
+				B8E46AC025D392AD003031D8 /* Channel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -680,6 +685,7 @@
 				B82141DF256E15BB006F5596 /* DiscordGateway.swift in Sources */,
 				B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B89571C4256EC7890026FBC6 /* ReadyPayload.swift in Sources */,
+				B8E46AC125D392AD003031D8 /* Channel.swift in Sources */,
 				B89571CA257194FE0026FBC6 /* GetGuildRequest.swift in Sources */,
 				B82141D1256E1420006F5596 /* DiscordEvent.swift in Sources */,
 				B82141D4256E14B9006F5596 /* GuildPayload.swift in Sources */,
@@ -706,6 +712,7 @@
 				B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FA2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
+				B8E46AC225D392AD003031D8 /* Channel.swift in Sources */,
 				B8CF8C7925D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */,
 				B895721D2571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B883310925CF5A4F00832538 /* ToastView.swift in Sources */,
@@ -753,6 +760,7 @@
 				B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FB2575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
+				B8E46AC325D392AD003031D8 /* Channel.swift in Sources */,
 				B8CF8C7A25D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */,
 				B89572342571EA0E0026FBC6 /* APIRequest.swift in Sources */,
 				B883310A25CF5A4F00832538 /* ToastView.swift in Sources */,

@@ -32,7 +32,7 @@ struct GuildPreviewView_Previews: PreviewProvider {
                          voiceStates: [
                             VoiceState(guildID: "42", userID: "3", channelID: "22", member: GuildMember(user: User(id: "3", username: "Always in Voice", avatar: "test")))
                          ],
-                         members: [])
+                         members: [], channels: [])
             )
         }
     }

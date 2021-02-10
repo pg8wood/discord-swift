@@ -196,7 +196,7 @@ struct ContentView_Previews: PreviewProvider {
     
     private static var mockGuilds: [Guild] {
         (1...4).map {
-            Guild(from: GuildPayload(id: "42", name: "Test guild \($0)", icon: "", voiceStates: [], members: []))
+            Guild(from: GuildPayload(id: "42", name: "Test guild \($0)", icon: "", voiceStates: [], members: [], channels: []))
         }
     }
     

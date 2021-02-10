@@ -14,13 +14,15 @@ struct GuildPayload: Codable, Hashable, Equatable, Identifiable {
     let icon: String?
     let voiceStates: [VoiceState]
     let members: [GuildMember]
+    let channels: [Channel]
     
     enum CodingKeys: String, CodingKey {
         case voiceStates = "voice_states"
-        case id, name, icon, members
+        case id, name, icon, members, channels
     }
 }
 
+/// https://discord.com/developers/docs/resources/voice#voice-state-object
 struct VoiceState: Codable, Hashable, Equatable {
     let guildID: Snowflake?
     let userID: Snowflake

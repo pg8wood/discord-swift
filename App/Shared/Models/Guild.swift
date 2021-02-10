@@ -18,32 +18,35 @@ class Guild: ObservableObject, Equatable, Identifiable {
     @Published var voiceStates: [VoiceState]
     //    @Published var icon: UIImage? // TODO
     @Published var members: [GuildMember]
+    @Published var channels: [Channel]
     
-//    var usersInVoiceChat: [User] {
-//        let voiceStateMembers = voiceStates.compactMap(\.member)
-//
-//        if voiceStateMembers.isEmpty {
-//            let idsOfMembersInVoice = voiceStates.map(\.userID)
-//            return members
-//                .filter {
-//                    guard let userID = $0.user?.id else {
-//                        return false
-//                    }
-//
-//                    return idsOfMembersInVoice.contains(userID)
-//                }
-//                .compactMap(\.user).removingDuplicates()
-//        }
-//
-//        return voiceStateMembers.compactMap(\.user).removingDuplicates()
-//    }
+    var voiceChannels: [Channel] {
+        channels.filter { $0.type == .guildVoice }
+    }
     
     init(from payload: GuildPayload) {
-        self.id = payload.id
-        self.name = payload.name
-        self.iconHash = payload.icon
-        self.voiceStates = payload.voiceStates
-        self.members = payload.members
+        id = payload.id
+        name = payload.name
+        iconHash = payload.icon
+        voiceStates = payload.voiceStates
+        members = payload.members
+        channels = payload.channels
+    }
+    
+    func users(in voiceChannel: Channel) -> [User] {
+        voiceStates
+            .filter { $0.channelID == voiceChannel.id }
+            .compactMap { voiceState in
+                if let user = voiceState.member?.user {
+                    return user
+                }
+                
+                // Voice State Update events include members, but the Guild's initial
+                // Voice States omit them for some reason
+                return members
+                    .compactMap(\.user)
+                    .first(where: { $0.id == voiceState.userID })
+            }
     }
     
     // TODO: can we use "assign" to subscribe guilds to their state updates instead of using sink?
