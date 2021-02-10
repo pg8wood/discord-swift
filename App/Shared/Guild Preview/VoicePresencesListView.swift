@@ -16,7 +16,17 @@ struct VoicePresencesListView: View {
     private var usersInVoiceChat: [User] {
         guild.voiceStates
             .filter { $0.channelID != nil }
-            .compactMap(\.member?.user)
+            .compactMap { voiceState in
+                if let user = voiceState.member?.user {
+                    return user
+                }
+                
+                // Voice State Update events include members, but the Guild's initial
+                // Voice States omit them for some reason
+                return guild.members
+                    .compactMap(\.user)
+                    .first(where: { $0.id == voiceState.userID })
+            }
     }
     
     var body: some View {
@@ -25,11 +35,10 @@ struct VoicePresencesListView: View {
         }
 
         return Group {
-            Label("Members", systemImage: "speaker.wave.2.circle")
+            Label("Voice States", systemImage: "speaker.wave.2.circle")
                 .font(Font.body.weight(.bold))
 
             ForEach(usersInVoiceChat, id: \.self) { user in
-                
                 HStack {
                     AvatarImage(user: user)
 
