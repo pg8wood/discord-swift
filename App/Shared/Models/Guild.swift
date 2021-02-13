@@ -17,41 +17,35 @@ class Guild: ObservableObject, Equatable, Identifiable {
     var iconHash: String?
     @Published var voiceStates: [VoiceState]
     //    @Published var icon: UIImage? // TODO
-    @Published var members: [GuildMember]
-    @Published var channels: [Channel]
-    
-    var voiceChannels: [Channel] {
-        channels.filter { $0.type == .guildVoice }
-    }
-    
-    var textChannels: [Channel] {
-        channels.filter { $0.type == .guildText }
-    }
-    
-    var channelCategories: [Channel] {
-        channels.filter { $0.type == .guildCategory }
-    }
-    
-    var channelsByCategory: [Channel: [Channel]] {
-        Dictionary(grouping: channels, by: { $0.parentID ?? "unknown" })
-            .compactMapKeys { channelID in
-                channelCategories.first(where: { $0.id == channelID })
-            }
-    }
+    @Published var members: [GuildMember]    
+    @Published var channelsByCategory: [Channel: [Channel]]
     
     init(from payload: GuildPayload) {
+        func organizeChannelsByCategory(_ channels: [ChannelPayload]) -> [Channel: [Channel]] {
+            let allChannels = Set(channels.map(Channel.init))
+            var categories = Set(allChannels.filter { $0.type == .guildCategory })
+            
+            let uncategorized = Channel.makeUncategorizedCategory()
+            categories.insert(uncategorized)
+            
+            let nonCategoryChannels = allChannels.subtracting(categories)
+            
+            return Dictionary(
+                grouping: nonCategoryChannels,
+                by: { $0.parentID ?? Channel.uncategorizedChannelID })
+                .compactMapKeys { channelID in
+                    categories.first(where: { $0.id == channelID }) ?? uncategorized
+                }
+        }
+        
         id = payload.id
         name = payload.name
         iconHash = payload.icon
         voiceStates = payload.voiceStates
         members = payload.members
-        channels = payload.channels.map(Channel.init)
+        channelsByCategory = organizeChannelsByCategory(payload.channels)
     }
-    
-    func channel(id: Snowflake) -> Channel? {
-        voiceChannels.first(where: { $0.id == id })
-    }
-    
+        
     func users(in voiceChannel: Channel) -> [User] {
         voiceStates
             .filter { $0.channelID == voiceChannel.id }

@@ -11,6 +11,17 @@ class Channel: ObservableObject, Hashable, Equatable, Identifiable {
     static func == (lhs: Channel, rhs: Channel) -> Bool {
         lhs.id == rhs.id
     }
+ 
+    static var uncategorizedChannelID: Snowflake = "Uncategorized"
+    static func makeUncategorizedCategory() -> Channel {
+        Channel(from: ChannelPayload(
+                    id: uncategorizedChannelID,
+                    type: .guildCategory,
+                    guildID: nil,
+                    name: uncategorizedChannelID,
+                    position: -1,
+                    parentID: nil))
+    }
     
     let id: Snowflake
     let type: ChannelType

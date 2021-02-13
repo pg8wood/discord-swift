@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B803F44B256624EA000866AB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F44A256624EA000866AB /* main.swift */; };
-		B803F598256AFF56000866AB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
 		B82141B4256E1327006F5596 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B3256E1327006F5596 /* APIRequest.swift */; };
 		B82141B7256E133B006F5596 /* GetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141B6256E133B006F5596 /* GetUser.swift */; };
 		B82141BB256E1365006F5596 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BA256E1365006F5596 /* Gateway.swift */; };
@@ -27,6 +26,9 @@
 		B8373A0E25D2505F0089CAE9 /* GuildMembersChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8373A0D25D2505F0089CAE9 /* GuildMembersChunk.swift */; };
 		B8373A0F25D2505F0089CAE9 /* GuildMembersChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8373A0D25D2505F0089CAE9 /* GuildMembersChunk.swift */; };
 		B8373A1025D2505F0089CAE9 /* GuildMembersChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8373A0D25D2505F0089CAE9 /* GuildMembersChunk.swift */; };
+		B83FC5B825D62D750060C97A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC5B725D62D750060C97A /* Secrets.swift */; };
+		B83FC5B925D62D750060C97A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC5B725D62D750060C97A /* Secrets.swift */; };
+		B83FC5BA25D62D750060C97A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC5B725D62D750060C97A /* Secrets.swift */; };
 		B8831B832575674E00749257 /* HeartbeatCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8831B822575674E00749257 /* HeartbeatCommand.swift */; };
 		B8831B932575685300749257 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
 		B8831B992575685400749257 /* DiscordGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141DE256E15BB006F5596 /* DiscordGateway.swift */; };
@@ -50,7 +52,6 @@
 		B89572102571EA0E0026FBC6 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C3256E138F006F5596 /* APIClient.swift */; };
 		B89572112571EA0E0026FBC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C0256E1380006F5596 /* User.swift */; };
 		B89572122571EA0E0026FBC6 /* GatewayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C9256E13CB006F5596 /* GatewayMessage.swift */; };
-		B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
 		B89572142571EA0E0026FBC6 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BA256E1365006F5596 /* Gateway.swift */; };
 		B89572162571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
 		B89572172571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
@@ -66,7 +67,6 @@
 		B89572272571EA0E0026FBC6 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C3256E138F006F5596 /* APIClient.swift */; };
 		B89572282571EA0E0026FBC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C0256E1380006F5596 /* User.swift */; };
 		B89572292571EA0E0026FBC6 /* GatewayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141C9256E13CB006F5596 /* GatewayMessage.swift */; };
-		B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803F597256AFF56000866AB /* Secrets.swift */; };
 		B895722B2571EA0E0026FBC6 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82141BA256E1365006F5596 /* Gateway.swift */; };
 		B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C6256F36AA0026FBC6 /* WebSocketGateway.swift */; };
 		B895722E2571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571C9257194FE0026FBC6 /* GetGuildRequest.swift */; };
@@ -161,7 +161,6 @@
 /* Begin PBXFileReference section */
 		B803F447256624EA000866AB /* DiscordVoice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DiscordVoice; sourceTree = BUILT_PRODUCTS_DIR; };
 		B803F44A256624EA000866AB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		B803F597256AFF56000866AB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B82141B3256E1327006F5596 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		B82141B6256E133B006F5596 /* GetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUser.swift; sourceTree = "<group>"; };
 		B82141BA256E1365006F5596 /* Gateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gateway.swift; sourceTree = "<group>"; };
@@ -178,6 +177,7 @@
 		B82141DE256E15BB006F5596 /* DiscordGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordGateway.swift; sourceTree = "<group>"; };
 		B8373A0025D24D7B0089CAE9 /* Guild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guild.swift; sourceTree = "<group>"; };
 		B8373A0D25D2505F0089CAE9 /* GuildMembersChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildMembersChunk.swift; sourceTree = "<group>"; };
+		B83FC5B725D62D750060C97A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B8831B822575674E00749257 /* HeartbeatCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartbeatCommand.swift; sourceTree = "<group>"; };
 		B883310825CF5A4E00832538 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		B89571C3256EC7890026FBC6 /* ReadyPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyPayload.swift; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 				B82141B1256E1304006F5596 /* DiscordAPI */,
 				B82141B9256E1353006F5596 /* Models */,
 				B803F44A256624EA000866AB /* main.swift */,
-				B803F597256AFF56000866AB /* Secrets.swift */,
+				B83FC5B725D62D750060C97A /* Secrets.swift */,
 			);
 			path = DiscordVoice;
 			sourceTree = "<group>";
@@ -369,12 +369,12 @@
 				B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */,
 				B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */,
 				B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */,
+				B883310825CF5A4E00832538 /* ToastView.swift */,
+				B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */,
 				B89571D02571E9A40026FBC6 /* Assets.xcassets */,
 				B89572832572EF820026FBC6 /* EventLog */,
 				B89572552572E39E0026FBC6 /* Extensions */,
 				B8AB84CC25803457005DDA97 /* Guild Preview */,
-				B883310825CF5A4E00832538 /* ToastView.swift */,
-				B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -680,12 +680,12 @@
 				B803F44B256624EA000866AB /* main.swift in Sources */,
 				B82141B4256E1327006F5596 /* APIRequest.swift in Sources */,
 				B82141CA256E13CB006F5596 /* GatewayMessage.swift in Sources */,
-				B803F598256AFF56000866AB /* Secrets.swift in Sources */,
 				B82141C7256E13A1006F5596 /* DiscordAPI.swift in Sources */,
 				B82141C4256E138F006F5596 /* APIClient.swift in Sources */,
 				B82141B7256E133B006F5596 /* GetUser.swift in Sources */,
 				B82141D7256E14C6006F5596 /* HelloPayload.swift in Sources */,
 				B8B0D1EB2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
+				B83FC5B825D62D750060C97A /* Secrets.swift in Sources */,
 				B82141CD256E13FB006F5596 /* Payload.swift in Sources */,
 				B82141BB256E1365006F5596 /* Gateway.swift in Sources */,
 				B8CF8C7825D0FC750011C7A0 /* GetUserAvatarRequest.swift in Sources */,
@@ -715,7 +715,6 @@
 				B89571F82571E9A40026FBC6 /* ContentView.swift in Sources */,
 				B895725D2572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8B0D1EC2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
-				B89572132571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B8CF8C4125D0BC290011C7A0 /* GetGuildIconRequest.swift in Sources */,
 				B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */,
 				B8E46B7D25D47AA7003031D8 /* Channel.swift in Sources */,
@@ -733,6 +732,7 @@
 				B8CF8C5B25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B895721E2571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B932575685300749257 /* DiscordGateway.swift in Sources */,
+				B83FC5B925D62D750060C97A /* Secrets.swift in Sources */,
 				B8CF8C8B25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */,
 				B8B0D1D32575AAD200B25400 /* Event.swift in Sources */,
 				B895720F2571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,
@@ -771,7 +771,6 @@
 				B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */,
 				B8E46B7E25D47AA7003031D8 /* Channel.swift in Sources */,
 				B8AB850C258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
-				B895722A2571EA0E0026FBC6 /* Secrets.swift in Sources */,
 				B8CF8C5425D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
 				B895722D2571EA0E0026FBC6 /* WebSocketGateway.swift in Sources */,
 				B8B0D1FB2575BD4C00B25400 /* Snowflake.swift in Sources */,
@@ -784,6 +783,7 @@
 				B8CF8C5C25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B89572352571EA0E0026FBC6 /* HelloPayload.swift in Sources */,
 				B8831B992575685400749257 /* DiscordGateway.swift in Sources */,
+				B83FC5BA25D62D750060C97A /* Secrets.swift in Sources */,
 				B8CF8C8C25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */,
 				B8B0D1D42575AAD200B25400 /* Event.swift in Sources */,
 				B89572262571EA0E0026FBC6 /* DiscordAPI.swift in Sources */,

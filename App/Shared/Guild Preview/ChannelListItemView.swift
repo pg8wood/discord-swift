@@ -48,3 +48,9 @@ struct ChannelListItemView: View {
         }
     }
 }
+
+//struct ChannelListItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChannelListItemView(guild: <#T##Binding<Guild>#>, channel: <#T##Channel#>)
+//    }
+//}
