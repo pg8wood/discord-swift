@@ -10,7 +10,7 @@ import Combine
 
 class Channel: ObservableObject, Hashable, Equatable, Identifiable {
     static func == (lhs: Channel, rhs: Channel) -> Bool {
-        lhs.uuid == rhs.uuid
+        lhs.id == rhs.id
     }
  
     static var uncategorizedChannelID: Snowflake = "Uncategorized"
@@ -23,7 +23,7 @@ class Channel: ObservableObject, Hashable, Equatable, Identifiable {
                     position: -1,
                     parentID: nil))
     }
-    fileprivate let uuid = UUID()
+
     let id: Snowflake
     let type: ChannelType
     let guildID: Snowflake?
@@ -45,8 +45,18 @@ class Channel: ObservableObject, Hashable, Equatable, Identifiable {
     }
 }
 
+/// NOTE: Beware putting @Published vars in ObservableObject subclasses. Unless the property
+/// observer manually calls objectWillChange.send(), if you're observing this class as a `Channel`
+/// object, the observer won't fire! I'm not sure if this is a bug or intentional, but nonetheless will
+/// probably avoid inheritance moving forward.
+/// 
+/// See: https://stackoverflow.com/a/57620669
 class VoiceChannel: Channel {
-    @Published var usersInVoice: [User] = []
+    @Published var usersInVoice: [User] = [] {
+        didSet {
+            super.objectWillChange.send()
+        }
+    }
     
     func observe(voiceStates: AnyPublisher<[VoiceState], Never>,
                  on guild: Guild) -> AnyCancellable {

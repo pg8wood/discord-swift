@@ -8,18 +8,16 @@
 import SwiftUI
 import Combine
 
+struct VoiceChannelView: View {
+    @ObservedObject var voiceChannel: VoiceChannel
+    
+    var body: some View {
+        Text("\(voiceChannel.usersInVoice.count)")
+    }
+}
+
 struct ChannelListItemView: View {
-    /// SwiftUI bug / my misunderstanding alert:
-    /// I've tried making `channel` an @EnvironmentObject, @ObservedObject, and a
-    /// one-way binding (kludge), but even when the `channel` object is absolutely
-    /// updated in the parent view such that the parent view updates, this view will NOT
-    /// update unless it is observing the actual @Binding of the parent view.
-    ///
-    /// I suspect this has something to do with the computed property `sortedChannelCategories`
-    /// in the parent view, but none of the SwiftUI documentation says that using a computed
-    /// property isn't allowed 🤷‍♀️
-    @Binding var channelsByCategory: [Channel: [Channel]]
-    let channel: Channel
+    @ObservedObject var channel: Channel
     
     var body: some View {
         VStack(alignment: .leading) {

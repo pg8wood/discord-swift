@@ -21,8 +21,7 @@ struct VoicePresencesListView: View {
             if let channels = channelsByCategory[category] {
                 EasyExpandingDisclosureGroup {
                     ForEach(channels) { channel in
-                        ChannelListItemView(channelsByCategory: $channelsByCategory,
-                                            channel: channel)
+                        ChannelListItemView(channel: channel)
                     }
                 } label: {
                     Text(category.name)
