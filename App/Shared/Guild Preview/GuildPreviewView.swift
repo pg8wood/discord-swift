@@ -76,8 +76,7 @@ struct GuildPreviewView: View {
             .padding(.leading, -3) // Dunno why this extra bit of padding exists here
             .labelStyle(VerticallyCenteredLabelImageAlignmentStyle())
             
-            VoicePresencesListView(guild: $guild)
-                .environmentObject(discordGateway)
+            VoicePresencesListView(channelsByCategory: $guild.channelsByCategory)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()

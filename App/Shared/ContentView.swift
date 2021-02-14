@@ -59,6 +59,12 @@ class HomeViewModel: ObservableObject {
                         self.guilds.append(guild)
                     }
                     
+                    guild.voiceChannels.forEach {
+                        $0.observe(voiceStates: guild.$voiceStates.eraseToAnyPublisher(),
+                                   on: guild)
+                            .store(in: &self.cancellables)
+                    }
+                    
                     // TODO: can we use "assign" to subscribe guilds to their state updates instead of using sink?
                 case .dispatch(.voiceStateUpdate(let voiceState)):
                     guard let guild = self.guilds.first(where: { $0.id == voiceState.guildID }) else {

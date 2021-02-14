@@ -8,21 +8,28 @@
 import SwiftUI
 
 struct VoicePresencesListView: View {
-    @Binding var guild: Guild
+    @Binding var channelsByCategory: [Channel: [Channel]]
+    
+    private var sortedChannelCategories: [Channel] {
+        channelsByCategory.keys.sorted(by: {
+            $0.position < $1.position
+        })
+    }
     
     var body: some View {
-        ForEach(guild.channelsByCategory.keys.sorted(by: { $0.position < $1.position })) { category in
-            EasyExpandingDisclosureGroup {
-                ForEach(guild.channelsByCategory[category] ?? []) { channel in
-                    ChannelListItemView(guild: $guild, channel: channel)
+        ForEach(sortedChannelCategories) { category in
+            if let channels = channelsByCategory[category] {
+                EasyExpandingDisclosureGroup {
+                    ForEach(channels) { channel in
+                        ChannelListItemView(channelsByCategory: $channelsByCategory,
+                                            channel: channel)
+                    }
+                } label: {
+                    Text(category.name)
                 }
-            } label: {
-                Text(category.name)
             }
         }
     }
-    
-    
 }
 
 //struct VoicePresencesView_Previews: PreviewProvider {

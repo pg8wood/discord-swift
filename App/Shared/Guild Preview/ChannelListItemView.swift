@@ -6,11 +6,21 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ChannelListItemView: View {
-    @Binding var guild: Guild
+    /// SwiftUI bug / my misunderstanding alert:
+    /// I've tried making `channel` an @EnvironmentObject, @ObservedObject, and a
+    /// one-way binding (kludge), but even when the `channel` object is absolutely
+    /// updated in the parent view such that the parent view updates, this view will NOT
+    /// update unless it is observing the actual @Binding of the parent view.
+    ///
+    /// I suspect this has something to do with the computed property `sortedChannelCategories`
+    /// in the parent view, but none of the SwiftUI documentation says that using a computed
+    /// property isn't allowed 🤷‍♀️
+    @Binding var channelsByCategory: [Channel: [Channel]]
     let channel: Channel
-        
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -19,12 +29,12 @@ struct ChannelListItemView: View {
                 } icon: {
                     Image(systemName: systemImageName(for: channel.type))
                 }
-               
+                
                 Spacer()
             }
             
-            if channel.type == .guildVoice {
-                ForEach(guild.users(in: channel), id: \.self) { user in
+            if let voiceChannel = channel as? VoiceChannel {
+                ForEach(voiceChannel.usersInVoice, id: \.self) { user in
                     HStack {
                         AvatarImage(user: user)
                         

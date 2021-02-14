@@ -17,12 +17,29 @@ class Guild: ObservableObject, Equatable, Identifiable {
     var iconHash: String?
     @Published var voiceStates: [VoiceState]
     //    @Published var icon: UIImage? // TODO
-    @Published var members: [GuildMember]    
+    @Published var members: [GuildMember]
     @Published var channelsByCategory: [Channel: [Channel]]
+    
+    var voiceChannels: [VoiceChannel] {
+        channelsByCategory.values
+            .flatMap {
+                $0.compactMap { channel in
+                    channel as? VoiceChannel
+                }
+            }
+    }
     
     init(from payload: GuildPayload) {
         func organizeChannelsByCategory(_ channels: [ChannelPayload]) -> [Channel: [Channel]] {
-            let allChannels = Set(channels.map(Channel.init))
+            let typedChannels: [Channel] = channels.map {
+                switch $0.type {
+                case .guildVoice:
+                    return VoiceChannel(from: $0)
+                default:
+                    return Channel(from: $0)
+                }
+            }
+            let allChannels = Set(typedChannels)
             var categories = Set(allChannels.filter { $0.type == .guildCategory })
             
             let uncategorized = Channel.makeUncategorizedCategory()
@@ -44,22 +61,6 @@ class Guild: ObservableObject, Equatable, Identifiable {
         voiceStates = payload.voiceStates
         members = payload.members
         channelsByCategory = organizeChannelsByCategory(payload.channels)
-    }
-        
-    func users(in voiceChannel: Channel) -> [User] {
-        voiceStates
-            .filter { $0.channelID == voiceChannel.id }
-            .compactMap { voiceState in
-                if let user = voiceState.member?.user {
-                    return user
-                }
-                
-                // Voice State Update events include members, but the Guild's initial
-                // Voice States omit them for some reason
-                return members
-                    .compactMap(\.user)
-                    .first(where: { $0.id == voiceState.userID })
-            }
     }
     
     // TODO: can we use "assign" to subscribe guilds to their state updates instead of using sink?
