@@ -8,14 +8,6 @@
 import SwiftUI
 import Combine
 
-struct VoiceChannelView: View {
-    @ObservedObject var voiceChannel: VoiceChannel
-    
-    var body: some View {
-        Text("\(voiceChannel.usersInVoice.count)")
-    }
-}
-
 struct ChannelListItemView: View {
     @ObservedObject var channel: Channel
     
@@ -40,6 +32,9 @@ struct ChannelListItemView: View {
                     }
                 }
                 .padding(.leading, 35)
+                .animation(.linear(duration: 2))
+                .transition(.scale)
+                
             }
         }
         .padding(.vertical, 4)
@@ -57,8 +52,76 @@ struct ChannelListItemView: View {
     }
 }
 
-//struct ChannelListItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChannelListItemView(guild: <#T##Binding<Guild>#>, channel: <#T##Channel#>)
-//    }
-//}
+struct ChannelListItemView_Previews: PreviewProvider {
+    /// A wrapper for the text State variable. If you just use a State variable in the PreviewProvider,
+    /// the view's Binding won't update it for some reason.
+    /// See: https://stackoverflow.com/questions/59246859/mutable-binding-in-swiftui-live-preview
+    /// TODO: can this be created with a Result builder?
+    struct BindingHolder: View {
+        @State private var fbiAgentCount = 1
+        @State private var voiceChannelWithUsers: VoiceChannel = {
+            let voiceChannel = VoiceChannel(type: .guildVoice, name: "Poppin' Voice Channel")
+            voiceChannel.usersInVoice.append(contentsOf: [
+                "Mocky",
+                "Mocky's Friend",
+                "FBI Agent"
+            ].map { username in
+                User(id: "", username: username, avatar: nil)
+            })
+            return voiceChannel
+        }()
+        
+        var body: some View {
+            VStack(spacing: 16) {
+                ChannelListItemView(channel: voiceChannelWithUsers)
+                
+                Button {
+                    withAnimation {
+                        fbiAgentCount += 1
+                        voiceChannelWithUsers.usersInVoice.append(
+                            User(id: "", username: "FBI Agent \(fbiAgentCount)", avatar: nil))
+                    }
+                } label: {
+                    Text("Add FBI Agent")
+                }
+                
+                Button {
+                    withAnimation {
+                        fbiAgentCount -= 1
+                        voiceChannelWithUsers.usersInVoice.removeLast()
+                    }
+                } label: {
+                    Text("Disconnect user")
+                        .foregroundColor(.red)
+                }
+            }
+        }
+    }
+   
+    @State private static var test = 1
+    
+    static var previews: some View {
+        Group {
+            ChannelListItemView(channel: Channel(type: .guildText, name: "Text Channel"))
+            ChannelListItemView(channel: VoiceChannel(type: .guildVoice, name: "Empty Voice Channel"))
+            BindingHolder()
+        }
+        .environmentObject(DiscordAPIGateway(gateway: MockGateway()))
+        .padding()
+        .previewLayout(.sizeThatFits)
+    }
+}
+
+private extension Channel {
+    convenience init(type: ChannelType, name: Snowflake) {
+        self.init(from:
+            ChannelPayload(
+                id: "42",
+                type: type,
+                guildID: nil,
+                name: name,
+                position: nil,
+                parentID: nil)
+        )
+    }
+}
