@@ -40,9 +40,9 @@ struct GuildPreviewView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             GuildPreviewScrollView(guilds: .constant(guilds))
-            
             GuildPreviewScrollView(guilds: .constant([]))
         }
+        .environmentObject(DiscordAPIGateway(gateway: MockGateway()))
     }
 }
 

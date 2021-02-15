@@ -32,12 +32,12 @@ struct ChannelListItemView: View {
                     }
                 }
                 .padding(.leading, 35)
-                .animation(.linear(duration: 2))
-                .transition(.scale)
-                
+                .transition(.scale) // could be cool to do a custom animation that does a reverse scale spring animation (like how the ToastView does a reverse spring)
             }
         }
         .padding(.vertical, 4)
+        .animation(.spring(dampingFraction: 0.50))
+        
     }
     
     private func systemImageName(for channelType: ChannelType) -> String {
