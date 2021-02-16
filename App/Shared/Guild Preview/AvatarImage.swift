@@ -53,8 +53,24 @@ struct AvatarImage: View {
     }
 }
 
-//struct AvatarImage_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AvatarImage()
-//    }
-//}
+struct AvatarImage_Previews: PreviewProvider {
+    static let imageServingMockGateway: DiscordAPIGateway = {
+        var mockURLSession = MockURLSession()
+        mockURLSession.mockResult = .success(#imageLiteral(resourceName: "swift-logo").pngData()!)
+        
+        let mockGateway = MockGateway(mockSession: mockURLSession)
+        return DiscordAPIGateway(gateway: mockGateway)
+    }()
+    
+    static var previews: some View {
+        Group {
+            AvatarImage(user: .mockUser)
+                .environmentObject(DiscordAPIGateway.mockGateway)
+            
+            AvatarImage(user: User(id: "42", username: "Swift", avatar: "swift-logo"))
+                .environmentObject(imageServingMockGateway)
+        }
+        .padding()
+        .previewLayout(.sizeThatFits)
+    }
+}

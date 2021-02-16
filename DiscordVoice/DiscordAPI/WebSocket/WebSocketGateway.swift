@@ -31,8 +31,22 @@ enum GatewayError: LocalizedError {
     }
 }
 
+/// Credit to this fantastic answer: https://stackoverflow.com/a/61627636
+protocol URLSessionProtocol {
+    typealias APIResponse = URLSession.DataTaskPublisher.Output
+    func apiResponse(for request: URLRequest) -> AnyPublisher<APIResponse, URLError>
+    
+    func webSocketTask(with url: URL) -> URLSessionWebSocketTask
+}
+
+extension URLSession: URLSessionProtocol {
+    func apiResponse(for request: URLRequest) -> AnyPublisher<APIResponse, URLError> {
+        return dataTaskPublisher(for: request).eraseToAnyPublisher()
+    }
+}
+
 protocol WebSocketGateway {
-    var session: URLSession { get }
+//    var session: URLSessionProtocol { get }
     var discordAPI: APIClient { get }
     var eventPublisher: AnyPublisher<Event, Never> { get }
     

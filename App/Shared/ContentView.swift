@@ -150,34 +150,6 @@ struct ContentView: View {
     }
 }
 
-struct MockAPIClient: APIClient {
-    func get<T>(_ request: T) -> AnyPublisher<T.Response, APIError> where T : APIRequest {
-        PassthroughSubject<T.Response, APIError>().eraseToAnyPublisher()
-    }
-}
-
-struct MockGateway: WebSocketGateway {
-    var session: URLSession
-    
-    var discordAPI: APIClient
-    
-    var eventPublisher: AnyPublisher<Event, Never>
-    
-    init() {
-        session = .shared // TODO use a mock one
-        discordAPI = MockAPIClient()
-        eventPublisher = PassthroughSubject<Event, Never>().eraseToAnyPublisher()
-    }
-    
-    func connect() -> AnyPublisher<ReadyPayload, GatewayError> {
-        PassthroughSubject<ReadyPayload, GatewayError>().eraseToAnyPublisher()
-    }
-    
-    func send(command: Command) {
-        // TODO
-    }
-}
-
 class MockHomeViewModel: HomeViewModel {
     init(_ contentState: ContentState<ReadyPayload, GatewayError>) {
         super.init(discordGateway: DiscordAPIGateway(gateway: MockGateway()))

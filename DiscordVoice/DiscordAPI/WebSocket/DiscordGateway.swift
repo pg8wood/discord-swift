@@ -11,7 +11,7 @@ import Combine
 class DiscordGateway: WebSocketGateway {
     lazy var eventPublisher = eventSubject.eraseToAnyPublisher()
     
-    let session: URLSession
+    let session: URLSessionProtocol
     let discordAPI: APIClient
     
     private let version: Int = 8
@@ -26,7 +26,7 @@ class DiscordGateway: WebSocketGateway {
     private var mostRecentSequenceNumber: Int?
     private var heartbeatTimer: Timer?
     
-    init(session: URLSession, discordAPI: DiscordAPI) {
+    init(session: URLSessionProtocol, discordAPI: DiscordAPI) {
         self.session = session
         self.discordAPI = discordAPI
     }

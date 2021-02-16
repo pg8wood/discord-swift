@@ -118,6 +118,14 @@
 		B8CF8C8C25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */; };
 		B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */; };
 		B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */; };
+		B8DCCBDF25DB879000D33E1D /* MockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBDE25DB879000D33E1D /* MockGateway.swift */; };
+		B8DCCBE025DB879000D33E1D /* MockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBDE25DB879000D33E1D /* MockGateway.swift */; };
+		B8DCCBE725DB8AEE00D33E1D /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBE625DB8AEE00D33E1D /* MockUser.swift */; };
+		B8DCCBE825DB8AEE00D33E1D /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBE625DB8AEE00D33E1D /* MockUser.swift */; };
+		B8DCCBF025DB8B8000D33E1D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8DCCBEF25DB8B8000D33E1D /* Preview Assets.xcassets */; };
+		B8DCCBF125DB8B8000D33E1D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8DCCBEF25DB8B8000D33E1D /* Preview Assets.xcassets */; };
+		B8DCCBF825DB8C7400D33E1D /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBF725DB8C7400D33E1D /* MockURLSession.swift */; };
+		B8DCCBF925DB8C7400D33E1D /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBF725DB8C7400D33E1D /* MockURLSession.swift */; };
 		B8E46AC125D392AD003031D8 /* ChannelPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* ChannelPayload.swift */; };
 		B8E46AC225D392AD003031D8 /* ChannelPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* ChannelPayload.swift */; };
 		B8E46AC325D392AD003031D8 /* ChannelPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E46AC025D392AD003031D8 /* ChannelPayload.swift */; };
@@ -213,6 +221,10 @@
 		B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserAvatarRequest.swift; sourceTree = "<group>"; };
 		B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePresencesListView.swift; sourceTree = "<group>"; };
 		B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImage.swift; sourceTree = "<group>"; };
+		B8DCCBDE25DB879000D33E1D /* MockGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGateway.swift; sourceTree = "<group>"; };
+		B8DCCBE625DB8AEE00D33E1D /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
+		B8DCCBEF25DB8B8000D33E1D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B8DCCBF725DB8C7400D33E1D /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		B8E46AC025D392AD003031D8 /* ChannelPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPayload.swift; sourceTree = "<group>"; };
 		B8E46B7C25D47AA7003031D8 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		B8E46B8425D495E1003031D8 /* EasyExpandingDisclosureGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyExpandingDisclosureGroup.swift; sourceTree = "<group>"; };
@@ -362,6 +374,8 @@
 		B89571CD2571E9A10026FBC6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				B8DCCBEE25DB8B8000D33E1D /* Preview Content */,
+				B8DCCBDD25DB877C00D33E1D /* Mocks */,
 				B83739FF25D24D640089CAE9 /* Models */,
 				B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */,
 				B895723D2572E2D60026FBC6 /* ContentState.swift */,
@@ -496,6 +510,24 @@
 				B8CF8C7725D0FC750011C7A0 /* GetUserAvatarRequest.swift */,
 			);
 			path = CDN;
+			sourceTree = "<group>";
+		};
+		B8DCCBDD25DB877C00D33E1D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				B8DCCBF725DB8C7400D33E1D /* MockURLSession.swift */,
+				B8DCCBDE25DB879000D33E1D /* MockGateway.swift */,
+				B8DCCBE625DB8AEE00D33E1D /* MockUser.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		B8DCCBEE25DB8B8000D33E1D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B8DCCBEF25DB8B8000D33E1D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -643,6 +675,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DCCBF025DB8B8000D33E1D /* Preview Assets.xcassets in Resources */,
 				B89571FA2571E9A40026FBC6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,6 +684,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DCCBF125DB8B8000D33E1D /* Preview Assets.xcassets in Resources */,
 				B89571FB2571E9A40026FBC6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,9 +747,11 @@
 			files = (
 				B89572172571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */,
 				B89571F82571E9A40026FBC6 /* ContentView.swift in Sources */,
+				B8DCCBE725DB8AEE00D33E1D /* MockUser.swift in Sources */,
 				B895725D2572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8B0D1EC2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B8CF8C4125D0BC290011C7A0 /* GetGuildIconRequest.swift in Sources */,
+				B8DCCBF825DB8C7400D33E1D /* MockURLSession.swift in Sources */,
 				B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */,
 				B8E46B7D25D47AA7003031D8 /* Channel.swift in Sources */,
 				B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
@@ -743,6 +779,7 @@
 				B895721C2571EA0E0026FBC6 /* GetGateway.swift in Sources */,
 				B8E46B8525D495E2003031D8 /* EasyExpandingDisclosureGroup.swift in Sources */,
 				B8373A0F25D2505F0089CAE9 /* GuildMembersChunk.swift in Sources */,
+				B8DCCBDF25DB879000D33E1D /* MockGateway.swift in Sources */,
 				B895724F2572E2FF0026FBC6 /* ContentState.swift in Sources */,
 				B895720E2571EA0E0026FBC6 /* GuildPayload.swift in Sources */,
 				B8B0D1CA2575AABE00B25400 /* Command.swift in Sources */,
@@ -764,9 +801,11 @@
 			files = (
 				B895722E2571EA0E0026FBC6 /* GetGuildRequest.swift in Sources */,
 				B89571F92571E9A40026FBC6 /* ContentView.swift in Sources */,
+				B8DCCBE825DB8AEE00D33E1D /* MockUser.swift in Sources */,
 				B89572632572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8B0D1ED2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
 				B8B0D1AB2575A44C00B25400 /* Payload.swift in Sources */,
+				B8DCCBF925DB8C7400D33E1D /* MockURLSession.swift in Sources */,
 				B8CF8C4725D0BC290011C7A0 /* GetGuildIconRequest.swift in Sources */,
 				B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */,
 				B8E46B7E25D47AA7003031D8 /* Channel.swift in Sources */,
@@ -794,6 +833,7 @@
 				B89572332571EA0E0026FBC6 /* GetGateway.swift in Sources */,
 				B8E46B8625D495E2003031D8 /* EasyExpandingDisclosureGroup.swift in Sources */,
 				B8373A1025D2505F0089CAE9 /* GuildMembersChunk.swift in Sources */,
+				B8DCCBE025DB879000D33E1D /* MockGateway.swift in Sources */,
 				B89572492572E2FE0026FBC6 /* ContentState.swift in Sources */,
 				B89572252571EA0E0026FBC6 /* GuildPayload.swift in Sources */,
 				B8B0D1CB2575AABE00B25400 /* Command.swift in Sources */,

@@ -9,9 +9,13 @@ import UIKit
 import Combine
 
 class DiscordAPI: APIClient {
+    let session: URLSessionProtocol
+    
     private let myUserID = "275833464618614784"
     
-    let session: URLSession = .shared // DI and make testable
+    init(session: URLSessionProtocol) {
+        self.session = session
+    }
     
     func get<T: APIRequest>(_ request: T) -> AnyPublisher<T.Response, APIError> {
         // all url construction should be in the request type
@@ -22,7 +26,7 @@ class DiscordAPI: APIClient {
             urlRequest.setValue($0.value, forHTTPHeaderField: $0.key)
         }
         
-        return session.dataTaskPublisher(for: urlRequest)
+        return session.apiResponse(for: urlRequest)
             .map(\.data)
             .tryMap(request.decodeResponse)
             .mapError { error -> APIError in

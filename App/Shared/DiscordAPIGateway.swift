@@ -13,7 +13,7 @@ class DiscordAPIGateway: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(gateway: WebSocketGateway = DiscordGateway(session: .shared, discordAPI: DiscordAPI())) {
+    init(gateway: WebSocketGateway = DiscordGateway(session: URLSession.shared, discordAPI: DiscordAPI(session: URLSession.shared))) {
         self.gateway = gateway
     }
     
