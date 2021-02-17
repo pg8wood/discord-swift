@@ -7,7 +7,7 @@
 
 import Combine
 
-class Guild: ObservableObject, Equatable, Identifiable {
+class Guild: ObservableObject, Encodable, Hashable, Equatable, Identifiable {
     static func == (lhs: Guild, rhs: Guild) -> Bool {
         lhs.id == rhs.id
     }
@@ -28,6 +28,8 @@ class Guild: ObservableObject, Equatable, Identifiable {
                 }
             }
     }
+    
+    private let payload: GuildPayload
     
     init(from payload: GuildPayload) {
         func organizeChannelsByCategory(_ channels: [ChannelPayload]) -> [Channel: [Channel]] {
@@ -55,12 +57,25 @@ class Guild: ObservableObject, Equatable, Identifiable {
                 }
         }
         
+        self.payload = payload
         id = payload.id
         name = payload.name
         iconHash = payload.icon
         voiceStates = payload.voiceStates
         members = payload.members
         channelsByCategory = organizeChannelsByCategory(payload.channels)
+    }
+    
+    // MARK: Encodable
+    
+    func encode(to encoder: Encoder) throws {
+        try payload.encode(to: encoder)
+    }
+    
+    // MARK: Hashable
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
     // TODO: can we use "assign" to subscribe guilds to their state updates instead of using sink?

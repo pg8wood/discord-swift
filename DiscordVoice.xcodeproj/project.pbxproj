@@ -84,6 +84,9 @@
 		B89572872572EFAE0026FBC6 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572852572EFAE0026FBC6 /* EventListView.swift */; };
 		B89572932572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */; };
 		B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */; };
+		B8A7564F25DDB2280008D4DB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBE625DB8AEE00D33E1D /* MockUser.swift */; };
+		B8A7565025DDB2280008D4DB /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBF725DB8C7400D33E1D /* MockURLSession.swift */; };
+		B8A7565125DDB2280008D4DB /* MockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCBDE25DB879000D33E1D /* MockGateway.swift */; };
 		B8AB84B2257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */; };
 		B8AB84B3257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */; };
 		B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */; };
@@ -326,6 +329,7 @@
 		B82141B9256E1353006F5596 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B8DCCBDD25DB877C00D33E1D /* Mocks */,
 				B8B0D1DF2575AB0400B25400 /* Common */,
 				B8B0D17C2575A12B00B25400 /* Commands */,
 				B8B0D1872575A1EB00B25400 /* Events */,
@@ -375,7 +379,6 @@
 			isa = PBXGroup;
 			children = (
 				B8DCCBEE25DB8B8000D33E1D /* Preview Content */,
-				B8DCCBDD25DB877C00D33E1D /* Mocks */,
 				B83739FF25D24D640089CAE9 /* Models */,
 				B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */,
 				B895723D2572E2D60026FBC6 /* ContentState.swift */,
@@ -714,8 +717,10 @@
 				B803F44B256624EA000866AB /* main.swift in Sources */,
 				B82141B4256E1327006F5596 /* APIRequest.swift in Sources */,
 				B82141CA256E13CB006F5596 /* GatewayMessage.swift in Sources */,
+				B8A7565125DDB2280008D4DB /* MockGateway.swift in Sources */,
 				B82141C7256E13A1006F5596 /* DiscordAPI.swift in Sources */,
 				B82141C4256E138F006F5596 /* APIClient.swift in Sources */,
+				B8A7564F25DDB2280008D4DB /* MockUser.swift in Sources */,
 				B82141B7256E133B006F5596 /* GetUser.swift in Sources */,
 				B82141D7256E14C6006F5596 /* HelloPayload.swift in Sources */,
 				B8B0D1EB2575B89E00B25400 /* RequestGuildMembersCommand.swift in Sources */,
@@ -727,6 +732,7 @@
 				B8B0D1F92575BD4C00B25400 /* Snowflake.swift in Sources */,
 				B8B0D1C92575AABE00B25400 /* Command.swift in Sources */,
 				B8B0D1D22575AAD200B25400 /* Event.swift in Sources */,
+				B8A7565025DDB2280008D4DB /* MockURLSession.swift in Sources */,
 				B82141C1256E1380006F5596 /* User.swift in Sources */,
 				B82141DF256E15BB006F5596 /* DiscordGateway.swift in Sources */,
 				B89571C7256F36AA0026FBC6 /* WebSocketGateway.swift in Sources */,

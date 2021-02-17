@@ -28,8 +28,8 @@ enum DiscordEvent: Hashable {
     }
     
     case ready(ReadyPayload)
-    case guildCreate(GuildPayload)
-    case guildUpdate(GuildPayload)
+    case guildCreate(Guild)
+    case guildUpdate(Guild)
     case voiceStateUpdate(VoiceState)
     case guildMembersChunk(GuildMembersChunk)
     case unknown(String)

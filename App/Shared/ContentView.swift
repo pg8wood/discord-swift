@@ -53,8 +53,7 @@ class HomeViewModel: ObservableObject {
                 self.events.append(event)
                 
                 switch event {
-                case .dispatch(.guildCreate(let guildPayload)):
-                    let guild = Guild(from: guildPayload)
+                case .dispatch(.guildCreate(let guild)):
                     if !self.guilds.contains(guild) {
                         self.guilds.append(guild)
                     }
