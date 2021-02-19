@@ -69,3 +69,9 @@ class DiscordAPIGateway: ObservableObject {
         .eraseToAnyPublisher()
     }
 }
+
+extension DiscordAPIGateway {
+    static var mockGateway: DiscordAPIGateway {
+        DiscordAPIGateway(gateway: MockGateway())
+    }
+}

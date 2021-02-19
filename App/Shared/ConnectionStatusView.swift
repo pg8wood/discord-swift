@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Swiftcord
 
 struct ConnectionStatusView: View {
     @Binding var contentState: ContentState<ReadyPayload, GatewayError>

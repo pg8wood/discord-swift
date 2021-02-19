@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Swiftcord
 
 class HomeViewModel: ObservableObject {
     @Published var contentState: ContentState<ReadyPayload, GatewayError> = .notLoaded
