@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Swiftcord
 
 class DiscordAPIGateway: ObservableObject {
     @Published var gateway: WebSocketGateway

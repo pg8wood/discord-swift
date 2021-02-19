@@ -7,10 +7,15 @@
 
 import SwiftUI
 import Combine
+import Swiftcord
 
 @main
 struct discord_voiceApp: App {
     @State private var discordGateway = DiscordAPIGateway()
+    
+    init() {
+        Swiftcord.setup(discordToken: Secrets.discordToken)
+    }
     
     var body: some Scene {
         WindowGroup {

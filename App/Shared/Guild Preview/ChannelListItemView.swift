@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Swiftcord
 
 struct ChannelListItemView: View {
     @ObservedObject var channel: Channel
@@ -114,14 +115,13 @@ struct ChannelListItemView_Previews: PreviewProvider {
 
 private extension Channel {
     convenience init(type: ChannelType, name: Snowflake) {
-        self.init(from:
-            ChannelPayload(
-                id: "42",
-                type: type,
-                guildID: nil,
-                name: name,
-                position: nil,
-                parentID: nil)
-        )
+        self.init(
+            id: "42",
+            type: type,
+            guildID: nil,
+            name: name,
+            position: nil,
+            parentID: nil)
+        
     }
 }

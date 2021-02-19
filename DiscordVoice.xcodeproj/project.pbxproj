@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B83FC5B825D62D750060C97A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC5B725D62D750060C97A /* Secrets.swift */; };
 		B83FC5B925D62D750060C97A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC5B725D62D750060C97A /* Secrets.swift */; };
 		B83FC5BA25D62D750060C97A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC5B725D62D750060C97A /* Secrets.swift */; };
 		B883310925CF5A4F00832538 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B883310825CF5A4E00832538 /* ToastView.swift */; };
 		B883310A25CF5A4F00832538 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B883310825CF5A4E00832538 /* ToastView.swift */; };
 		B884EF7E25DF7CD00068612D /* Swiftcord in Frameworks */ = {isa = PBXBuildFile; productRef = B884EF7D25DF7CD00068612D /* Swiftcord */; };
+		B884EFDA25DF8F1F0068612D /* MockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884EFD925DF8F1F0068612D /* MockGateway.swift */; };
+		B884EFDB25DF8F1F0068612D /* MockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884EFD925DF8F1F0068612D /* MockGateway.swift */; };
+		B884EFE225DF8F4D0068612D /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884EFE125DF8F4D0068612D /* MockURLSession.swift */; };
+		B884EFE325DF8F4D0068612D /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884EFE125DF8F4D0068612D /* MockURLSession.swift */; };
+		B884EFFA25DF90590068612D /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884EFF925DF90590068612D /* MockUser.swift */; };
+		B884EFFB25DF90590068612D /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884EFF925DF90590068612D /* MockUser.swift */; };
 		B89571E92571E9A40026FBC6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571E82571E9A40026FBC6 /* Tests_iOS.swift */; };
 		B89571F42571E9A40026FBC6 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571F32571E9A40026FBC6 /* Tests_macOS.swift */; };
 		B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */; };
@@ -82,6 +87,9 @@
 		B803F447256624EA000866AB /* Swiftcord */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Swiftcord; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83FC5B725D62D750060C97A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B883310825CF5A4E00832538 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		B884EFD925DF8F1F0068612D /* MockGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGateway.swift; sourceTree = "<group>"; };
+		B884EFE125DF8F4D0068612D /* MockURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		B884EFF925DF90590068612D /* MockUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
 		B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = discord_voiceApp.swift; sourceTree = "<group>"; };
 		B89571CF2571E9A10026FBC6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B89571D02571E9A40026FBC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				B8A7565C25DDB4770008D4DB /* Swiftcord */,
-				B83FC5B725D62D750060C97A /* Secrets.swift */,
 			);
 			path = Swiftcord;
 			sourceTree = "<group>";
@@ -190,9 +197,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B884EFE925DF8F510068612D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				B884EFF925DF90590068612D /* MockUser.swift */,
+				B884EFE125DF8F4D0068612D /* MockURLSession.swift */,
+				B884EFD925DF8F1F0068612D /* MockGateway.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		B89571CD2571E9A10026FBC6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				B884EFE925DF8F510068612D /* Mocks */,
 				B8DCCBEE25DB8B8000D33E1D /* Preview Content */,
 				B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */,
 				B895723D2572E2D60026FBC6 /* ContentState.swift */,
@@ -200,6 +218,7 @@
 				B89571CE2571E9A10026FBC6 /* discord_voiceApp.swift */,
 				B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */,
 				B89572922572F5E40026FBC6 /* JsonViewerViewController.swift */,
+				B83FC5B725D62D750060C97A /* Secrets.swift */,
 				B883310825CF5A4E00832538 /* ToastView.swift */,
 				B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */,
 				B89571D02571E9A40026FBC6 /* Assets.xcassets */,
@@ -476,7 +495,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83FC5B825D62D750060C97A /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,17 +502,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B884EFDA25DF8F1F0068612D /* MockGateway.swift in Sources */,
 				B89571F82571E9A40026FBC6 /* ContentView.swift in Sources */,
 				B895725D2572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */,
 				B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B8CF8C5325D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
+				B884EFE225DF8F4D0068612D /* MockURLSession.swift in Sources */,
 				B89571F62571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B883310925CF5A4F00832538 /* ToastView.swift in Sources */,
 				B8E46B8D25D49B9E003031D8 /* ChannelListItemView.swift in Sources */,
 				B8CF8C5B25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B83FC5B925D62D750060C97A /* Secrets.swift in Sources */,
 				B8CF8C8B25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */,
+				B884EFFA25DF90590068612D /* MockUser.swift in Sources */,
 				B8AB84B2257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */,
 				B89572932572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
 				B8E46B8525D495E2003031D8 /* EasyExpandingDisclosureGroup.swift in Sources */,
@@ -507,17 +528,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B884EFDB25DF8F1F0068612D /* MockGateway.swift in Sources */,
 				B89571F92571E9A40026FBC6 /* ContentView.swift in Sources */,
 				B89572632572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */,
 				B8AB850C258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B8CF8C5425D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
+				B884EFE325DF8F4D0068612D /* MockURLSession.swift in Sources */,
 				B89571F72571E9A40026FBC6 /* discord_voiceApp.swift in Sources */,
 				B883310A25CF5A4F00832538 /* ToastView.swift in Sources */,
 				B8E46B8E25D49B9E003031D8 /* ChannelListItemView.swift in Sources */,
 				B8CF8C5C25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */,
 				B83FC5BA25D62D750060C97A /* Secrets.swift in Sources */,
 				B8CF8C8C25D0FE980011C7A0 /* VoicePresencesListView.swift in Sources */,
+				B884EFFB25DF90590068612D /* MockUser.swift in Sources */,
 				B8AB84B3257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */,
 				B89572942572F5E40026FBC6 /* JsonViewerViewController.swift in Sources */,
 				B8E46B8625D495E2003031D8 /* EasyExpandingDisclosureGroup.swift in Sources */,

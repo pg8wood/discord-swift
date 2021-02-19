@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Swiftcord
 
 struct VoicePresencesListView: View {
     @Binding var channelsByCategory: [Channel: [Channel]]

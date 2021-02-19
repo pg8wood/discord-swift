@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Swiftcord
 
 struct AvatarImage: View {
     @EnvironmentObject var discordGateway: DiscordAPIGateway

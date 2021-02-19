@@ -101,7 +101,6 @@ class HomeViewModel: ObservableObject {
 struct ContentView: View {
     @State private var isShowingEventLogSheet: Bool = false
     @State private var isShowingErrorAlert: Bool = false
-    @State private var selectedGuild: GuildPayload?
     @ObservedObject var viewModel: HomeViewModel
     
     private var errorAlert: Alert {
@@ -174,7 +173,7 @@ struct ContentView_Previews: PreviewProvider {
     
     private static var mockGuilds: [Guild] {
         (1...4).map {
-            Guild(from: GuildPayload(id: "42", name: "Test guild \($0)", icon: "", voiceStates: [], members: [], channels: []))
+            Guild(id: "42", name: "Test guild \($0)", icon: "", voiceStates: [], members: [], channels: [])
         }
     }
     

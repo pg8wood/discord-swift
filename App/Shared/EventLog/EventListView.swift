@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Swiftcord
 
 // TODO: should the gateway just publish state of incoming json instead of reencoding here??
 enum DiscordEventEncoder {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Swiftcord
 
 struct GuildPreviewScrollView: View {
     @Binding var guilds: [Guild]
@@ -26,13 +27,13 @@ struct GuildPreviewView_Previews: PreviewProvider {
             "Short name",
             "Test Guild with a long-ish name"
         ].map {
-            Guild(from: GuildPayload(id: "",
-                         name: $0,
-                         icon: "",
-                         voiceStates: [
-                            VoiceState(guildID: "42", userID: "3", channelID: "22", member: GuildMember(user: User(id: "3", username: "Always in Voice", avatar: "test")))
-                         ],
-                         members: [], channels: [])
+            Guild(id: "",
+                  name: $0,
+                  icon: "",
+                  voiceStates: [
+                    VoiceState(guildID: "42", userID: "3", channelID: "22", member: GuildMember(user: User(id: "3", username: "Always in Voice", avatar: "test")))
+                  ],
+                  members: [], channels: []
             )
         }
     }
