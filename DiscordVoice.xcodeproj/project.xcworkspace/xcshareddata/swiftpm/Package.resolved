@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Swiftcord",
+        "repositoryURL": "https://github.com/pg8wood/swiftcord",
+        "state": {
+          "branch": "main",
+          "revision": "a4b39d37f1d4f739f9954c1380b09f1cdc8b66d2",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -38,6 +38,9 @@
 		B8AB84B3257EE6E2005DDA97 /* GuildPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */; };
 		B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */; };
 		B8AB850C258411AE005DDA97 /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */; };
+		B8CA5F8026DB00BF00C73DBF /* Swiftcord in Frameworks */ = {isa = PBXBuildFile; productRef = B8CA5F7F26DB00BF00C73DBF /* Swiftcord */; };
+		B8CA5F8226DB011200C73DBF /* ActiveVoiceUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA5F8126DB011200C73DBF /* ActiveVoiceUserView.swift */; };
+		B8CA5F8326DB011200C73DBF /* ActiveVoiceUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA5F8126DB011200C73DBF /* ActiveVoiceUserView.swift */; };
 		B8CF8C5325D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */; };
 		B8CF8C5425D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */; };
 		B8CF8C5B25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */; };
@@ -111,6 +114,7 @@
 		B8A7565C25DDB4770008D4DB /* Swiftcord */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Swiftcord; path = ../../Swiftcord; sourceTree = "<group>"; };
 		B8AB84B1257EE6E2005DDA97 /* GuildPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuildPreviewView.swift; sourceTree = "<group>"; };
 		B8AB850A258411AE005DDA97 /* ConnectionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusView.swift; sourceTree = "<group>"; };
+		B8CA5F8126DB011200C73DBF /* ActiveVoiceUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveVoiceUserView.swift; sourceTree = "<group>"; };
 		B8CF8C5225D0F3E00011C7A0 /* DiscordAPIGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordAPIGateway.swift; sourceTree = "<group>"; };
 		B8CF8C5A25D0F68E0011C7A0 /* VerticallyCenteredLabelImageAlignmentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredLabelImageAlignmentStyle.swift; sourceTree = "<group>"; };
 		B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePresencesListView.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CA5F8026DB00BF00C73DBF /* Swiftcord in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +305,7 @@
 				B8CF8C8A25D0FE980011C7A0 /* VoicePresencesListView.swift */,
 				B8CF8C9725D100E90011C7A0 /* AvatarImage.swift */,
 				B8E46B8C25D49B9E003031D8 /* ChannelListItemView.swift */,
+				B8CA5F8126DB011200C73DBF /* ActiveVoiceUserView.swift */,
 			);
 			path = "Guild Preview";
 			sourceTree = "<group>";
@@ -328,6 +334,9 @@
 			dependencies = (
 			);
 			name = Swiftcord;
+			packageProductDependencies = (
+				B8CA5F7F26DB00BF00C73DBF /* Swiftcord */,
+			);
 			productName = DiscordVoice;
 			productReference = B803F447256624EA000866AB /* Swiftcord */;
 			productType = "com.apple.product-type.tool";
@@ -412,7 +421,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					B803F446256624EA000866AB = {
 						CreatedOnToolsVersion = 12.2;
@@ -442,6 +451,9 @@
 				Base,
 			);
 			mainGroup = B803F43E256624EA000866AB;
+			packageReferences = (
+				B8CA5F7E26DB00BF00C73DBF /* XCRemoteSwiftPackageReference "swiftcord" */,
+			);
 			productRefGroup = B803F448256624EA000866AB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -506,6 +518,7 @@
 				B89571F82571E9A40026FBC6 /* ContentView.swift in Sources */,
 				B895725D2572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8CF8C9825D100E90011C7A0 /* AvatarImage.swift in Sources */,
+				B8CA5F8226DB011200C73DBF /* ActiveVoiceUserView.swift in Sources */,
 				B8AB850B258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B8CF8C5325D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
 				B884EFE225DF8F4D0068612D /* MockURLSession.swift in Sources */,
@@ -532,6 +545,7 @@
 				B89571F92571E9A40026FBC6 /* ContentView.swift in Sources */,
 				B89572632572E3C40026FBC6 /* View+Extensions.swift in Sources */,
 				B8CF8C9925D100E90011C7A0 /* AvatarImage.swift in Sources */,
+				B8CA5F8326DB011200C73DBF /* ActiveVoiceUserView.swift in Sources */,
 				B8AB850C258411AE005DDA97 /* ConnectionStatusView.swift in Sources */,
 				B8CF8C5425D0F3E00011C7A0 /* DiscordAPIGateway.swift in Sources */,
 				B884EFE325DF8F4D0068612D /* MockURLSession.swift in Sources */,
@@ -700,6 +714,7 @@
 		B803F44F256624EA000866AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -712,6 +727,7 @@
 		B803F450256624EA000866AB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GZZH6JZ9Q5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -772,6 +788,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = ../Swiftcord;
@@ -797,6 +814,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = ../Swiftcord;
@@ -960,9 +978,25 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		B8CA5F7E26DB00BF00C73DBF /* XCRemoteSwiftPackageReference "swiftcord" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pg8wood/swiftcord";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		B884EF7D25DF7CD00068612D /* Swiftcord */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = Swiftcord;
+		};
+		B8CA5F7F26DB00BF00C73DBF /* Swiftcord */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8CA5F7E26DB00BF00C73DBF /* XCRemoteSwiftPackageReference "swiftcord" */;
 			productName = Swiftcord;
 		};
 /* End XCSwiftPackageProductDependency section */

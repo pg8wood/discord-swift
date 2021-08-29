@@ -17,15 +17,30 @@ struct VoicePresencesListView: View {
         })
     }
     
+    private var usersInVoice: [User] {
+        channelsByCategory.values
+            .flatMap { $0 }
+            .compactMap { $0 as? VoiceChannel }
+            .flatMap { $0.usersInVoice }
+    }
+    
     var body: some View {
-        ForEach(sortedChannelCategories) { category in
-            if let channels = channelsByCategory[category] {
-                EasyExpandingDisclosureGroup {
-                    ForEach(channels) { channel in
-                        ChannelListItemView(channel: channel)
+        VStack(alignment: .leading) {
+            HStack {
+                ForEach(usersInVoice, id: \.self) { user in
+                    ActiveVoiceUserView(user: user)
+                }
+            }
+            
+            ForEach(sortedChannelCategories) { category in
+                if let channels = channelsByCategory[category] {
+                    EasyExpandingDisclosureGroup {
+                        ForEach(channels) { channel in
+                            ChannelListItemView(channel: channel)
+                        }
+                    } label: {
+                        Text(category.name)
                     }
-                } label: {
-                    Text(category.name)
                 }
             }
         }
