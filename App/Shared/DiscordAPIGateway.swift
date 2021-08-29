@@ -18,6 +18,28 @@ class DiscordAPIGateway: ObservableObject {
         self.gateway = gateway
     }
     
+    func getMessages(in channel: Channel) -> AnyPublisher<[ChannelMessage], Never> {
+        Deferred {
+            Future { [weak self] fulfill in
+                guard let self = self else { return }
+                
+                self.gateway.discordAPI.get(GetChannelMessagesRequest(channelID: channel.id))
+                    .receive(on: DispatchQueue.main)
+                    .sink { completion in
+                        switch completion {
+                        case .failure(let error):
+                            fulfill(.success([]))
+                        case .finished: break
+                        }
+                    } receiveValue: { messages in
+                        fulfill(.success(messages))
+                    }
+                    .store(in: &self.cancellables)
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
     func getIcon(for guild: Guild) -> AnyPublisher<UIImage?, Never> {
         Deferred {
             Future { [weak self] fulfill in
@@ -29,7 +51,7 @@ class DiscordAPIGateway: ObservableObject {
                 
                 self.gateway.discordAPI.get(GetGuildIconRequest(guildID: guild.id, iconHash: guildIcon))
                     .receive(on: DispatchQueue.main)
-                    .sink( receiveCompletion:  { completion in
+                    .sink(receiveCompletion:  { completion in
                         switch completion {
                         case .failure:
                             fulfill(.success(nil))
@@ -55,7 +77,7 @@ class DiscordAPIGateway: ObservableObject {
                 
                 self.gateway.discordAPI.get(GetUserAvatarRequest(userID: user.id, avatar: avatar))
                     .receive(on: DispatchQueue.main)
-                    .sink( receiveCompletion:  { completion in
+                    .sink(receiveCompletion:  { completion in
                         switch completion {
                         case .failure:
                             fulfill(.success(nil))

@@ -10,13 +10,21 @@ import Combine
 import Swiftcord
 
 struct ChannelListItemView: View {
+    @EnvironmentObject var discordGateway: DiscordAPIGateway
     @ObservedObject var channel: Channel
+    
+    // TODO navigation view instead
+    @State private var isShowingMessages: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 Label {
-                    Text(channel.name)
+                    Button(channel.name) {
+                        isShowingMessages = true
+                    }.sheet(isPresented: $isShowingMessages) {
+                        ChannelMessagesView(discordGateway: discordGateway, channel: channel)
+                    }
                 } icon: {
                     Image(systemName: systemImageName(for: channel.type))
                 }
@@ -26,11 +34,7 @@ struct ChannelListItemView: View {
             
             if let voiceChannel = channel as? VoiceChannel {
                 ForEach(voiceChannel.usersInVoice, id: \.self) { user in
-                    HStack {
-                        AvatarImage(user: user)
-                        
-                        Text(user.username)
-                    }
+                    UserView(user: user)
                 }
                 .padding(.leading, 35)
                 .transition(.scale) // could be cool to do a custom animation that does a reverse scale spring animation (like how the ToastView does a reverse spring)
